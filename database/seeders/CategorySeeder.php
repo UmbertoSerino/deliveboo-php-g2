@@ -37,10 +37,10 @@ class CategorySeeder extends Seeder
         ];
 
         foreach ($categories as $category) {
-            $category = new Category();
-            $category->name = $category['name'];
-            $category->image_url = $category['image_url'];
-            $category->save();
+            $newCategory = new Category();
+            $newCategory->name = $category['name'];
+            $newCategory->image_url = $category['image_url'];
+            $newCategory->save();
         }
     }
 }
