@@ -13,6 +13,8 @@ class RestaurantSeeder extends Seeder
      */
     public function run(): void
     {
+
+        // aggiungere l\'id dell'utente
         $restaurants = [
             [
                 'name' => 'La regina margherita',
@@ -23,6 +25,8 @@ class RestaurantSeeder extends Seeder
                 'image_url' => 'https://img.ilgcdn.com/sites/default/files/styles/xl/public/foto/2019/12/29/1577604943-marghe.jpg?_=1577604943',
             ]
         ];
+
+
         foreach ($restaurants as $restaurant) {
             $newRestaurants = new Restaurant();
             $newRestaurants->name = $restaurant['name'];

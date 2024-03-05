@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
-            // $table->unsignedBigInteger('user_id');
+            // $table->unsignedBigInteger('user_id'); creare prima un utente già registrato e poi rifare la migration. Modificare successivamente il seeder
             $table->string('name');
             $table->integer('vat');
             $table->string('address');
