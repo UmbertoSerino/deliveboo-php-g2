@@ -56,14 +56,6 @@ class RestaurantSeeder extends Seeder
                 'email' => 'osteriadelpescatore@hotmail.com',
                 'image_url' => 'https://media-cdn.tripadvisor.com/media/photo-s/18/4e/b8/44/osteria-del-pescatore.jpg',
             ],
-            [
-                'name' => 'Pizzeria Napoli',
-                'vat' => 258369147,
-                'address' => 'Corso Umberto, 15, Milano (MI)',
-                'phone_number' => 333789456,
-                'email' => 'pizzerianapoli@gmail.com',
-                'image_url' => 'https://www.napolibed.com/images/le-pizzerie-storiche-a-napoli-20210302-158850.jpg',
-            ],
         ];
 
 
