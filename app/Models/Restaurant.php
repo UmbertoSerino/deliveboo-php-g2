@@ -14,4 +14,12 @@ class Restaurant extends Model
         // collegare oneToOne ad user Model
         return $this->belongsTo(User::class);
     }
+
+
+    public function categories  ()
+    { 
+       // restituiamo il tipo di relazione hasMany() con il Model secondario Project.
+        $this->hasMany(Category::class);
+    }
+
 }
