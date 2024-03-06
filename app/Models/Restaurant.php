@@ -12,6 +12,10 @@ class Restaurant extends Model
     public function user()
     {
         // collegare oneToOne ad user Model
-        return $this->belongsTo(User::class);
+        return $this->hasOne(User::class);
+    }
+    public function foodItem()
+    {
+        return $this->hasMany(FoodItem::class);
     }
 }
