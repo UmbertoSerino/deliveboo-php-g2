@@ -7,13 +7,22 @@
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
-                <div class="card-body">
+                <div class="card-body text-center">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-
+                    <div class="d-flex justify-content-between">
+                        <form action="{{ route('admin.restaurants.index') }}" method="GET">
+                            @csrf
+                            <button class="btn btn-success">Visualizza i ristoranti</button>
+                            </form>
+                        <form action="{{ route('admin.restaurants.create') }}" method="GET">
+                        @csrf
+                        <button class="btn btn-success">Aggiungi un ristorante</button>
+                        </form>
+                    </div>
                     {{ __('You are logged in!') }}
                 </div>
             </div>
