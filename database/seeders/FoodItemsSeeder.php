@@ -16,7 +16,7 @@ class FoodItemsSeeder extends Seeder
         $foodItems = [
             [
                 'name' => 'Marinara',
-                'restaurant_id' => '0',
+                'restaurant_id' => '1',
                 'description' => 'Gustosa pietanza artigianale, ispirata alla tradizione culinaria Italiana.',
                 'ingredients' => 'Salsa di pomodoro, aglio, origano, olio extravergine d\'oliva.',
                 'price' => 5, 00,
@@ -24,7 +24,7 @@ class FoodItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Margherita',
-                'restaurant_id' => '0',
+                'restaurant_id' => '1',
                 'description' => 'Gustosa pietanza artigianale, ispirata alla tradizione culinaria Italiana.',
                 'ingredients' => 'Salsa di pomodoro, mozzarella fresca, basilico, olio extravergine d\'oliva.',
                 'price' => 6, 00,
@@ -32,7 +32,7 @@ class FoodItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Diavola',
-                'restaurant_id' => '0',
+                'restaurant_id' => '1',
                 'description' => 'Gustosa pietanza artigianale, ispirata alla tradizione culinaria Italiana.',
                 'ingredients' => 'Salsa di pomodoro, mozzarella fresca, salame piccante, peperoncino, olio extravergine d\'oliva.',
                 'price' => 8, 00,
