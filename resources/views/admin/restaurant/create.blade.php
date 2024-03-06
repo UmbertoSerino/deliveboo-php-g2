@@ -2,7 +2,7 @@
 
 @section('main-content')
 <div class="container">
-  <form method="GET">
+  <form method="POST" action="{{ route('admin.restaurants.store') }}" >
     @csrf
       <div class="form-row">
         <div class="form-group col-md-6">
@@ -19,8 +19,8 @@
         <input type="text" class="form-control" id="address" name="address">
       </div>
       <div class="form-group">
-        <label for="inputAddress2">Numero di telefono: </label>
-        <input type="text" class="form-control" id="inputAddress2" placeholder="3xx xxxxxxx" minlength="9" maxlength="10" name="phone_number">
+        <label for="phone_number">Numero di telefono: </label>
+        <input type="tel" class="form-control" id="phone_number" placeholder="3xx xxxxxxx" minlength="9" maxlength="10" name="phone_number">
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
