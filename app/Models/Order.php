@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\FoodItem;
 
 class Order extends Model
 {
@@ -17,4 +18,9 @@ class Order extends Model
         'user_mail',
         'user_phone_number',
     ];
+
+    public function foodItems()
+    {
+        return $this->belongsToMany(FoodItem::class);
+    }
 }

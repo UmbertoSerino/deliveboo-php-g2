@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-/* use App\Model\Restaurant; */
-/* use App\Model\Orders; */
+/* use App\Models\Restaurant; */
+use App\Models\Order;
 
 class FoodItem extends Model
 {
@@ -25,8 +25,8 @@ class FoodItem extends Model
     {
         return $this->belongsTo(Restaurant::class);
     } */
-    /* public function orders()
+    public function orders()
     {
-        return $this->belongsToMany(Restaurant::class);
-    } */
+        return $this->belongsToMany(Order::class);
+    }
 }
