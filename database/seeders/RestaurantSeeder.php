@@ -63,8 +63,6 @@ class RestaurantSeeder extends Seeder
             ],
         ];
 
-        $userIds = User::all()->pluck('id');
-
         foreach ($restaurants as $restaurant) {
             $newRestaurants = new Restaurant();
             $newRestaurants->name = $restaurant['name'];

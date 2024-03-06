@@ -9,10 +9,19 @@ class Restaurant extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'name',
+        'vat',
+        'address',
+        'phone_number',
+        'email',
+        'image_url',
+    ];
+
     public function user()
     {
-        // collegare oneToOne ad user Model
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
     public function foodItem()
     {
