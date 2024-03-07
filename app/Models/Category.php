@@ -12,7 +12,7 @@ class Category extends Model
     public function restaurants()
     { 
        // restituiamo il tipo di relazione hasMany() con il Model secondario Project.
-        $this->hasMany(Restaurant::class);
+        $this->belongsToMany(Restaurant::class)->withTimestamps();
     }
 
     
