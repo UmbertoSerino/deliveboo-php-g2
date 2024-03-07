@@ -38,7 +38,7 @@
                 <td>{{ $restaurant->created_at->format('d/m/Y') }}</td>
                 <td> 
                   <div class="col-6">
-                      <a href="{{ route('admin.restaurant.show', $restaurant) }}" class="btn btn-primary">Visualizza Ristorante</a>
+                      <a href="{{ route('admin.restaurants.show', $restaurant) }}" class="btn btn-primary">Visualizza Ristorante</a>
                   </div>
                 </td>
 

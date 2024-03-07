@@ -20,10 +20,10 @@ class FoodItemController extends Controller
     public function create()
     {
         $foodItem = new FoodItem();
-        return view('admin.restaurant.create', compact('foodItem'));
+        return view('admin.fooditem.create', compact('foodItem'));
     }
 
-    public function store(Request $request, Restaurant $restaurant)
+    public function store(Request $request, FoodItem $foodItem)
     {
         $data = $request
             ->validate([
@@ -35,8 +35,8 @@ class FoodItemController extends Controller
             ]);
         $data['user_id'] = Auth::id();
         // dd($data);
-        $foodItem = $restaurant->foodItem()->create($data);
-        return redirect()->route('admin.restaurants.index', $foodItem);
+        $foodItem = $foodItem->create($data);
+        return redirect()->route('admin.restaurants.show', $foodItem->id);
     }
 
     public function show(Restaurant $restaurant)

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\RestaurantController as AdminRestaurantController;
+use App\Http\Controllers\Admin\FoodItemController as AdminFoodItemController;
 
 
 
@@ -30,4 +31,5 @@ Route::middleware('auth')
     ->prefix('admin')
     ->group(function () {
         Route::resource('/restaurants', AdminRestaurantController::class);
+        Route::resource('/fooditems', AdminFoodItemController::class);
     });
