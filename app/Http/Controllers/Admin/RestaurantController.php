@@ -13,8 +13,8 @@ class RestaurantController extends Controller
 {
     public function index()
     {
-        $restaurant = Restaurant::where('user_id', Auth::id())->get();
-        return view('admin.restaurant.index', compact('restaurant'));
+        $restaurants = Restaurant::where('user_id', Auth::id())->get();
+        return view('admin.restaurant.index', compact('restaurants'));
     }
 
     public function create()
