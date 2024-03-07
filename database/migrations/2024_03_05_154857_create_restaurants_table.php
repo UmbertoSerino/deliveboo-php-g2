@@ -13,17 +13,14 @@ return new class extends Migration
     {
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
-            // $table->unsignedBigInteger('user_id'); creare prima un utente già registrato e poi rifare la migration. Modificare successivamente il seeder
+            $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->integer('vat');
             $table->string('address');
-            $table->integer('phone_number')->unique();
+            $table->integer('phone_number');
             $table->string('email');
             $table->text('image_url');
-            // $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-
-
-
+            $table->foreign('id')->references('id')->on('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }
