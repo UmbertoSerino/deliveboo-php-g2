@@ -20,8 +20,9 @@ return new class extends Migration
             $table->integer('phone_number');
             $table->string('email');
             $table->text('image_url');
-            $table->foreign('id')->references('id')->on('users')->cascadeOnDelete();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
         });
     }
 
