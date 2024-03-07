@@ -6,32 +6,32 @@
             <div class="row">
                 <div class="row mb-3 justify-content-center">
                     <div class="col-7 p-3">
-                        @foreach ($restaurant->fooditems as $fooditem)
+                        @foreach ($restaurant->fooditem as $fooditems)
                            
                             
                             <div class="card p-4 text-center">
                                 <h1>
-                                    {{ $fooditem->name }}
+                                    {{ $fooditems->name }}
                                 </h1>
                                 <p>
-                                    {{ $fooditem->restaurant_id }}
+                                    {{ $fooditems->restaurant_id }}
                                 </p>
                                 <p>
-                                    Ingredienti: {{ $fooditem->ingredients }}
+                                    Ingredienti: {{ $fooditems->ingredients }}
                                 </p>
                                 <p>
-                                    Prezzo: {{ $fooditem->price }}
+                                    Prezzo: {{ $fooditems->price }}
                                 </p>
 
                                 <div class="card-image">
-                                    <img class="w-50" src="{{  $fooditem->image_url }}" alt="{{ $fooditem->name }} ">
+                                    <img class="w-50" src="{{  $fooditems->image_url }}" alt="{{ $fooditems->name }} ">
                                 </div>
                                 <div class="card-body">
                                     <h2>
                                         Descrizione
                                     </h2>
                                     <p>
-                                        {{ $fooditem->description }}
+                                        {{ $fooditems->description }}
                                     </p>
                                 </div>
 
