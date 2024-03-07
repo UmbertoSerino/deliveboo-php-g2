@@ -36,15 +36,18 @@
                 <td>{{ $restaurant->user->name }} {{ $restaurant->user->last_name }}</td>
                 <td>{{ $restaurant->user->email }}</td>
                 <td>{{ $restaurant->created_at->format('d/m/Y') }}</td>
+                <td> 
+                  <div class="col-6">
+                      <a href="{{ route('admin.restaurant.show', $restaurant->id) }}" class="btn btn-primary">Visualizza Ristorante</a>
+                  </div>
+                </td>
                 @empty
                 <td> Non ci sono ristoranti {{ Auth::user()->name }} </td>
                 @endforelse 
               </tr>
             </tbody>
           </table>
-          <div class="col-6">
-            <a href="{{ route('admin.restaurant.show', $restaurant->id) }}" class="btn btn-primary">Visualizza Ristorante</a>
-        </div>
+          
         <div class="col-12">
         </div>
       </div>
