@@ -20,8 +20,9 @@ class RestaurantCategorySeeder extends Seeder
         $categoryIds = Category::all()->pluck('id');
 
         foreach ($restaurants as $restaurant) {
-            $restaurant->categories()->sync($faker->randomElements( $categoryIds, 2, false ));
+            $restaurant->categories()->sync($faker->randomElements( $categoryIds, rand(1,5), false ));
         }
+
     }
 
 }

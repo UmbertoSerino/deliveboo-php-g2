@@ -10,7 +10,7 @@ class Restaurant extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
+        // 'user_id',
         'name',
         'vat',
         'address',
@@ -31,7 +31,6 @@ class Restaurant extends Model
   
       public function categories()
     { 
-       // restituiamo il tipo di relazione hasMany() con il Model secondario Project.
         $this->belongsToMany(Category::class)->withTimestamps();
     }
 }

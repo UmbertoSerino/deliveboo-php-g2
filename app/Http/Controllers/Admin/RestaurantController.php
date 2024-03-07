@@ -33,7 +33,8 @@ class RestaurantController extends Controller
                 'image_url' => 'nullable'
             ]);
         $data['user_id'] = Auth::id();
-        // dd($data);
+
+        //  dd($data);
         $restaurant = Restaurant::create($data);
         return redirect()->route('admin.restaurants.index', $restaurant);
     }
