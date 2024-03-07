@@ -6,7 +6,7 @@
       <h1 class="mb-5 text-center">
         Qui sono disponibili tutti i ristoranti    
       </h1>
-      @if ($restaurant->isEmpty())
+      @if ($restaurants->isEmpty())
       <div class="col-6">
           <a href="{{ route('admin.restaurants.create') }}" class="btn btn-primary">Crea un nuovo Ristorante</a>
       </div>
