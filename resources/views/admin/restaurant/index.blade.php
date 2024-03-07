@@ -38,16 +38,21 @@
                 <td>{{ $restaurant->created_at->format('d/m/Y') }}</td>
                 <td> 
                   <div class="col-6">
-                      <a href="{{ route('admin.restaurant.show', $restaurant->id) }}" class="btn btn-primary">Visualizza Ristorante</a>
+                      <a href="{{ route('admin.restaurant.show', $restaurant) }}" class="btn btn-primary">Visualizza Ristorante</a>
                   </div>
                 </td>
+
+                
                 @empty
                 <td> Non ci sono ristoranti {{ Auth::user()->name }} </td>
                 @endforelse 
               </tr>
             </tbody>
           </table>
-          
+          <form action="{{ route('admin.restaurants.create') }}" method="GET">
+                        @csrf
+                      <button class="btn btn-success">Aggiungi ristorante</button>
+          </form>        
         <div class="col-12">
         </div>
       </div>
