@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\FoodItem;
 use App\Models\Restaurant;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,34 +15,28 @@ class FoodItemController extends Controller
     public function index()
     {
         $foodItems = FoodItem::all();
-        return view('admin.restaurant.show', compact('foodItems'));
+        $restaurants = Restaurant::all();
+        return view('admin.fooditems.index', compact('foodItems', 'restaurants'));
     }
-
     public function create()
     {
+        $restaurant = Auth::user()->restaurant;
+        return view('admin.fooditems.create', compact('restaurant'));
+    }
+
+    public function store(Request $request)
+    {
+
+        $foodItemData = $request->all();
         $foodItem = new FoodItem();
-        return view('admin.fooditem.create', compact('foodItem'));
+        $foodItem->fill($foodItemData);
+        $foodItem->save();
+        return redirect()->route('admin.fooditems.index');
     }
 
-    public function store(Request $request, FoodItem $foodItem)
+    public function show(FoodItem $foodItems)
     {
-        $data = $request
-            ->validate([
-                'name' => 'required', 'max:100',
-                'description' => 'required', 'max:300',
-                'ingridients' => 'required', 'numeric', 'min:9', 'max:11',
-                'price' => 'required', 'decimal',
-                'image_url' => 'nullable'
-            ]);
-        $data['user_id'] = Auth::id();
-        // dd($data);
-        $foodItem = $foodItem->create($data);
-        return redirect()->route('admin.restaurants.show', $foodItem->id);
-    }
-
-    public function show(Restaurant $restaurant)
-    {
-        return view('admin.fooditems.show', compact('restaurant'));
+        return view('admin.fooditems.index', compact('foodItem'));
     }
 
     public function edit(Restaurant $restaurant)

@@ -2,34 +2,34 @@
 
 @section('main-content')
 <div class="container">
-  <form method="POST" action="{{ route('admin.fooditems.create') }}" >
+  <form method="POST" action="{{ route('admin.fooditems.store') }}" >
     @csrf
       <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="name">Nome Ristorante: </label>
+        <div class="form-group col-md-6 mb-3">
+          <label for="name">Nome del piatto: </label>
           <input type="text" class="form-control" id="name" name="name">
         </div>
-        <div class="form-group col-md-6">
-          <label for="piva">Partita Iva: </label>
-          <input type="text" class="form-control" id="piva" minlength="9" maxlength="10" name="vat">
+        <div class="mb-3 input-group">
+          <label for="description" class="input-group-text">Descrizione del piatto:</label>
+          <textarea class="form-control"  name="description" id="description" cols="15" rows="3"></textarea>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="address">Indirizzo</label>
-        <input type="text" class="form-control" id="address" name="address">
-      </div>
-      <div class="form-group">
-        <label for="phone_number">Numero di telefono: </label>
-        <input type="tel" class="form-control" id="phone_number" placeholder="3xx xxxxxxx" minlength="9" maxlength="10" name="phone_number">
       </div>
       <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputCity">Email: </label>
-          <input type="email" class="form-control" id="email" name="email">
+        <div class="mb-3 input-group">
+          <label for="ingredients" class="input-group-text">Ingredienti:</label>
+          <textarea class="form-control"  name="ingredients" id="ingredients" cols="15" rows="3"></textarea>
         </div>
-        <div class="form-group col-md-6">
-          <label for="image_url">Logo: </label>
+        <div class="form-group col-md-6 mb-3">
+          <label for="image_url">Immagine del piatto: </label>
           <input type="image_url" class="form-control" id="image_url" name="image_url">
+        </div>
+        <div class="form-group col-md-6 mb-3">
+          <label for="price">Prezzo: </label>
+          <input type="number" class="form-control" id="price" name="price">
+        </div>
+        <div class="invisible">
+          <label for="restaurant_id" ></label>
+          <input name="restaurant_id" value="{{ $restaurant['id'] }}">
         </div>
       </div>
       <button type="submit" class="btn btn-primary">Crea</button>
