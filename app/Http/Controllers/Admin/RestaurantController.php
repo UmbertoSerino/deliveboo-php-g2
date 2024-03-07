@@ -13,14 +13,16 @@ class RestaurantController extends Controller
 {
     public function index()
     {
-        $restaurant = Restaurant::all();
+        $restaurant = Restaurant::where('user_id', Auth::id())->get();
         return view('admin.restaurant.index', compact('restaurant'));
     }
+
     public function create()
     {
         $restaurant = new Restaurant();
         return view('admin.restaurant.create', compact('restaurant'));
     }
+
     public function store(Request $request)
     {
         $data = $request
