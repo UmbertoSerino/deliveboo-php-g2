@@ -10,8 +10,8 @@ class Restaurant extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
         'name',
+        'user_id',
         'vat',
         'address',
         'phone_number',
@@ -23,6 +23,7 @@ class Restaurant extends Model
     {
         return $this->belongsTo(User::class);
     }
+
     public function foodItem()
     {
         return $this->hasMany(FoodItem::class);
