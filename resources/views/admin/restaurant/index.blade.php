@@ -6,9 +6,7 @@
       <h1 class="mb-5 text-center">
         Qui sono disponibili tutti i ristoranti    
       </h1>
-        <div class="col-6">
-            <a href="{{ route('admin.restaurants.create') }}" class="btn btn-primary">Crea un nuovo Ristorante</a>
-        </div>
+        
           <table class="table">
             <thead>
               <tr>
@@ -44,6 +42,9 @@
               </tr>
             </tbody>
           </table>
+          <div class="col-6">
+            <a href="{{ route('admin.restaurants.show') }}" class="btn btn-primary">Visualizza Ristorante</a>
+        </div>
         <div class="col-12">
         </div>
       </div>

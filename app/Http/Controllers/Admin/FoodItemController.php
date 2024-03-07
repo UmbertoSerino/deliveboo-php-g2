@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\FoodItem;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class FoodItemController extends Controller
     public function index()
     {
         $foodItems = FoodItem::all();
-        return view('admin.restaurant.index', compact('foodItems'));
+        return view('admin.restaurant.show', compact('foodItems'));
     }
 
     public function create()
@@ -36,5 +37,16 @@ class FoodItemController extends Controller
         // dd($data);
         $foodItem = $restaurant->foodItem()->create($data);
         return redirect()->route('admin.restaurants.index', $foodItem);
+    }
+
+    public function show(Restaurant $restaurant)
+    {
+        return view('admin.fooditems.show', compact('restaurant'));
+    }
+
+    public function edit(Restaurant $restaurant)
+    {
+        $categories = Category::all();
+        return view('admin.restaurants.edit', compact('restaurant', 'categories'));
     }
 }

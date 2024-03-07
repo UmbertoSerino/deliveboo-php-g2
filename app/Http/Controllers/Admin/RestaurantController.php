@@ -40,4 +40,9 @@ class RestaurantController extends Controller
         $restaurant = Restaurant::create($data);
         return redirect()->route('admin.restaurants.index', $restaurant);
     }
+
+    public function show(Restaurant $restaurant)
+    {
+        return view('admin.restaurants.show', compact('restaurant'));
+    }
 }
