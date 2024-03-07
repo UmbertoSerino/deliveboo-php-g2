@@ -27,25 +27,36 @@
               </tr>
             </thead>
             <tbody>
-                @forelse ($restaurant as $restaurants )
+                @forelse ($restaurants as $restaurant )
               <tr>
-                <th scope="row">{{ $restaurants->id }}</th>
-                <td>{{ $restaurants->name }}</td>
-                <td> {{$restaurants->vat}}</td>
-                <td>{{ $restaurants->email }}</td>
-                <td>{{ $restaurants->address }}</td>
-                <td>{{ $restaurants->phone_number }} </td>
+                <th scope="row">{{ $restaurant->id }}</th>
+                <td>{{ $restaurant->name }}</td>
+                <td> {{$restaurant->vat}}</td>
+                <td>{{ $restaurant->email }}</td>
+                <td>{{ $restaurant->address }}</td>
+                <td>{{ $restaurant->phone_number }} </td>
                 <td>- </td>
 
-                <td>{{ $restaurants->user->name }} {{ $restaurants->user->last_name }}</td>
-                <td>{{ $restaurants->user->email }}</td>
-                <td>{{ $restaurants->created_at->format('d/m/Y') }}</td>
+                <td>{{ $restaurant->user->name }} {{ $restaurant->user->last_name }}</td>
+                <td>{{ $restaurant->user->email }}</td>
+                <td>{{ $restaurant->created_at->format('d/m/Y') }}</td>
+                <td> 
+                  <div class="col-6">
+                      <a href="{{ route('admin.restaurants.show', $restaurant) }}" class="btn btn-primary">Visualizza Ristorante</a>
+                  </div>
+                </td>
+
+                
                 @empty
                 <td> Non ci sono ristoranti {{ Auth::user()->name }} </td>
                 @endforelse 
               </tr>
             </tbody>
           </table>
+          <form action="{{ route('admin.restaurants.create') }}" method="GET">
+                        @csrf
+                      <button class="btn btn-success">Aggiungi ristorante</button>
+          </form>        
         <div class="col-12">
         </div>
       </div>

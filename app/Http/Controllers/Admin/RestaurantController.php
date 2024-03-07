@@ -13,8 +13,8 @@ class RestaurantController extends Controller
 {
     public function index()
     {
-        $restaurant = Restaurant::where('user_id', Auth::id())->get();
-        return view('admin.restaurant.index', compact('restaurant'));
+        $restaurants = Restaurant::where('user_id', Auth::id())->get();
+        return view('admin.restaurant.index', compact('restaurants'));
     }
 
     public function create()
@@ -39,5 +39,11 @@ class RestaurantController extends Controller
         //  dd($data);
         $restaurant = Restaurant::create($data);
         return redirect()->route('admin.restaurants.index', $restaurant);
+    }
+
+    public function show(Restaurant $restaurant)
+    {
+
+        return view('admin.restaurant.show', compact('restaurant'));
     }
 }
