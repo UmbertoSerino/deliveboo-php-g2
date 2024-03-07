@@ -28,9 +28,9 @@ class RestaurantController extends Controller
         $data = $request
             ->validate([
                 'name' => 'required', 'max:100',
-                'vat' => 'required', 'numeric', 'min:9', 'max:10',
+                'vat' => 'required', 'numeric', 'min:10', 'max:11',
                 'address' => 'required', 'max:300',
-                'phone_number' => 'required', 'numeric', 'min:9', 'max:11',
+                'phone_number' => 'required', 'numeric', 'min:9', 'max:10',
                 'email' => 'required', 'email',
                 'image_url' => 'nullable'
             ]);
