@@ -23,8 +23,16 @@ class Restaurant extends Model
     {
         return $this->belongsTo(User::class);
     }
+  
     public function foodItem()
     {
         return $this->hasMany(FoodItem::class);
     }
+  
+      public function categories()
+    { 
+       // restituiamo il tipo di relazione hasMany() con il Model secondario Project.
+        $this->belongsToMany(Category::class)->withTimestamps();
+    }
 }
+
