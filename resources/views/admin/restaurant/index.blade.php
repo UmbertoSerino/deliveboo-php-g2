@@ -6,9 +6,11 @@
       <h1 class="mb-5 text-center">
         Qui sono disponibili tutti i ristoranti    
       </h1>
-        <div class="col-6">
-            <a href="{{ route('admin.restaurants.create') }}" class="btn btn-primary">Crea un nuovo Ristorante</a>
-        </div>
+      @if ($restaurant->isEmpty())
+      <div class="col-6">
+          <a href="{{ route('admin.restaurants.create') }}" class="btn btn-primary">Crea un nuovo Ristorante</a>
+      </div>
+      @endif
           <table class="table">
             <thead>
               <tr>

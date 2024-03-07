@@ -18,9 +18,6 @@
                             @csrf
                             <button class="btn btn-success">Visualizza i ristoranti</button>
                             </form>
-                        <form action="{{ route('admin.restaurants.create') }}" method="GET">
-                        @csrf
-                        <button class="btn btn-success">Aggiungi un ristorante</button>
                         </form>
                     </div>
                     {{ __('You are logged in!') }}
