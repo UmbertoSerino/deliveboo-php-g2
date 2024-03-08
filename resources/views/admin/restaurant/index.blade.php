@@ -14,8 +14,7 @@
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nome Ristoranti</th>
+                <th scope="col">Nome Ristorante</th>
                 <th scope="col">Partita Iva</th>
                 <th scope="col">Mail del ristorante</th>
                 <th scope="col">indirizzo</th>
@@ -29,7 +28,6 @@
             <tbody>
                 @forelse ($restaurants as $restaurant )
               <tr>
-                <th scope="row">{{ $restaurant->id }}</th>
                 <td>{{ $restaurant->name }}</td>
                 <td> {{$restaurant->vat}}</td>
                 <td>{{ $restaurant->email }}</td>
@@ -46,7 +44,7 @@
                   </div>
                 </td>
                 @empty
-                <td> Non ci sono ristoranti {{ Auth::user()->name }} </td>
+                <td> Nessun Ristorante creato {{ Auth::user()->name }} </td>
                 @endforelse 
               </tr>
             </tbody>

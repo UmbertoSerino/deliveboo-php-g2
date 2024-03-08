@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-7 text-center text-uppercase">
             <h2>
-                {{ $post->title }}
+                {{ $fooditem->title }}
             </h2>
         </div>
 
@@ -20,33 +20,13 @@
 
         <div class="col-7 text-center">
             <h4 scope="row  justify-content-center">
-                {{ $post->id }} -- Category: {{ $post->category->name }}
+                {{ $fooditem->id }} -- Category: {{ $restaurant->->name }}
             </h4>
-            <ul>
-                @forelse ($post->tags as $tag)
-                    <li class="d-inline me-3">
-                        <span class="badge px-2 px-1" style="background-color: {{ $tag->color }} ">
-                            {{ $tag->name }}
-                        </span>
-                    </li>
-
-                @empty
-                    <li class="d-inline me-3">
-                        This post has no tags yet...
-                    </li>
-                @endforelse
-            </ul>
-
-            @if ( str_starts_with($post->post_image, 'http'))
-                <img src="{{ $post->post_image }}" alt="">
-            @else
-                <img src="{{ asset('storage') . '/' . $post->post_image }}" alt="">
-            @endif
 
             {{-- @dump($post->user) --}}
 
             <p>
-                {{ $post->user->name }}
+                {{ $restaurant->user->name }}
             </p>
             <p>
                 {{ $post->date }}

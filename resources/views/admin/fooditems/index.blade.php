@@ -13,7 +13,6 @@
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">ID</th>
                 <th scope="col">Piatto</th>
                 <th scope="col">descrizione</th>
                 <th scope="col">ingredienti</th>
@@ -34,7 +33,11 @@
                 <td>{{ $foodItem->created_at }} </td>
                 <td> 
                   {{-- <div class="col-6">
+                      <a href="{{ route('admin.fooditems.show', $foodItems) }}" class="btn btn-primary">Mostra piatto</a>
+
                       <a href="{{ route('admin.fooditems.create', $foodItems) }}" class="btn btn-primary">Aggiungi piatto</a>
+
+                      <a href="{{ route('admin.fooditems.edit', $foodItems) }}" class="btn btn-primary">Modifica piatto</a>
                   </div> --}}
                 </td>
                 @empty
