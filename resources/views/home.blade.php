@@ -14,13 +14,12 @@
                         </div>
                     @endif
                     <div class="d-flex justify-content-between">
-                        <form action="{{ route('admin.restaurants.index') }}" method="GET">
+                        <form action="{{ route('admin.restaurants.index')}}" method="GET">
                             @csrf
-                            <button class="btn btn-success">Visualizza i ristoranti</button>
-                            </form>
+                            <button class="btn btn-success">Il tuo ristorante</button>
                         </form>
+                        <button class="btn btn-success">Ordini ricevuti</button>
                     </div>
-                    {{ __('You are logged in!') }}
                 </div>
             </div>
         </div>
