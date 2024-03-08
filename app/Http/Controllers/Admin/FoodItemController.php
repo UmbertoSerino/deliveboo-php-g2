@@ -60,22 +60,33 @@ class FoodItemController extends Controller
         return view('admin.fooditems.edit', compact('fooditem'));
     }
 
-    public function update(Request $request, FoodItem $foodItems)
-    {
-        $data = $request->validate($this->rules);
-        // $post->user_id = Auth::id();
-        $data['fooditem_id'] = Auth::id();
+    // public function update(Request $request, FoodItem $foodItems)
+    // {
+    //     $data = $request->validate($this->rules);
+    //     // $post->user_id = Auth::id();
+    //     $data['fooditem_id'] = Auth::id();
 
-        if (!isset($data['tags'])){
-            $data['tags'] = [];
+    //     if (!isset($data['tags'])){
+    //         $data['tags'] = [];
+    //     }
+
+
+    //     $foodItem->update($data);
+
+    //     return redirect()->route('admin.fooditems.show', $foodItem)->with('message', $foodItem->name . ' has been updated succesfully!')->with('alert-class', 'success');
+    // }
+    public function update (Request $request, FoodItem $foodItems)
+    {
+        //
+        $data = $request->all();
+        if (!isset($data['categories'])){
+            $data['categories'] = [];
         }
 
-        $imageSrc = Storage::put('uploads/posts', $data['post_image']);
-        $data['post_image'] = $imageSrc;
+        $fooditems->update($data);
 
+        // $fooditems->fooditems()->sync($data['fooditems']);
+        return redirect()->route('admin.fooditems.show',compact('fooditems'));
 
-        $post->update($data);
-
-        return redirect()->route('admin.posts.show', $post)->with('message', $post->title . ' has been updated succesfully!')->with('alert-class', 'success');
     }
 }
