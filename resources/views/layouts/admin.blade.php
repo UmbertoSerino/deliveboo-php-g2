@@ -72,7 +72,7 @@
                         @endguest
                         <a href="{{ route('admin.restaurants.index') }}" class="text-decoration-none">
                             <button class="btn btn-primary m-2">
-                                Vai ai ristoranti
+                                Info Risorante
                             </button>
                         </a>
                     </ul>

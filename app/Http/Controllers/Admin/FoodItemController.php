@@ -12,15 +12,14 @@ use Illuminate\Support\Facades\Auth;
 
 class FoodItemController extends Controller
 {
-    private $rules = [
-        'title' => ['required', 'min:3', 'string', 'max:255'],
-        'category_id' => ['exists:categories,id'],
-        'tags' => ['exists:tags,id'],
-        'post_image' => ['image', 'required'],
-        'content' => ['min:20', 'required'],
-        'date' => ['date', 'required'],
+    private  $rules = [
+        'name' => ['required', 'string', 'max:255'],
+        'restaurant_id' => ['required', 'exists:restaurants,id'],
+        'description' => ['required', 'string'],
+        'ingredients' => ['required', 'string'],
+        'price' => ['required', 'numeric', 'min:0'],
+        'image_url' => ['required', 'url'],
     ];
-
 
     public function index()
     {
@@ -49,8 +48,12 @@ class FoodItemController extends Controller
         return redirect()->route('admin.fooditems.index');
     }
 
-    public function show(FoodItem $foodItems)
+    public function show(string $id)
     {
+        $foodItem = FoodItem::findOrFail($id);
+
+        return view('admin.fooditems.show', compact('project', 'technologies'));
+
         return view('admin.fooditems.index', compact('foodItem'));
     }
 
