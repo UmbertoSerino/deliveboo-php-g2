@@ -14,7 +14,12 @@ class FoodItemController extends Controller
 {
     public function index()
     {
-        $foodItems = FoodItem::all();
+        $user = Auth::user()->id;
+        /* $foodItems = FoodItem::where();
+        $posts = Post::where('user_id', Auth::id())->orderBy('date')->get(); */
+
+        $foodItems = FoodItem::where('restaurant_id', $user)->get();
+        /* $foodItems = FoodItem::getTable('food_items')->where('restaurant_id', $user)->get(); */
         $restaurants = Restaurant::all();
         return view('admin.fooditems.index', compact('foodItems', 'restaurants'));
     }
