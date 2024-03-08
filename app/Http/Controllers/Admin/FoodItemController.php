@@ -12,6 +12,16 @@ use Illuminate\Support\Facades\Auth;
 
 class FoodItemController extends Controller
 {
+    private $rules = [
+        'title' => ['required', 'min:3', 'string', 'max:255'],
+        'category_id' => ['exists:categories,id'],
+        'tags' => ['exists:tags,id'],
+        'post_image' => ['image', 'required'],
+        'content' => ['min:20', 'required'],
+        'date' => ['date', 'required'],
+    ];
+
+
     public function index()
     {
         $user = Auth::user()->id;
@@ -44,9 +54,28 @@ class FoodItemController extends Controller
         return view('admin.fooditems.index', compact('foodItem'));
     }
 
-    public function edit(Restaurant $restaurant)
+    public function edit(FoodItem $foodItems)
     {
-        $categories = Category::all();
-        return view('admin.restaurants.edit', compact('restaurant', 'categories'));
+        $fooditem = FoodItem::all();
+        return view('admin.fooditems.edit', compact('fooditem'));
+    }
+
+    public function update(Request $request, FoodItem $foodItems)
+    {
+        $data = $request->validate($this->rules);
+        // $post->user_id = Auth::id();
+        $data['fooditem_id'] = Auth::id();
+
+        if (!isset($data['tags'])){
+            $data['tags'] = [];
+        }
+
+        $imageSrc = Storage::put('uploads/posts', $data['post_image']);
+        $data['post_image'] = $imageSrc;
+
+
+        $post->update($data);
+
+        return redirect()->route('admin.posts.show', $post)->with('message', $post->title . ' has been updated succesfully!')->with('alert-class', 'success');
     }
 }
