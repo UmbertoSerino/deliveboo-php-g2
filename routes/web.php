@@ -19,7 +19,7 @@ use App\Http\Controllers\Admin\FoodItemController as AdminFoodItemController;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('layouts.app');
 });
 
 Auth::routes();

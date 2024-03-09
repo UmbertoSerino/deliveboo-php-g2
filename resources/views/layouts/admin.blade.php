@@ -28,6 +28,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
@@ -53,7 +54,15 @@
                                 
                             @endif
                         @else
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown d-flex align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <a href="{{ route('admin.restaurants.index') }}" class="list-group-item list-group-item-action list-group-item-primary p-2">Ristorante</a>
+                                    </div>
+                                    <div>
+                                        <a href="{{ route('admin.fooditems.index') }}" class="list-group-item list-group-item-action list-group-item-primary p-2">Menù</a>
+                                    </div>
+                                </div>
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
@@ -70,11 +79,6 @@
                                 </div>
                             </li>
                         @endguest
-                        <a href="{{ route('admin.restaurants.index') }}" class="text-decoration-none">
-                            <button class="btn btn-primary m-2">
-                                Vai ai ristoranti
-                            </button>
-                        </a>
                     </ul>
                 </div>
             </div>
