@@ -18,11 +18,24 @@
             <img src="{{ $restaurant->image_url }}" class="img-fluid rounded-start" alt="...">
           </div>
           <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">Ristorante "{{ $restaurant->name }}"" di {{ $restaurant->user->name }} {{ $restaurant->user->last_name }} </h5>
+            <div class="card-body d-flex justify-content-between">
+              <div>
 
-              <p class="card-text">Recapito ristorante: {{ $restaurant->email }}, {{ $restaurant->phone_number }}</p>
-              <p class="card-text">Recapito titolare: {{ $restaurant->user->email }}</p>
+                <h5 class="card-title">Ristorante "{{ $restaurant->name }}"" di {{ $restaurant->user->name }} {{ $restaurant->user->last_name }} </h5>
+  
+                <p class="card-text">Recapito ristorante: {{ $restaurant->email }}, {{ $restaurant->phone_number }}</p>
+                <p class="card-text">Indirizzo: {{ $restaurant->address }}</p>
+                <p class="card-text">Partita Iva: {{ $restaurant->vat }}</p>
+                <p class="card-text">Recapito titolare: {{ $restaurant->user->email }}</p>
+              </div>
+              <div>
+                <a href="{{ route('admin.restaurants.edit', $restaurant->id) }}" class="btn btn-primary">Modifica</a>
+                {{-- <form action="{{ route('admin.restaurant.edit') }}" method="PUT">
+                  @csrf
+                  @method('PUT')
+                  <button class="btn btn-primary" type="submit">Modifica</button>
+                </form> --}}
+              </div>
             </div>
           </div>
         </div>

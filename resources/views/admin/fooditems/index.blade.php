@@ -21,36 +21,42 @@
         <a href="{{ route('admin.fooditems.create') }}" class="btn btn-primary">Aggiungi un nuovo piatto</a>
       </div>
       @foreach($foodItems as $foodItem )
-      <div class="col-3">
-        <div class="food-card">
-          <div class="food-card_img">
-              <img src="{{ $foodItem->image_url }}" alt="" >
-          </div>
-          <div class="food-card_content">
-              <div class="food-card_title-section">
-                  <p class="food-card_title">{{ $foodItem->name }}</p>
-                  <p class="food-card_author">{{$foodItem->description}}</p>
-                  <p class="food-card_author">{{ $foodItem->ingredients }}</p>
-              </div>
-              <div class="food-card_bottom-section">
-                  <div class="space-between">
-                      <div class="mt-3">
-                          <span class="fa fa-fire">Disponibile:</span>
-                      </div>
-                      <div class="pull-right">
-                          <span class="badge badge-success">Veg</span>
-                      </div>
-                  </div>
-                  <hr>
-                  <div class="space-between">
-                      <div class="food-card_price">
-                          <span>{{ $foodItem->price }} €</span>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      </div>
+        <div class="col-3">
+          <div class="food-card">
+            <div class="food-card_img">
+                <img src="{{ $foodItem->image_url }}" alt="" >
+            </div>
+            <div class="food-card_content">
+                <div class="food-card_title-section">
+                    <p class="food-card_title">{{ $foodItem->name }}</p>
+                    <p class="food-card_author">{{$foodItem->description}}</p>
+                    <p class="food-card_author">{{ $foodItem->ingredients }}</p>
+                </div>
+                <div class="food-card_bottom-section">
+                    <div class="space-between">
+                        <div class="mt-3">
+                            <span class="fa fa-fire">Disponibile:</span>
+                        </div>
+                        <div class="pull-right">
+                            <span class="badge badge-success">Veg</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="space-between">
+                        <div class="food-card_price">
+                            <span>{{ $foodItem->price }} €</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-end">
+                      <button type="submit" class="btn btn-success me-1">Modifica</button>
+                    <button type="submit" class="btn btn-danger">Elimina</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
       @endforeach
       
 
