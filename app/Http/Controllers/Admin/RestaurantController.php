@@ -52,4 +52,32 @@ class RestaurantController extends Controller
 
         return view('admin.restaurant.show', compact('restaurant'));
     }
+
+    public function edit(Restaurant $restaurant)
+    {
+        $categories = Category::all();
+        return view('admin.restaurant.edit', compact('restaurant', 'categories'));
+    }
+
+    public function update(Request $request, Restaurant $restaurant)
+    {
+        $data = $request
+            ->validate([
+                'name' => 'required', 'max:100',
+                'vat' => 'required', 'numeric', 'min:10', 'max:11',
+                'address' => 'required', 'max:300',
+                'phone_number' => 'required', 'numeric', 'min:9', 'max:10',
+                'email' => 'required', 'email',
+                'image_url' => 'nullable',
+                'categories' => 'required',
+            ]);
+        $data['user_id'] = Auth::id();
+        $data['categories'] = isset($data['categories']) ? $data['categories'] : [];
+
+        /* dd($data); */
+        $restaurant->update($data);
+        $restaurant->categories()->sync($data['categories']);
+
+        return redirect()->route('admin.restaurants.index', $restaurant);
+    }
 }
