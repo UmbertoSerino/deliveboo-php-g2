@@ -6,9 +6,6 @@
       <h1 class="mb-5 text-center">
         Il tuo menu:
       </h1>
-      <div class="col-6">
-          <a href="{{ route('admin.fooditems.create') }}" class="btn btn-primary">Aggiungi un nuovo piatto</a>
-      </div>
 
           <table class="table">
             <thead>
@@ -30,17 +27,16 @@
                 <td>{{ $foodItem->price }} €</td>
                 <td>{{ $foodItem->image_url }} </td>
                 <td>{{ $foodItem->created_at }} </td>
-                <td> 
-                  {{-- <div class="col-6">
-                      <a href="{{ route('admin.fooditems.create', $foodItems) }}" class="btn btn-primary">Aggiungi piatto</a>
-                  </div> --}}
-                </td>
+                
                 @empty
                 <td> Non ci sono piatti al momento {{ Auth::user()->name }} </td>
                 @endforelse 
               </tr>
             </tbody>
-          </table>       
+          </table> 
+          <div class="col-12 text-center">
+              <a href="{{ route('admin.fooditems.create') }}" class="btn btn-primary">Aggiungi un nuovo piatto</a>
+          </div>      
         </div>
       </div>
     </div>
