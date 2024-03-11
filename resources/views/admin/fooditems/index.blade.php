@@ -33,7 +33,14 @@
 
                     <a href="{{ route('admin.fooditems.edit', $foodItem) }}" class="btn btn-warning">Modifica piatto</a>
 
-                    <a href="{{ route('admin.fooditems.destroy', $foodItem) }}" class="btn btn-danger">Elimina piatto</a>
+                    <form  action="{{ route('admin.fooditems.destroy', $foodItem) }}" method="POST" data-fooditem-name="{{ $foodItem['name'] }}">
+                      @csrf
+                      @method('DELETE')
+
+                      <button class="btn btn-danger" >
+                          Elimina piatto
+                      </button>
+                  </form>
                   </div>
                 </td>
 
