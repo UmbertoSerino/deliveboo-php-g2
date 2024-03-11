@@ -29,12 +29,31 @@
                 <p class="card-text">Recapito titolare: {{ $restaurant->user->email }}</p>
               </div>
               <div>
-                <a href="{{ route('admin.restaurants.edit', $restaurant->id) }}" class="btn btn-primary">Modifica</a>
-                {{-- <form action="{{ route('admin.restaurant.edit') }}" method="PUT">
-                  @csrf
-                  @method('PUT')
-                  <button class="btn btn-primary" type="submit">Modifica</button>
-                </form> --}}
+                <a href="{{ route('admin.restaurants.edit', $restaurant->id) }}" class="btn btn-primary mb-3">Modifica</a>
+                <button class="btn btn-danger" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $restaurant->id }}">Elimina</button>
+              {{-- MODAL --}}
+              <div class="modal fade" id="exampleModal-{{ $restaurant->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Elimina</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      Sicuro di voler eliminare?
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                    <form action="{{ route('admin.restaurants.destroy', $restaurant) }}" method="POST">
+                      @csrf
+                      @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Elimina</button>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {{-- final modal --}}
               </div>
             </div>
           </div>

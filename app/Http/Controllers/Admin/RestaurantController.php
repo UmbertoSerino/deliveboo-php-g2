@@ -20,6 +20,10 @@ class RestaurantController extends Controller
 
     public function create()
     {
+        $user = Auth::user();
+        if ($user->restaurant !== null) {
+            return redirect()->route('admin.restaurants.index');
+        }
         $restaurant = new Restaurant();
         $categories = Category::all();
         return view('admin.restaurant.create', compact('restaurant', 'categories'));
@@ -28,35 +32,37 @@ class RestaurantController extends Controller
     public function store(Request $request)
     {
         // Validation
+        // dd($request);
         $data = $request
-            ->validate([
-                'name' => 'required', 'max:20', 'min:5',
-                'vat' => 'required', 'numeric', 'min:10', 'max:11',
-                'address' => 'required', 'max:300',
-                'phone_number' => 'required', 'numeric', 'min:9', 'max:10',
-                'email' => 'required', 'email',
-                'image_url' => 'nullable',
-                'categories' => 'required',
-            ],
-            [
-                'name.required' => 'Il campo nome è obbligatorio.',
-                'name.max' => 'Il campo nome non può superare i 100 caratteri.',
-                'vat.required' => 'Il campo partita IVA è obbligatorio.',
-                'vat.numeric' => 'La partita IVA deve essere un numero.',
-                'vat.min' => 'La partita IVA deve essere composta da almeno 10 cifre.',
-                'vat.max' => 'La partita IVA non può superare le 11 cifre.',
-                'address.required' => 'Il campo indirizzo è obbligatorio.',
-                'address.max' => 'Il campo indirizzo non può superare i 300 caratteri.',
-                'phone_number.required' => 'Il campo numero di telefono è obbligatorio.',
-                'phone_number.numeric' => 'Il numero di telefono deve essere un numero.',
-                'phone_number.min' => 'Il numero di telefono deve essere composto da almeno 9 cifre.',
-                'phone_number.max' => 'Il numero di telefono non può superare le 10 cifre.',
-                'email.required' => 'Il campo email è obbligatorio.',
-                'email.email' => 'Il formato dell\'email non è valido.',
-                'image_url.nullable' => 'Il campo URL dell\'immagine deve essere nullo o valido.',
-                'categories.required' => 'È richiesta almeno una categoria.',
-            ]
-        );
+            ->validate(
+                [
+                    'name' => 'required', 'max:20', 'min:5',
+                    'vat' => 'required', 'numeric', 'min:10', 'max:11',
+                    'address' => 'required', 'max:300',
+                    'phone_number' => 'required', 'numeric', 'min:9', 'max:10',
+                    'email' => 'required', 'email',
+                    'image_url' => 'nullable',
+                    'categories' => 'required',
+                ],
+                [
+                    'name.required' => 'Il campo nome è obbligatorio.',
+                    'name.max' => 'Il campo nome non può superare i 100 caratteri.',
+                    'vat.required' => 'Il campo partita IVA è obbligatorio.',
+                    'vat.numeric' => 'La partita IVA deve essere un numero.',
+                    'vat.min' => 'La partita IVA deve essere composta da almeno 10 cifre.',
+                    'vat.max' => 'La partita IVA non può superare le 11 cifre.',
+                    'address.required' => 'Il campo indirizzo è obbligatorio.',
+                    'address.max' => 'Il campo indirizzo non può superare i 300 caratteri.',
+                    'phone_number.required' => 'Il campo numero di telefono è obbligatorio.',
+                    'phone_number.numeric' => 'Il numero di telefono deve essere un numero.',
+                    'phone_number.min' => 'Il numero di telefono deve essere composto da almeno 9 cifre.',
+                    'phone_number.max' => 'Il numero di telefono non può superare le 10 cifre.',
+                    'email.required' => 'Il campo email è obbligatorio.',
+                    'email.email' => 'Il formato dell\'email non è valido.',
+                    'image_url.nullable' => 'Il campo URL dell\'immagine deve essere nullo o valido.',
+                    'categories.required' => 'È richiesta almeno una categoria.',
+                ]
+            );
 
         //Query Select  
         $data['user_id'] = Auth::id();
@@ -89,34 +95,35 @@ class RestaurantController extends Controller
     public function update(Request $request, Restaurant $restaurant)
     {
         $data = $request
-            ->validate([
-                'name' => 'required','min:5', 'max:20',
-                'vat' => 'required', 'numeric', 'min:10', 'max:11',
-                'address' => 'required', 'max:300',
-                'phone_number' => 'required', 'numeric', 'min:9', 'max:10',
-                'email' => 'required', 'email',
-                'image_url' => 'nullable',
-                'categories' => 'required',
-            ],
-            [
-                'name.required' => 'Il campo nome è obbligatorio.',
-                'name.max' => 'Il campo nome non può superare i 100 caratteri.',
-                'vat.required' => 'Il campo partita IVA è obbligatorio.',
-                'vat.numeric' => 'La partita IVA deve essere un numero.',
-                'vat.min' => 'La partita IVA deve essere composta da almeno 10 cifre.',
-                'vat.max' => 'La partita IVA non può superare le 11 cifre.',
-                'address.required' => 'Il campo indirizzo è obbligatorio.',
-                'address.max' => 'Il campo indirizzo non può superare i 300 caratteri.',
-                'phone_number.required' => 'Il campo numero di telefono è obbligatorio.',
-                'phone_number.numeric' => 'Il numero di telefono deve essere un numero.',
-                'phone_number.min' => 'Il numero di telefono deve essere composto da almeno 9 cifre.',
-                'phone_number.max' => 'Il numero di telefono non può superare le 10 cifre.',
-                'email.required' => 'Il campo email è obbligatorio.',
-                'email.email' => 'Il formato dell\'email non è valido.',
-                'image_url.nullable' => 'Il campo URL dell\'immagine deve essere nullo o valido.',
-                'categories.required' => 'È richiesta almeno una categoria.',
-            ]
-        );
+            ->validate(
+                [
+                    'name' => 'required', 'min:5', 'max:20',
+                    'vat' => 'required', 'numeric', 'min:10', 'max:11',
+                    'address' => 'required', 'max:300',
+                    'phone_number' => 'required', 'numeric', 'min:9', 'max:10',
+                    'email' => 'required', 'email',
+                    'image_url' => 'nullable',
+                    'categories' => 'required',
+                ],
+                [
+                    'name.required' => 'Il campo nome è obbligatorio.',
+                    'name.max' => 'Il campo nome non può superare i 100 caratteri.',
+                    'vat.required' => 'Il campo partita IVA è obbligatorio.',
+                    'vat.numeric' => 'La partita IVA deve essere un numero.',
+                    'vat.min' => 'La partita IVA deve essere composta da almeno 10 cifre.',
+                    'vat.max' => 'La partita IVA non può superare le 11 cifre.',
+                    'address.required' => 'Il campo indirizzo è obbligatorio.',
+                    'address.max' => 'Il campo indirizzo non può superare i 300 caratteri.',
+                    'phone_number.required' => 'Il campo numero di telefono è obbligatorio.',
+                    'phone_number.numeric' => 'Il numero di telefono deve essere un numero.',
+                    'phone_number.min' => 'Il numero di telefono deve essere composto da almeno 9 cifre.',
+                    'phone_number.max' => 'Il numero di telefono non può superare le 10 cifre.',
+                    'email.required' => 'Il campo email è obbligatorio.',
+                    'email.email' => 'Il formato dell\'email non è valido.',
+                    'image_url.nullable' => 'Il campo URL dell\'immagine deve essere nullo o valido.',
+                    'categories.required' => 'È richiesta almeno una categoria.',
+                ]
+            );
 
         $data['user_id'] = Auth::id();
 
@@ -126,5 +133,10 @@ class RestaurantController extends Controller
         $restaurant->categories()->sync($data['categories']);
 
         return redirect()->route('admin.restaurants.index', $restaurant);
+    }
+    public function destroy(Restaurant $restaurant)
+    {
+        $restaurant->delete();
+        return redirect()->route('admin.restaurants.index');
     }
 }
