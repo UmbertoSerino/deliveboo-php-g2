@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('name');
-            $table->integer('vat');
+            $table->string('vat');
             $table->string('address');
-            $table->integer('phone_number');
+            $table->string('phone_number');
             $table->string('email');
             $table->text('image_url');
             $table->timestamps();
