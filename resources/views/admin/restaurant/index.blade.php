@@ -7,6 +7,7 @@
       <div class="col-12 text-center">
           <a href="{{ route('admin.restaurants.create') }}" class="btn btn-primary">Inizializza Ristorante</a>
       </div>
+<<<<<<< HEAD
       @else
       {{-- inizio card --}}
       @foreach ($restaurants as $restaurant)
@@ -70,6 +71,50 @@
     </div>
       @endif
           
+=======
+      @endif
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Nome Ristorante</th>
+                <th scope="col">Partita Iva</th>
+                <th scope="col">Mail del ristorante</th>
+                <th scope="col">indirizzo</th>
+                <th scope='col'>numero telefonico</th>
+                <th scope='col'>immagine</th>
+                <th scope="col">Titolare</th>
+                <th scope="col">Mail del Titolare</th>
+                <th scope="col">Ristorante creato il</th>
+              </tr>
+            </thead>
+            <tbody>
+                @forelse ($restaurants as $restaurant )
+              <tr>
+                <td>{{ $restaurant->name }}</td>
+                <td> {{$restaurant->vat}}</td>
+                <td>{{ $restaurant->email }}</td>
+                <td>{{ $restaurant->address }}</td>
+                <td>{{ $restaurant->phone_number }} </td>
+                <td>- </td>
+
+                <td>{{ $restaurant->user->name }} {{ $restaurant->user->last_name }}</td>
+                <td>{{ $restaurant->user->email }}</td>
+                <td>{{ $restaurant->created_at->format('d/m/Y') }}</td>
+                <td class="d-flex"> 
+                  <div class="col-6">
+                      <a href="{{ route('admin.fooditems.create', $restaurant) }}" class="btn btn-primary">Aggiungi piatto</a>
+                  </div>
+                  <div class="col-6">
+                      <a href="{{ route('admin.fooditems.index', $restaurant) }}" class="btn btn-warning">Elenco Piatti</a>
+                  </div>
+                </td>
+                @empty
+                <td> Nessun Ristorante creato {{ Auth::user()->name }} </td>
+                @endforelse 
+              </tr>
+            </tbody>
+          </table>       
+>>>>>>> crud-fooditem-4
         </div>
       </div>
     </div>
