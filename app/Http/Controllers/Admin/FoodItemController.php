@@ -34,8 +34,7 @@ class FoodItemController extends Controller
     }
     public function create()
     {
-        $restaurant = Auth::user()->restaurant;
-        return view('admin.fooditems.create', compact('restaurant'));
+        return view('admin.fooditems.create',);
     }
 
     public function store(Request $request)
@@ -45,6 +44,7 @@ class FoodItemController extends Controller
         $foodItem = new FoodItem();
         $foodItem->fill($foodItemData);
         $foodItem->save();
+
         return redirect()->route('admin.fooditems.index');
     }
 
