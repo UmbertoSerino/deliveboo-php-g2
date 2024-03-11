@@ -38,10 +38,10 @@
                                     </button>
                                 </form>
                                 <div class="ms-3">
-                                    <a href="{{ route('admin.fooditems.index', $foodItem) }}" class="btn btn-warning">Elenco Piatti</a>
+                                    <a href="{{ route('admin.fooditems.index', $foodItem) }}" class="btn btn-success">Elenco Piatti</a>
                                 </div>
                                 <div class="ms-3">
-                                    <a href="{{ route('admin.fooditems.edit', $foodItem) }}" class="btn btn-success">Modifica piatto</a>
+                                    <a href="{{ route('admin.fooditems.edit', $foodItem) }}" class="btn btn-warning">Modifica piatto</a>
                                 </div>
                             </div>
                         </div>

@@ -27,7 +27,16 @@
                 <td>{{ $foodItem->price }} €</td>
                 <td>{{ $foodItem->image_url }} </td>
                 <td>{{ $foodItem->created_at }} </td>
-                
+                <td>
+                  <div class="d-flex">
+                    <a href="{{ route('admin.fooditems.show', $foodItem) }}" class="btn btn-success">Mostra piatto</a>
+
+                    <a href="{{ route('admin.fooditems.edit', $foodItem) }}" class="btn btn-warning">Modifica piatto</a>
+
+                    <a href="{{ route('admin.fooditems.destroy', $foodItem) }}" class="btn btn-danger">Elimina piatto</a>
+                  </div>
+                </td>
+
                 @empty
                 <td> Non ci sono piatti al momento {{ Auth::user()->name }} </td>
                 @endforelse 
