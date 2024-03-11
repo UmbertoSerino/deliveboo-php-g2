@@ -41,9 +41,25 @@
                             <label for="image_url">Immagine del Piatto: </label>
                             <input type="image_url" class="form-control" id="image_url" name="image_url" value="{{ old('image_url', $foodItem->image_url) }}">
                           </div>
+                          {{--Preview image: --}}
+                        <div class="mb-3 input-group">
+                          <img src="" alt="Image preview" class="d-none img-fluid" id="image-preview">
+                      </div>
+                      </div>
+                        {{-- Passare automaticamente resturant_id --}}
+                        <div class="invisible">
+                          <label for="restaurant_id"></label>
+                          <input type="text" name="restaurant_id" value="{{  $restaurant ['id'] }} ">
                         </div>
-                        {{-- Button --}}
-                        <button type="submit" class="btn btn-primary mt-3">Modifica</button>
+                        {{-- Buttons --}}
+                        <div class="mb-3 input-group">
+                          <button type="submit" class="btn btn-xl btn-primary">
+                              @yield('page-title')
+                          </button>
+                          <button type="reset" class="btn btn-xl btn-warning">
+                              Reset all fields
+                          </button>
+                      </div>
                       </div>
                 </form>
             </div>
@@ -51,7 +67,7 @@
     </div>
     {{-- Script for preview image url --}}
     <script>
-        document.getElementById('view').addEventListener('change', function(event){
+        document.getElementById('image_url').addEventListener('change', function(event){
             const imageElement = document.getElementById('image-preview');
             imageElement.setAttribute('src' , this.value);
             imageElement.classList.remove('d-none');
