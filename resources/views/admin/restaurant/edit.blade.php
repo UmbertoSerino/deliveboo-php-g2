@@ -9,7 +9,7 @@
           <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="name">Nome Ristorante: </label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
+                <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $restaurant->name) }}">
               </div>
               <div class="form-group col-md-6">
                 <label for="piva">Partita Iva: </label>

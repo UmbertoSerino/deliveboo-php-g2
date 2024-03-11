@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('ingredients');
             $table->decimal('price', 5, 2);
-            $table->string('image_url');
+            $table->text('image_url');
             $table->timestamps();
         });
     }
