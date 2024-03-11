@@ -33,6 +33,9 @@
                 <label for="image_url">Logo: </label>
                 <input type="image_url" class="form-control" id="image_url" name="image_url" value="{{ old('image_url', $restaurant->image_url) }}">
               </div>
+              <div class="mb-3 input-group">
+                <img src="" alt="Image preview" class="d-none img-fluid" id="image-preview">
+            </div>
             </div>
             <label for="categories" class="mb-2">Categorie:</label>
             <div>
@@ -45,4 +48,12 @@
             <button type="submit" class="btn btn-primary mt-3">Modifica</button>
         </form>
   </div>
+  {{--  Script that show preview image url --}}
+  <script>
+    document.getElementById('image_url').addEventListener('change', function(event){
+        const imageElement = document.getElementById('image-preview');
+        imageElement.setAttribute('src' , this.value);
+        imageElement.classList.remove('d-none');
+    });
+</script>
 @endsection
