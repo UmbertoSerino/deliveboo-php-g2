@@ -34,16 +34,16 @@ class FoodItemController extends Controller
     }
     public function create()
     {
-        return view('admin.fooditems.create',);
+        $foodItem = new FoodItem();
+        $restaurant = Auth::user()->restaurant;
+        // dd($foodItem);    
+        return view('admin.fooditems.create', compact('foodItem', 'restaurant') );
     }
 
     public function store(Request $request)
     {
-
         $foodItemData = $request->all();
-        $foodItem = new FoodItem();
-        $foodItem->fill($foodItemData);
-        $foodItem->save();
+        $foodItem = FoodItem::create($foodItemData);
 
         return redirect()->route('admin.fooditems.index');
     }
@@ -58,18 +58,20 @@ class FoodItemController extends Controller
     public function edit(string $id)
     {
         $foodItem = FoodItem::findOrFail($id);
-        return view('admin.fooditems.edit', compact('foodItem'));
+        $restaurant = Auth::user()->restaurant;
+
+        return view('admin.fooditems.edit', compact('foodItem', 'restaurant'));
     }
 
 
     public function update (Request $request, FoodItem $fooditem)
     {
         
-        $data = $request->all();
-
+        $data = $request->validate($this->rules);
         $fooditem->update($data);
+        $restaurant = Auth::user()->restaurant;
 
-        return redirect()->route('admin.fooditems.show', compact('fooditem'));
+        return redirect()->route('admin.fooditems.show', compact('fooditem', 'restaurant'));
 
     }
 
