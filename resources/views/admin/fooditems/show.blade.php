@@ -14,7 +14,7 @@
                                 Ingredienti: {{ $foodItem->ingredients }}
                             </p>
                             <p>
-                                Prezzo: {{ $foodItem->cottura }}
+                                Prezzo: {{ $foodItem->price }}
                             </p>
 
                             <div class="card-image">
