@@ -17,7 +17,7 @@ class FoodItemController extends Controller
         'restaurant_id' => ['required', 'exists:restaurants,id'],
         'description' => ['required', 'string'],
         'ingredients' => ['required', 'string'],
-        'price' => ['required', 'numeric', 'min:0'],
+        'price' => ['required', 'numeric', 'min:0', 'digits_between:1,199'],
         'image_url' => ['required', 'url'],
     ];
 
