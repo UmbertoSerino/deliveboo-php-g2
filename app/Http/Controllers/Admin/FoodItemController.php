@@ -34,12 +34,13 @@ class FoodItemController extends Controller
     }
     public function create()
     {
-        return view('admin.fooditems.create',);
+        $foodItem = new FoodItem();
+        // dd($foodItem);    
+        return view('admin.fooditems.create', compact('foodItem') );
     }
 
     public function store(Request $request)
     {
-
         $foodItemData = $request->all();
         $foodItem = new FoodItem();
         $foodItem->fill($foodItemData);
@@ -51,6 +52,7 @@ class FoodItemController extends Controller
     public function show(string $id)
     {
         $foodItem = FoodItem::findOrFail($id);
+        dd($foodItem);    
         return view('admin.fooditems.show', compact('foodItem'));
 
     }
