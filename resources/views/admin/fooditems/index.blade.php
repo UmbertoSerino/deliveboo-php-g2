@@ -32,13 +32,13 @@
                 <td>{{ $foodItem->image_url }} </td>
                 <td>{{ $foodItem->created_at }} </td>
                 <td> 
-                  {{-- <div class="col-6">
-                      <a href="{{ route('admin.fooditems.show', $foodItems) }}" class="btn btn-primary">Mostra piatto</a>
+                  <div class="col-6 d-flex">
+                      <a href="{{ route('admin.fooditems.show', $foodItem) }}" class="btn btn-primary">Mostra piatto</a>
 
-                      <a href="{{ route('admin.fooditems.create', $foodItems) }}" class="btn btn-primary">Aggiungi piatto</a>
+                      <a href="{{ route('admin.fooditems.create', $foodItem) }}" class="btn btn-success">Aggiungi piatto</a>
 
-                      <a href="{{ route('admin.fooditems.edit', $foodItems) }}" class="btn btn-primary">Modifica piatto</a>
-                  </div> --}}
+                      <a href="{{ route('admin.fooditems.edit', $foodItem) }}" class="btn btn-warning">Modifica piatto</a>
+                  </div>
                 </td>
                 @empty
                 <td> Non ci sono piatti al momento {{ Auth::user()->name }} </td>

@@ -38,9 +38,12 @@
                 <td>{{ $restaurant->user->name }} {{ $restaurant->user->last_name }}</td>
                 <td>{{ $restaurant->user->email }}</td>
                 <td>{{ $restaurant->created_at->format('d/m/Y') }}</td>
-                <td> 
+                <td class="d-flex"> 
                   <div class="col-6">
                       <a href="{{ route('admin.fooditems.create', $restaurant) }}" class="btn btn-primary">Aggiungi piatto</a>
+                  </div>
+                  <div class="col-6">
+                      <a href="{{ route('admin.fooditems.index', $restaurant) }}" class="btn btn-warning">Elenco Piatti</a>
                   </div>
                 </td>
                 @empty

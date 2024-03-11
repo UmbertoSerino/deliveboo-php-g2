@@ -51,28 +51,25 @@ class FoodItemController extends Controller
     public function show(string $id)
     {
         $foodItem = FoodItem::findOrFail($id);
+        return view('admin.fooditems.show', compact('foodItem'));
 
-        return view('admin.fooditems.show', compact('project', 'technologies'));
-
-        return view('admin.fooditems.index', compact('foodItem'));
     }
 
-    public function edit(FoodItem $foodItems)
+    public function edit(string $id)
     {
-        $fooditem = FoodItem::all();
-        return view('admin.fooditems.edit', compact('fooditem'));
+        $foodItem = FoodItem::findOrFail($id);
+        return view('admin.fooditems.edit', compact('foodItem'));
     }
 
 
-    public function update (Request $request, FoodItem $foodItem)
+    public function update (Request $request, FoodItem $fooditem)
     {
-        //
+        
         $data = $request->all();
 
-        $foodItem->update($data);
+        $fooditem->update($data);
 
-        // $fooditems->fooditems()->sync($data['fooditems']);
-        return redirect()->route('admin.fooditems.show',compact('fooditems'));
+        return redirect()->route('admin.fooditems.show', compact('fooditem'));
 
     }
 }

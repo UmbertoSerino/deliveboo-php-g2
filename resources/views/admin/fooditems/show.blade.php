@@ -1,40 +1,40 @@
 @extends('layouts.admin')
 
-@section('title', 'Admin Dashboard')
-
 @section('main-content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-7 text-center text-uppercase">
-            <h2>
-                {{ $fooditem->name }}
-            </h2>
-        </div>
+    <section class="products">
+        <div class="container">
+            <div class="row">
+                <div class="row mb-3 justify-content-center">
+                    <div class="col-7 p-3">
+                        <div class="card p-4 text-center">
+                            <h1>
+                                {{ $foodItem->name }}
+                            </h1>
+                            <p>
+                                Ingredienti: {{ $foodItem->ingredients }}
+                            </p>
+                            <p>
+                                Prezzo: {{ $foodItem->cottura }}
+                            </p>
 
+                            <div class="card-image">
+                                <img class="w-50" src="{{  $foodItem->image_url }}" alt="{{ $foodItem->name }} ">
+                            </div>
+                            <div class="card-body">
+                                <h2>
+                                    Descrizione:
+                                </h2>
+                                <p>
+                                    {{ $foodItem->description }}
+                                </p>
+                            </div>
 
-        @include('partials.session-message')
+                            
 
-        <div class="col-7 text-center">
-            <h4 scope="row  justify-content-center">
-                {{ $fooditem->id }} -- Category: {{ $fooditem->category->name }}
-            </h4>
-
-            <p>
-                {{ $restaurant->user->name }}
-            </p>
-            <div class="p-5 text-start">
-                <p>
-                    <em>
-                        {{ $fooditem->description}}
-                    </em>
-                </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <a href="{{ route('admin.fooditems.edit', $fooditems) }}" class="text-decoration-none">
-                <button class="btn btn-sm btn-success">
-                    Modifica Piatto
-                </button>
-            </a>
-        
-    </div>
-</div>
+        </div>
+    </section>
 @endsection
