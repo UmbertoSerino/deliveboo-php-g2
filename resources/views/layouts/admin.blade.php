@@ -79,14 +79,6 @@
                                 </div>
                             </li>
                         @endguest
-<<<<<<< HEAD
-=======
-                        <a href="{{ route('admin.restaurants.index') }}" class="text-decoration-none">
-                            <button class="btn btn-primary m-2">
-                                Info Risorante
-                            </button>
-                        </a>
->>>>>>> crud-fooditem-4
                     </ul>
                 </div>
             </div>
