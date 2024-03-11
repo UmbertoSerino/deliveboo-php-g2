@@ -32,7 +32,14 @@
           <input type="image_url" class="form-control" id="image_url" name="image_url">
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Crea</button>
+      <label for="categories" class="mb-2">Categorie:</label>
+      <div>
+      @foreach ($categories as $category)
+          <input type="checkbox" name="categories[]" id="categories-{{ $category->id }}" value="{{ $category->id }}">
+          <label class="me-2" for="categories-{{ $category->id }}">{{ $category->name }}</label>
+          @endforeach
+        </div>
+      <button type="submit" class="btn btn-primary mt-3">Crea</button>
     </form>
 
 </div>
