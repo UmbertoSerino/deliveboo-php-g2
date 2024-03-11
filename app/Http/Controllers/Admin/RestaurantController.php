@@ -37,10 +37,12 @@ class RestaurantController extends Controller
                 'image_url' => 'nullable',
                 'categories' => 'required',
             ]);
+        //Query Select  
         $data['user_id'] = Auth::id();
+
         $data['categories'] = isset($data['categories']) ? $data['categories'] : [];
 
-        /* dd($data); */
+        //Query Select  
         $restaurant = Restaurant::create($data);
         $restaurant->categories()->sync($data['categories']);
 
@@ -71,10 +73,11 @@ class RestaurantController extends Controller
                 'image_url' => 'nullable',
                 'categories' => 'required',
             ]);
+
         $data['user_id'] = Auth::id();
+
         $data['categories'] = isset($data['categories']) ? $data['categories'] : [];
 
-        /* dd($data); */
         $restaurant->update($data);
         $restaurant->categories()->sync($data['categories']);
 
