@@ -72,4 +72,12 @@ class FoodItemController extends Controller
         return redirect()->route('admin.fooditems.show', compact('fooditem'));
 
     }
+
+    public function destroy(string $id)
+    {
+        $foodItem = FoodItem::findOrFail($id);
+        $foodItem->delete();
+
+        return redirect()->route('admin.fooditems.index');
+    }
 }

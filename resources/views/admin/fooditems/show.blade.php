@@ -28,9 +28,22 @@
                                     {{ $foodItem->description }}
                                 </p>
                             </div>
+                            <div class="col-12 justify-content-center d-flex">
+                                <form  action="{{ route('admin.fooditems.destroy', $foodItem) }}" method="POST" data-fooditem-name="{{ $foodItem['name'] }}">
+                                    @csrf
+                                    @method('DELETE')
 
-                            
-
+                                    <button class="btn btn-danger" >
+                                        Elimina
+                                    </button>
+                                </form>
+                                <div class="ms-3">
+                                    <a href="{{ route('admin.fooditems.index', $foodItem) }}" class="btn btn-warning">Elenco Piatti</a>
+                                </div>
+                                <div class="ms-3">
+                                    <a href="{{ route('admin.fooditems.edit', $foodItem) }}" class="btn btn-success">Modifica piatto</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
