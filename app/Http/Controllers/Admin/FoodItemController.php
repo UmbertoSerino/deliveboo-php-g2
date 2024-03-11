@@ -12,15 +12,14 @@ use Illuminate\Support\Facades\Auth;
 
 class FoodItemController extends Controller
 {
-    private $rules = [
-        'title' => ['required', 'min:3', 'string', 'max:255'],
-        'category_id' => ['exists:categories,id'],
-        'tags' => ['exists:tags,id'],
-        'post_image' => ['image', 'required'],
-        'content' => ['min:20', 'required'],
-        'date' => ['date', 'required'],
+    private  $rules = [
+        'name' => ['required', 'string', 'max:255'],
+        'restaurant_id' => ['required', 'exists:restaurants,id'],
+        'description' => ['required', 'string'],
+        'ingredients' => ['required', 'string'],
+        'price' => ['required', 'numeric', 'min:0', 'digits_between:1,199'],
+        'image_url' => ['required', 'url'],
     ];
-
 
     public function index()
     {
@@ -49,33 +48,36 @@ class FoodItemController extends Controller
         return redirect()->route('admin.fooditems.index');
     }
 
-    public function show(FoodItem $foodItems)
+    public function show(string $id)
     {
-        return view('admin.fooditems.index', compact('foodItem'));
+        $foodItem = FoodItem::findOrFail($id);
+        return view('admin.fooditems.show', compact('foodItem'));
+
     }
 
-    public function edit(FoodItem $foodItems)
+    public function edit(string $id)
     {
-        $fooditem = FoodItem::all();
-        return view('admin.fooditems.edit', compact('fooditem'));
+        $foodItem = FoodItem::findOrFail($id);
+        return view('admin.fooditems.edit', compact('foodItem'));
     }
 
-    public function update(Request $request, FoodItem $foodItems)
+
+    public function update (Request $request, FoodItem $fooditem)
     {
-        $data = $request->validate($this->rules);
-        // $post->user_id = Auth::id();
-        $data['fooditem_id'] = Auth::id();
+        
+        $data = $request->all();
 
-        if (!isset($data['tags'])){
-            $data['tags'] = [];
-        }
+        $fooditem->update($data);
 
-        $imageSrc = Storage::put('uploads/posts', $data['post_image']);
-        $data['post_image'] = $imageSrc;
+        return redirect()->route('admin.fooditems.show', compact('fooditem'));
 
+    }
 
-        $post->update($data);
+    public function destroy(string $id)
+    {
+        $foodItem = FoodItem::findOrFail($id);
+        $foodItem->delete();
 
-        return redirect()->route('admin.posts.show', $post)->with('message', $post->title . ' has been updated succesfully!')->with('alert-class', 'success');
+        return redirect()->route('admin.fooditems.index');
     }
 }

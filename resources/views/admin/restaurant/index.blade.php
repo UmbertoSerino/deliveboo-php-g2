@@ -2,8 +2,8 @@
 @section('main-content')
 
 <div class="container">
-    <div class="row">
-      @if ($restaurants->isEmpty())
+  <div class="row">
+    @if ($restaurants->isEmpty())
       <div class="col-12 text-center">
           <a href="{{ route('admin.restaurants.create') }}" class="btn btn-primary">Inizializza Ristorante</a>
       </div>
@@ -12,7 +12,7 @@
       @foreach ($restaurants as $restaurant)
         
       <div class="col-12">
-      <div class="card mb-3" style="">
+      <div class="card mb-3">
         <div class="row g-0">
           <div class="col-md-4">
             <img src="{{ $restaurant->image_url }}" class="img-fluid rounded-start" alt="...">
@@ -69,10 +69,16 @@
               <h5 class="card-title">Menù</h5>
               <p class="card-text">Aggiungi e aggiorna le tue pietanze</p>
               
-              <form action="{{ route('admin.fooditems.index') }}" method="GET">
-                @csrf
-                <button class="btn btn-primary" type="submit">I miei piatti</button>
-              </form>
+              <div class="d-flex"> 
+                  <div class="col-6">
+                      <a href="{{ route('admin.fooditems.create', $restaurant) }}" class="btn btn-primary">Aggiungi piatto</a>
+                  </div>
+                  <div class="col-6">
+                      <a href="{{ route('admin.fooditems.index', $restaurant) }}" class="btn btn-warning">I miei Piatti</a>
+                  </div>
+              </div>
+              
+              
             </div>
           </div>
         </div>
@@ -88,10 +94,7 @@
       </div>
     </div>
       @endif
-          
-        </div>
-      </div>
-    </div>
   </div>
+</div>
 
 @endsection
