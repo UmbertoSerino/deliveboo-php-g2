@@ -26,13 +26,13 @@ class RestaurantSeeder extends Seeder
                 'image_url' => 'https://img.ilgcdn.com/sites/default/files/styles/xl/public/foto/2019/12/29/1577604943-marghe.jpg?_=1577604943',
             ],
             [
-                'name' => 'Il Pizzaiuolo',
+                'name' => 'Il Mirò',
                 'user_id' => 2,
                 'vat' => 987654321,
                 'address' => 'Via Napoli, 123, Napoli (NA)',
                 'phone_number' => 348123456,
                 'email' => 'ilpizzaiuolo@gmail.com',
-                'image_url' => 'https://www.ilpizzaiuolo.it/wp-content/uploads/2020/03/il-pizzaiuolo-1.jpg',
+                'image_url' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFr7jukhT0wE92VugncMhRH3qiAR1DdHXmYw&usqp=CAU',
             ],
             [
                 'name' => 'Ristorante da Gino',
@@ -41,7 +41,7 @@ class RestaurantSeeder extends Seeder
                 'address' => 'Piazza Garibaldi, 1, Roma (RM)',
                 'phone_number' => 333987654,
                 'email' => 'ristorantedagino@gmail.com',
-                'image_url' => 'https://media-cdn.tripadvisor.com/media/photo-s/1a/8f/71/fb/ristorante-da-gino.jpg',
+                'image_url' => 'https://www.paninotecadagino.it/wp-content/uploads/2021/04/cd8f7ca2-d291-4339-98d5-070b55732668.jpg',
             ],
             [
                 'name' => 'Trattoria Nonna Maria',
@@ -50,7 +50,7 @@ class RestaurantSeeder extends Seeder
                 'address' => 'Via Toscana, 5, Firenze (FI)',
                 'phone_number' => 333456789,
                 'email' => 'nonnamaria@yahoo.it',
-                'image_url' => 'https://media-cdn.tripadvisor.com/media/photo-s/0a/43/45/29/trattoria-nonna-maria.jpg',
+                'image_url' => 'https://static.wixstatic.com/media/c0df87_4a30ab5def3c4db7a9316aa1899f3c79~mv2.jpg/v1/fill/w_560,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/c0df87_4a30ab5def3c4db7a9316aa1899f3c79~mv2.jpg',
             ],
             [
                 'name' => 'Osteria del Pescatore',
@@ -59,7 +59,7 @@ class RestaurantSeeder extends Seeder
                 'address' => 'Lungomare, 10, Bari (BA)',
                 'phone_number' => 333123456,
                 'email' => 'osteriadelpescatore@hotmail.com',
-                'image_url' => 'https://media-cdn.tripadvisor.com/media/photo-s/18/4e/b8/44/osteria-del-pescatore.jpg',
+                'image_url' => 'https://www.amioparere.com/images/locali/6b7d-fronte.jpg',
             ],
         ];
 

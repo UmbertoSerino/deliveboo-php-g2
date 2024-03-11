@@ -11,10 +11,10 @@ class CategoryController extends Controller
     // INDEX
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::with('restaurants')->paginate(10);
         return response()->json([
             'success' => true,
-            'results1' => $categories,
+            'results' => $categories,
 
         ]);
     }

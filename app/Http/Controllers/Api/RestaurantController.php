@@ -16,7 +16,7 @@ class RestaurantController extends Controller
         $restaurants = Restaurant::with('categories', 'foodItem', 'user')->paginate(10);
         return response()->json([
             'success' => true,
-            'results1' => $restaurants,
+            'results' => $restaurants,
 
         ]);
     }
