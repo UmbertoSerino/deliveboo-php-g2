@@ -7,6 +7,15 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
+#restaurant-index {
+    .badge {
+        border-radius: 3px;
+        color: white;
+        font-weight: 700;
+        background-color: #F47A00;
+    }
+}
+
 #food-item-index {
     .food-card {
         background: #fff;

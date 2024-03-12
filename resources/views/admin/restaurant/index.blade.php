@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('main-content')
 
-<div class="container">
+<div id="restaurant-index" class="container">
   <div class="row">
     @if ($restaurants->isEmpty())
       <div class="col-12 text-center">
@@ -29,10 +29,8 @@
                 <p class="card-text">Recapito titolare: {{ $restaurant->user->email }}</p>
                 <p class="mt-2">Categorie:</p>
                 @foreach ($restaurant->categories as $categoryy)
-                <span>{{ $categoryy->name }} ,</span>
+                <span class="badge">{{ $categoryy->name }}</span>
                 @endforeach
-                
-                <span class="badge badge-primary">Primary</span>
               </div>
               <div>
                 <a href="{{ route('admin.restaurants.edit', $restaurant->id) }}" class="btn btn-primary mb-3">Modifica</a>
