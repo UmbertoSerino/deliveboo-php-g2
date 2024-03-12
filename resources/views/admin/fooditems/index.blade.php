@@ -6,6 +6,7 @@
       <h1 class="mb-5 text-center">
         Il tuo menu:
       </h1>
+      {{-- inizio sezione piatti --}}
 
           <table class="table">
             <thead>
@@ -43,7 +44,7 @@
                   </form>
                   </div>
                 </td>
-
+                {{-- fine sezione piatti --}}
                 @empty
                 <td> Non ci sono piatti al momento {{ Auth::user()->name }} </td>
                 @endforelse 

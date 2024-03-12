@@ -5,7 +5,7 @@
   <div class="row">
     @if ($restaurants->isEmpty())
       <div class="col-12 text-center">
-          <a href="{{ route('admin.restaurants.create') }}" class="btn btn-primary">Inizializza Ristorante</a>
+          <a href="{{ route('admin.restaurants.create') }}" class="btn btn-primary">Inserisci Ristorante</a>
       </div>
       @else
       {{-- inizio card --}}
@@ -51,7 +51,7 @@
               <h5 class="card-title">Menù</h5>
               <p class="card-text">Aggiungi e aggiorna le tue pietanze</p>
                   <div class="col-12 d-flex">
-                      <a href="{{ route('admin.fooditems.create', $restaurant) }}" class="btn btn-primary">Aggiungi piatto</a>
+                      <a href="{{ route('admin.fooditems.create', $restaurant) }}" class="btn btn-primary me-1">Aggiungi piatto</a>
                       <a href="{{ route('admin.fooditems.index', $restaurant) }}" class="btn btn-warning">I miei Piatti</a>
                   </div>
               
