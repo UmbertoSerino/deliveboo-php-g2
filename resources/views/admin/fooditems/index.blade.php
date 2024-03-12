@@ -47,7 +47,7 @@
                     <hr>
                     <div class="d-flex justify-content-end">
                       <a href="{{ route('admin.fooditems.show', $foodItem) }}" class="btn btn-success">Mostra</a>
-                      <a href="{{ route('admin.fooditems.edit', $foodItem) }}" class="btn btn-warning">Modifica</a>
+                      <a href="{{ route('admin.fooditems.edit', $foodItem) }}" class="btn btn-warning mx-1">Modifica</a>
                       <form  action="{{ route('admin.fooditems.destroy', $foodItem) }}" method="POST" data-fooditem-name="{{ $foodItem['name'] }}">
                         @csrf
                         @method('DELETE')
