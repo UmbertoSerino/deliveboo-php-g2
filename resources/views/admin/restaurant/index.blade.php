@@ -68,7 +68,6 @@
             <div class="card-body">
               <h5 class="card-title">Menù</h5>
               <p class="card-text">Aggiungi e aggiorna le tue pietanze</p>
-              
               <div class="d-flex"> 
                   <div class="col-6">
                       <a href="{{ route('admin.fooditems.create', $restaurant) }}" class="btn btn-primary">Aggiungi piatto</a>
@@ -77,8 +76,6 @@
                       <a href="{{ route('admin.fooditems.index', $restaurant) }}" class="btn btn-warning">I miei Piatti</a>
                   </div>
               </div>
-              
-              
             </div>
           </div>
         </div>

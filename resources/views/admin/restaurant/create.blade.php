@@ -10,41 +10,78 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="name">Nome Ristorante: </label>
-          <input type="text" class="form-control" id="name" name="name" value="{{ old('name',$restaurant->name) }}">
-        </div>
+          <input type="text" class="form-control obligate" id="name" name="name" value="{{ old('name',$restaurant->name) }}" >
+          @error('name')
+              <span class="text-danger">{{ $message }}</span>
+          @enderror
+          <span class="required-indicator">* campi obbligatori</span>
+      </div>
+      
         <div class="form-group col-md-6">
           <label for="piva">Partita Iva: </label>
-          <input type="text" class="form-control" id="piva" minlength="10" maxlength="11" name="vat" value="{{ old('vat',$restaurant->vat) }}">
+          <input type="text" class="form-control obligate" id="piva" name="vat" value="{{ old('vat',$restaurant->vat) }}" >
+        <span class="required-indicator">* campi obbligatori</span>
         </div>
       </div>
       <div class="form-group">
         <label for="address">Indirizzo</label>
-        <input type="text" class="form-control" id="address" name="address" value="{{ old('address',$restaurant->address) }}">
+        <input type="text" class="form-control obligate" id="address" name="address" value="{{ old('address',$restaurant->address) }}" >
+        <span class="required-indicator">* campi obbligatori</span>
       </div>
       <div class="form-group">
         <label for="phone_number">Numero di telefono: </label>
-        <input type="tel" class="form-control" id="phone_number" placeholder="3xx xxxxxxx" minlength="9" maxlength="10" name="phone_number" value="{{ old('phone_number',$restaurant->phone_number) }}">
+        <input type="tel" class="form-control obligate" id="phone_number" name="phone_number" value="{{ old('phone_number',$restaurant->phone_number) }}" >
+        <span class="required-indicator">* campi obbligatori</span>
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="inputCity">Email: </label>
-          <input type="email" class="form-control" id="email" name="email" value="{{ old('email',$restaurant->email) }}">
+          <input type="email" class="form-control obligate" id="email" name="email" value="{{ old('email',$restaurant->email) }}" >
+        <span class="required-indicator">* campi obbligatori</span>
         </div>
         <div class="form-group col-md-6">
           <label for="image_url">Logo: </label>
-          <input type="image_url" class="form-control" id="image_url" name="image_url" value="{{ old('image_url',$restaurant->image_url) }}">
+          <input type="image_url" class="form-control obligate" id="image_url" name="image_url" value="{{ old('image_url',$restaurant->image_url) }}" >
+          <span class="required-indicator">* campi obbligatori</span>
         </div>
       </div>
       <label for="categories" class="mb-2">Categorie:</label>
       <div>
       @foreach ($categories as $category)
-          <input type="checkbox" name="categories[]" id="categories-{{ $category->id }}" value="{{ $category->id }}">
+          <input type="checkbox" class="obligate" name="categories[]" id="categories-{{ $category->id }}" value="{{ $category->id }}" >
           <label class="me-2" for="categories-{{ $category->id }}">{{ $category->name }}</label>
           @endforeach
         </div>
       <button type="submit" class="btn btn-primary mt-3">Crea</button>
-    </form>
-
+    </form>  
 </div>
 
-  @endsection
+<script>
+// Script per evidenziare i campi obbligatori
+const inputFields = document.querySelectorAll('.obligate');
+const spanElements = document.querySelectorAll('.required-indicator');
+inputFields.forEach((inputField, index) => {
+  inputField.addEventListener('input', () => {
+    if (inputField.value.trim() !== '') {
+      spanElements[index].classList.add('invisible');
+    } else {
+      spanElements[index].classList.remove('invisible');
+    }
+  });
+});
+
+</script>
+
+@endsection
+
+  
+<style>
+.required-indicator {
+  color: red;
+  font-weight: bold;
+  margin-right: 5px;
+}
+.invisible{
+  display: none
+}
+</style>
