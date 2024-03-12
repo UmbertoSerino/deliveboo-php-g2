@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\API\FoodItemController;
 use App\Http\Controllers\Api\RestaurantController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,4 +26,9 @@ Route::name('api.')->group(function () {
     Route::get('/restaurants/{restaurant}', [RestaurantController::class, 'show'])->name('restaurant.show');
     Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
     Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('category.show');
+    Route::get('/foodItems', [FoodItemController::class, 'index'])->name('apo.foodItem.index');
+    Route::get('/foodItems/search', [FoodItemController::class, 'search'])->name('foodItem.search');
+    Route::get('/foodItems/{foodItem}', [FoodItemController::class, 'show'])->name('foodItem.show');
 });
+
+
