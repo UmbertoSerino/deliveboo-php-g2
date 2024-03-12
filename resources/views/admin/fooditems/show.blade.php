@@ -29,14 +29,6 @@
                                 </p>
                             </div>
                             <div class="col-12 justify-content-center d-flex">
-                                {{-- <form  action="{{ route('admin.fooditems.destroy', $foodItem) }}" method="POST" data-fooditem-name="{{ $foodItem['name'] }}">
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button class="btn btn-danger" >
-                                        Elimina
-                                    </button>
-                                </form> --}}
                                 <a class="btn btn-danger" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $foodItem->id }}">Elimina</a>
                                 {{-- Delete modal --}}
                                 <div class="modal fade" id="exampleModal-{{ $foodItem->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -60,7 +52,6 @@
                                     </div>
                                     </div>
                                 </div>
-                                {{-- final modal --}}
                                 <div class="ms-3">
                                     <a href="{{ route('admin.fooditems.index', $foodItem) }}" class="btn btn-success">Elenco Piatti</a>
                                 </div>
