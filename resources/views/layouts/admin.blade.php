@@ -56,12 +56,16 @@
                         @else
                             <li class="nav-item dropdown d-flex align-items-center">
                                 <div class="d-flex align-items-center">
+                                    @if (Auth::user()->restaurant == null)
+                                
+                                    @else
                                     <div>
                                         <a href="{{ route('admin.restaurants.index') }}" class="list-group-item list-group-item-action list-group-item-primary p-2">Ristorante</a>
                                     </div>
                                     <div>
                                         <a href="{{ route('admin.fooditems.index') }}" class="list-group-item list-group-item-action list-group-item-primary p-2">Menù</a>
                                     </div>
+                                    @endif
                                 </div>
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
