@@ -45,17 +45,34 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="d-flex justify-content-end">
+                    <div class="d-flex justify-content-center">
                       <a href="{{ route('admin.fooditems.show', $foodItem) }}" class="btn btn-success">Mostra</a>
                       <a href="{{ route('admin.fooditems.edit', $foodItem) }}" class="btn btn-warning mx-1">Modifica</a>
-                      <form  action="{{ route('admin.fooditems.destroy', $foodItem) }}" method="POST" data-fooditem-name="{{ $foodItem['name'] }}">
-                        @csrf
-                        @method('DELETE')
-  
-                        <button class="btn btn-danger" >
-                            Elimina piatto
-                        </button>
-                    </form>
+                      
+                      <a class="btn btn-danger" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $foodItem->id }}">Elimina</a>
+                      {{-- Delete modal --}}
+                      <div class="modal fade" id="exampleModal-{{ $foodItem->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Elimina</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              Sicuro di voler eliminare?
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                            <form action="{{ route('admin.fooditems.destroy', $foodItem) }}" method="POST">
+                              @csrf
+                              @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Elimina</button>
+                            </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {{-- final modal --}}
                     </div>
                 </div>
             </div>
