@@ -12,15 +12,6 @@ use Illuminate\Support\Facades\Auth;
 
 class FoodItemController extends Controller
 {
-    private  $rules = [
-        'name' => ['required', 'string', 'max:255'],
-        'restaurant_id' => ['required', 'exists:restaurants,id'],
-        'description' => ['required', 'string'],
-        'ingredients' => ['required', 'string'],
-        'price' => ['required', 'numeric', 'min:0', 'digits_between:1,199'],
-        'image_url' => ['required', 'url'],
-    ];
-
     public function index()
     {
         $user = Auth::user()->id;
@@ -37,22 +28,40 @@ class FoodItemController extends Controller
         $foodItem = new FoodItem();
         $restaurant = Auth::user()->restaurant;
         // dd($foodItem);    
-        return view('admin.fooditems.create', compact('foodItem', 'restaurant') );
+        return view('admin.fooditems.create', compact('foodItem', 'restaurant'));
     }
 
     public function store(Request $request)
     {
-        $foodItemData = $request->all();
+        $price = str_replace(',', '.', $request->price);
+        $request->merge(['price' => $price]);
+        $foodItemData = $request->validate(
+            [
+                'name' => ['required', 'string', 'max:255'],
+                'restaurant_id' => ['required', 'exists:restaurants,id'],
+                'description' => ['required', 'string', 'min:10', 'max:255'],
+                'ingredients' => ['required', 'string', 'min:10', 'max:255'],
+                'price' => ['required', 'numeric', 'between:1.00,199.99'],
+                'image_url' => ['required', 'url'],
+            ],
+            [
+                'name.required' => 'Campo richiesto, inserisci il nome del piatto.',
+                'name.max' => 'Superato il numero massimo di 255 caratteri, si prega di ridurre il  numero.',
+                'description' => 'Inserisci una descrizione tra i 10 ed i 255 caratteri.',
+                'ingredients' => 'Inserisci ingredienti, almeno 10 caratteri, massimo 255 caratteri.',
+                'price' => 'inserisci un valore tra 1 e 199.',
+                'image_url' => 'inserisci un immagine di tipo url'
+            ]
+        );
         $foodItem = FoodItem::create($foodItemData);
 
-        return redirect()->route('admin.fooditems.index');
+        return redirect()->route('admin.fooditems.index', $foodItem);
     }
 
     public function show(string $id)
     {
         $foodItem = FoodItem::findOrFail($id);
         return view('admin.fooditems.show', compact('foodItem'));
-
     }
 
     public function edit(string $id)
@@ -64,15 +73,32 @@ class FoodItemController extends Controller
     }
 
 
-    public function update (Request $request, FoodItem $fooditem)
+    public function update(Request $request, FoodItem $fooditem)
     {
-        
-        $data = $request->validate($this->rules);
+        $price = str_replace(',', '.', $request->price);
+        $request->merge(['price' => $price]);
+        $data = $request->validate(
+            [
+                'name' => ['required', 'string', 'max:255'],
+                'restaurant_id' => ['required', 'exists:restaurants,id'],
+                'description' => ['required', 'string', 'min:10', 'max:255'],
+                'ingredients' => ['required', 'string', 'min:10', 'max:255'],
+                'price' => ['required', 'numeric', 'between:1.00,199.99'],
+                'image_url' => ['required', 'url'],
+            ],
+            [
+                'name.required' => 'Campo richiesto, inserisci il nome del piatto.',
+                'name.max' => 'Superato il numero massimo di 255 caratteri, si prega di ridurre il  numero.',
+                'description' => 'Inserisci una descrizione tra i 10 ed i 255 caratteri.',
+                'ingredients' => 'Inserisci ingredienti, almeno 10 caratteri, massimo 255 caratteri.',
+                'price' => 'inserisci un valore tra 1 e 199.',
+                'image_url' => 'inserisci un immagine di tipo url'
+            ]
+        );
         $fooditem->update($data);
         $restaurant = Auth::user()->restaurant;
 
         return redirect()->route('admin.fooditems.show', compact('fooditem', 'restaurant'));
-
     }
 
     public function destroy(string $id)

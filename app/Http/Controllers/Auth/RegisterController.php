@@ -49,12 +49,27 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'min:2', 'max:255'],
+            'last_name' => ['required', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8', 'confirmed', 'regex:/[!@#$%^&*(),.?":{}|<>]/'],
+        ], [
+            'name.required' => 'Il campo nome è obbligatorio.',
+            'name.min' => 'Il campo nome deve essere lungo almeno :min caratteri.',
+            'name.max' => 'Il campo nome non può superare :max caratteri.',
+            'last_name.required' => 'Il campo cognome è obbligatorio.',
+            'last_name.max' => 'Il campo cognome non può superare :max caratteri.',
+            'email.required' => 'Il campo email è obbligatorio.',
+            'email.email' => 'Inserisci un indirizzo email valido.',
+            'email.max' => 'Il campo email non può superare :max caratteri.',
+            'email.unique' => 'Questo indirizzo email è già in uso.',
+            'password.required' => 'Il campo password è obbligatorio.',
+            'password.min' => 'La password deve essere lunga almeno :min caratteri.',
+            'password.confirmed' => 'La conferma della password non corrisponde.',
+            'password.regex' => 'La password deve contenere almeno un carattere speciale !@#$%^&*(),.?":{}'
         ]);
     }
+
 
     /**
      * Create a new user instance after a valid registration.

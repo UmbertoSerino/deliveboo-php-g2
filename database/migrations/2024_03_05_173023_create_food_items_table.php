@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('ingredients');
             $table->decimal('price', 5, 2);
             $table->text('image_url');
+            $table->boolean('available')->default(true);
             $table->timestamps();
         });
     }

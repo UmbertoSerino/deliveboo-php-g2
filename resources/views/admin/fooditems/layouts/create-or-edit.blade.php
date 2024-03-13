@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-7">
-                {{--VAlidation --}}
+                {{--Validation --}}
                 @include('partials.errors')
                 {{-- Form Body --}}
                 <form action="@yield('form-action')" method="POST">
@@ -18,7 +18,7 @@
                         {{-- Name --}}
                         <div class="form-group col-md-6">
                           <label for="name">Nome Piatto: </label>
-                          <input type="text" class="form-control" id="name" name="name" value="{{ $foodItem->name !== null ? old('name', $foodItem->name) . '*' : old('name', $foodItem->name) }}">
+                          <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $foodItem->name) }}">
                         </div>
                         
                         {{-- ingredienti --}}
@@ -67,10 +67,22 @@
         </div>
     </div>
     {{-- Script for preview image url --}}
-    <script>
-        document.getElementById('image_url').addEventListener('change', function(event){
-            const imageElement = document.getElementById('image-preview');
-            imageElement.classList.remove('d-none');
-        });
+<script>
+  document.getElementById('image_url').addEventListener('change', function(event){
+  const imageElement = document.getElementById('image-preview');
+  imageElement.classList.remove('d-none');
+});
+// Script per evidenziare i campi obbligatori
+  const inputFields = document.querySelectorAll('.obligate');
+  const spanElements = document.querySelectorAll('.required-indicator');
+  inputFields.forEach((inputField, index) => {
+  inputField.addEventListener('input', () => {
+    if (inputField.value.trim() !== '') {
+      spanElements[index].classList.add('invisible');
+    } else {
+      spanElements[index].classList.remove('invisible');
+    }
+  });
+});
     </script>
 @endsection

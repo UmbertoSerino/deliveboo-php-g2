@@ -13,7 +13,7 @@
               </div>
               <div class="form-group col-md-6">
                 <label for="piva">Partita Iva: </label>
-                <input type="text" class="form-control" id="piva" minlength="9" maxlength="10" name="vat" value="{{ old('piva', $restaurant->vat) }}">
+                <input type="text" class="form-control" id="piva" maxlength="11" name="vat" value="{{ old('piva', $restaurant->vat) }}">
               </div>
             </div>
             <div class="form-group">
@@ -22,7 +22,7 @@
             </div>
             <div class="form-group">
               <label for="phone_number">Numero di telefono: </label>
-              <input type="tel" class="form-control" id="phone_number" placeholder="3xx xxxxxxx" minlength="9" maxlength="10" name="phone_number" value="{{ old('phone_number', $restaurant->phone_number) }}">
+              <input type="tel" class="form-control" id="phone_number" name="phone_number" value="{{ old('phone_number', $restaurant->phone_number) }}">
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
