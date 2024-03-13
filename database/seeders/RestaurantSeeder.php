@@ -61,6 +61,15 @@ class RestaurantSeeder extends Seeder
                 'email' => 'osteriadelpescatore@hotmail.com',
                 'image_url' => 'https://www.amioparere.com/images/locali/6b7d-fronte.jpg',
             ],
+            [
+                'name' => 'Pestana Cr7',
+                'user_id' => 6,
+                'vat' => 369852198,
+                'address' => 'Lungomare, 10, Roccaraso (AQ)',
+                'phone_number' => 333123456,
+                'email' => 'cr7@gmail.com',
+                'image_url' => 'https://logowik.com/content/uploads/images/pestana-cr7-lifestyle-hotels6271.logowik.com.webp',
+            ],
         ];
 
         foreach ($restaurants as $restaurant) {

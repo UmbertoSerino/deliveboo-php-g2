@@ -14,43 +14,43 @@
           <label for="name">Nome Ristorante: </label>
           <input type="text" class="form-control obligate inline" id="name" name="name" value="{{ old('name',$restaurant->name) }}" >
           <span class="required-indicator">* campi obbligatori</span>
-          @error('name.min')
+          {{-- @error('name.min')
               <span class="text-danger">{{ $message }}</span>
-          @enderror
+          @enderror --}}
       </div>
         <div class="form-group col-md-6">
           <label for="piva">Partita Iva: </label>
           <input type="text" class="form-control obligate" id="piva" name="vat" value="{{ old('vat',$restaurant->vat) }}" >
         <span class="required-indicator">* campi obbligatori</span>
-        @error('vat')
+        {{-- @error('vat')
         <span class="text-danger">{{ $message }}</span>
-        @enderror
+        @enderror --}}
         </div>
       </div>
       <div class="form-group">
         <label for="address">Indirizzo</label>
         <input type="text" class="form-control obligate" id="address" name="address" value="{{ old('address',$restaurant->address) }}" >
         <span class="required-indicator">* campi obbligatori</span>
-        @error('address')
+        {{-- @error('address')
         <span class="text-danger">{{ $message }}</span>
-        @enderror
+        @enderror --}}
       </div>
       <div class="form-group">
         <label for="phone_number">Numero di telefono: </label>
         <input type="tel" class="form-control obligate" id="phone_number" name="phone_number" value="{{ old('phone_number',$restaurant->phone_number) }}" >
         <span class="required-indicator">* campi obbligatori</span>
-        @error('phone_number')
+        {{-- @error('phone_number')
         <span class="text-danger">{{ $message }}</span>
-        @enderror
+        @enderror --}}
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="inputCity">Email: </label>
           <input type="email" class="form-control obligate" id="email" name="email" value="{{ old('email',$restaurant->email) }}" >
         <span class="required-indicator">* campi obbligatori</span>
-        @error('email')
+        {{-- @error('email')
         <span class="text-danger">{{ $message }}</span>
-        @enderror
+        @enderror --}}
         </div>
         <div class="form-group col-md-6">
           <label for="image_url">Logo: </label>
