@@ -52,7 +52,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'min:2', 'max:255'],
             'last_name' => ['required', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed', 'regex:/[!@#$%^&*(),.?":{}|<>]/'],
+            'password' => ['required', 'string', 'min:8', 'confirmed', 'regex:/^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>])/', 'regex:/^(?=.*[A-Z])/',],
         ], [
             'name.required' => 'Il campo nome è obbligatorio.',
             'name.min' => 'Il campo nome deve essere lungo almeno :min caratteri.',
@@ -66,7 +66,7 @@ class RegisterController extends Controller
             'password.required' => 'Il campo password è obbligatorio.',
             'password.min' => 'La password deve essere lunga almeno :min caratteri.',
             'password.confirmed' => 'La conferma della password non corrisponde.',
-            'password.regex' => 'La password deve contenere almeno un carattere speciale !@#$%^&*(),.?":{}'
+            'password.regex' => 'La password deve contenere almeno un carattere speciale !@#$%^&*(),.?":{} ed almeno una lettera maiuscola'
         ]);
     }
 

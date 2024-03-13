@@ -28,6 +28,18 @@
                                     {{ $foodItem->description }}
                                 </p>
                             </div>
+                            <div class="card-body">
+                                <h2>
+                                    Disponibile:
+                                </h2>
+                                <p>
+                                @if ($foodItem->available == 1)
+                                    Si
+                                @else
+                                    No
+                                @endif
+                                </p>
+                            </div>
                             <div class="col-12 justify-content-center d-flex">
                                 <a class="btn btn-danger" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $foodItem->id }}">Elimina</a>
                                 {{-- Delete modal --}}

@@ -46,12 +46,18 @@ class UsersSeeder extends Seeder
                 'email' => 'david@example.com',
                 'password' => bcrypt('passwordDEF'),
             ],
+            [
+                'name' => 'Cristiano',
+                'last_name' => 'Ronaldo',
+                'email' => 'alfa@gmail.com',
+                'password' => bcrypt('123456'),
+            ],
         ];
-        
 
-      // Inserisci i dati nel database
-      foreach ($users as $user) {
-        User::create($user);
-    }
+
+        // Inserisci i dati nel database
+        foreach ($users as $user) {
+            User::create($user);
+        }
     }
 }

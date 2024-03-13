@@ -143,6 +143,16 @@ class FoodItemsSeeder extends Seeder
                 'available' => true,
 
             ],
+            [
+                'name' => 'Salsiccia e friarielli',
+                'restaurant_id' => '6',
+                'description' => 'Gustoso piatto di salsiccia e friarielli.',
+                'ingredients' => 'Salsiccia e friarielli.',
+                'price' => 49.50,
+                'image_url' => 'https://1.bp.blogspot.com/-vyOgunrdc08/X8OsDjHVYKI/AAAAAAAAgQQ/dg3NG7m0leUN4Davzd3xHxn_VzD8gsTdQCLcBGAsYHQ/s2048/salsicce%2Be%2Bfriarielli%2Bricette%2Bbarbare_.jpg',
+                'available' => true,
+
+            ],
         ];
 
         foreach ($foodItems as $foodItem) {

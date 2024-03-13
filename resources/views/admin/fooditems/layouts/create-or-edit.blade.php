@@ -36,7 +36,20 @@
                           <label for="price">Prezzo: </label>
                           <input type="text" class="form-control" id="price" name="price" value="{{ old('price', $foodItem->price) }}">
                         </div>
-                        {{-- Imaggine --}}
+                        {{-- Disponibilità --}}
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="available" id="not_available" value="0">
+                          <label class="form-check-label" for="available">
+                              Non Disponibile
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="available" id="available" value="1">
+                          <label class="form-check-label" for="available">
+                              Disponibile
+                          </label>
+                        </div>
+                        {{-- Immagine --}}
                         <div class="form-row">
                           <div class="form-group col-md-6">
                             <label for="image_url">Immagine del Piatto: </label>
