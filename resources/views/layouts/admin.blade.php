@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="{{ Vite::asset('resources/assets/img/s-l1600.jpg') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ Vite::asset('resources/assets/img/deliveboo-logo.jpeg') }}" type="image/x-icon">
 
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('head-title', 'DeliveBoo - (Admin - Main)')</title>
+    <title>@yield('head-title', 'DevileBoo - Admin')</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -23,7 +23,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'DevileBoo Admin') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -44,20 +44,16 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
-                                
                             @endif
-
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
-                                
                             @endif
                         @else
                             <li class="nav-item dropdown d-flex align-items-center">
                                 <div class="d-flex align-items-center">
                                     @if (Auth::user()->restaurant == null)
-                                
                                     @else
                                     <div>
                                         <a href="{{ route('admin.restaurants.index') }}" class="list-group-item list-group-item-action list-group-item-primary p-2">Ristorante</a>
@@ -76,7 +72,6 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>

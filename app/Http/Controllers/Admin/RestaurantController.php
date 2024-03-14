@@ -35,7 +35,7 @@ class RestaurantController extends Controller
         // dd($request);
         $data = $request->validate([
             'name' => ['required', 'min:2', 'max:20'],
-            'vat' => ['required', 'numeric', 'digits:12'],
+            'vat' => ['required', 'numeric', 'digits:11'],
             'address' => ['required', 'max:255'],
             'phone_number' => ['required', 'numeric'],
             'email' => ['required', 'email'],
@@ -91,7 +91,7 @@ class RestaurantController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'min:2', 'max:20'],
-            'vat' => ['required', 'numeric', 'digits:12'],
+            'vat' => ['required', 'numeric', 'digits:11'],
             'address' => ['required', 'max:255'],
             'phone_number' => ['required', 'numeric'],
             'email' => ['required', 'email'],

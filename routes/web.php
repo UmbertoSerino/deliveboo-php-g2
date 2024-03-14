@@ -19,7 +19,8 @@ use App\Http\Controllers\Admin\FoodItemController as AdminFoodItemController;
 */
 
 Route::get('/', function () {
-    return view('layouts.app');
+    // return view('layouts.app');
+    return redirect('/login');
 });
 
 Auth::routes();

@@ -44,7 +44,7 @@
                           </label>
                         </div>
                         <div class="form-check">
-                          <input class="form-check-input" type="radio" name="available" id="available" value="1">
+                          <input class="form-check-input" type="radio" name="available" id="available" value="1" checked>
                           <label class="form-check-label" for="available">
                               Disponibile
                           </label>
@@ -71,7 +71,7 @@
                               @yield('page-title')
                           </button>
                           <button type="reset" class="btn btn-xl btn-warning">
-                              Reset all fields
+                              Reset
                           </button>
                       </div>
                       </div>

@@ -42,6 +42,7 @@ class FoodItemController extends Controller
                 'description' => ['required', 'string', 'min:10', 'max:255'],
                 'ingredients' => ['required', 'string', 'min:10', 'max:255'],
                 'price' => ['required', 'numeric', 'between:1.00,199.99'],
+                'available' => ['required'],
                 'image_url' => ['required', 'url'],
             ],
             [
@@ -50,6 +51,7 @@ class FoodItemController extends Controller
                 'description' => 'Inserisci una descrizione tra i 10 ed i 255 caratteri.',
                 'ingredients' => 'Inserisci ingredienti, almeno 10 caratteri, massimo 255 caratteri.',
                 'price' => 'inserisci un valore tra 1 e 199.',
+                'available.required' => 'Inserisci disponibilità',
                 'image_url' => 'inserisci un immagine di tipo url'
             ]
         );
@@ -84,6 +86,7 @@ class FoodItemController extends Controller
                 'description' => ['required', 'string', 'min:10', 'max:255'],
                 'ingredients' => ['required', 'string', 'min:10', 'max:255'],
                 'price' => ['required', 'numeric', 'between:1.00,199.99'],
+                'available' => ['required'],
                 'image_url' => ['required', 'url'],
             ],
             [
@@ -92,6 +95,7 @@ class FoodItemController extends Controller
                 'description' => 'Inserisci una descrizione tra i 10 ed i 255 caratteri.',
                 'ingredients' => 'Inserisci ingredienti, almeno 10 caratteri, massimo 255 caratteri.',
                 'price' => 'inserisci un valore tra 1 e 199.',
+                'available' => 'Inserire disponibilità',
                 'image_url' => 'inserisci un immagine di tipo url'
             ]
         );
