@@ -23,6 +23,9 @@ class RestaurantController extends Controller
     // SHOW
     public function show(Restaurant $restaurant)
     {
+        
+            // Carica anche i foodItem associati al ristorante
+    $restaurant->load('foodItem');
         return response()->json([
             'success' => true,
             'results' => $restaurant
