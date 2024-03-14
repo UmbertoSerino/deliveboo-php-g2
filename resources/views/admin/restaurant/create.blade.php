@@ -52,9 +52,15 @@
         <span class="text-danger">{{ $message }}</span>
         @enderror --}}
         </div>
-        <div class="form-group col-md-6">
+        <!-- <div class="form-group col-md-6">
           <label for="image_url">Logo: </label>
           <input type="image_url" class="form-control obligate" id="image_url" name="image_url" value="{{ old('image_url',$restaurant->image_url) }}" >
+          <span class="required-indicator">* campi obbligatori</span> -->
+          
+        </div>
+        <div class="mb-3 input-group">
+          <label for="image_url" class="input-group-text">Inserire un'immagine del ristorante</label>
+          <input class="form-control obligate" type="file" name="image_url" id="image_url" value="{{ old('image_url', $restaurant->image_url)}}">
           <span class="required-indicator">* campi obbligatori</span>
         </div>
       </div>

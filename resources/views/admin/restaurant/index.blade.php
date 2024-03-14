@@ -15,7 +15,7 @@
       <div class="card mb-3">
         <div class="row g-0">
           <div class="col-md-4">
-            <img src="{{ $restaurant->image_url }}" class="img-fluid rounded-start" alt="...">
+            <img src="{{ $restaurant->image_url }}" class="img-fluid rounded-start" alt="{{ $restaurant->name }} Image">
           </div>
           <div class="col-md-8">
             <div class="card-body d-flex justify-content-between">
