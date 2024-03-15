@@ -9,6 +9,7 @@ use App\Models\Restaurant;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class FoodItemController extends Controller
 {
@@ -42,7 +43,8 @@ class FoodItemController extends Controller
                 'description' => ['required', 'string', 'min:10', 'max:255'],
                 'ingredients' => ['required', 'string', 'min:10', 'max:255'],
                 'price' => ['required', 'numeric', 'between:1.00,199.99'],
-                'image_url' => ['required', 'url'],
+                'image_url' => ['required'],
+                'available' => ['required'],
             ],
             [
                 'name.required' => 'Campo richiesto, inserisci il nome del piatto.',
@@ -50,9 +52,15 @@ class FoodItemController extends Controller
                 'description' => 'Inserisci una descrizione tra i 10 ed i 255 caratteri.',
                 'ingredients' => 'Inserisci ingredienti, almeno 10 caratteri, massimo 255 caratteri.',
                 'price' => 'inserisci un valore tra 1 e 199.',
-                'image_url' => 'inserisci un immagine di tipo url'
+                'image_url' => 'inserisci un immagine di tipo .JPG o .PNG',
+                'available' => 'definire disponibilità',
             ]
         );
+
+        $image_path = Storage::disk('public')->put('uploads', $foodItemData['image_url']);
+        $data['image_url'] = $image_path;
+
+
         $foodItem = FoodItem::create($foodItemData);
 
         return redirect()->route('admin.fooditems.index', $foodItem);
@@ -84,7 +92,7 @@ class FoodItemController extends Controller
                 'description' => ['required', 'string', 'min:10', 'max:255'],
                 'ingredients' => ['required', 'string', 'min:10', 'max:255'],
                 'price' => ['required', 'numeric', 'between:1.00,199.99'],
-                'image_url' => ['required', 'url'],
+                'image_url' => ['required'],
             ],
             [
                 'name.required' => 'Campo richiesto, inserisci il nome del piatto.',
@@ -92,9 +100,13 @@ class FoodItemController extends Controller
                 'description' => 'Inserisci una descrizione tra i 10 ed i 255 caratteri.',
                 'ingredients' => 'Inserisci ingredienti, almeno 10 caratteri, massimo 255 caratteri.',
                 'price' => 'inserisci un valore tra 1 e 199.',
-                'image_url' => 'inserisci un immagine di tipo url'
+                'image_url' => 'inserisci un immagine di tipo .JPG o .PNG'
             ]
         );
+
+        $image_path = Storage::disk('public')->put('uploads', $data['image_url']);
+        $data['image_url'] = $image_path;
+
         $fooditem->update($data);
         $restaurant = Auth::user()->restaurant;
 

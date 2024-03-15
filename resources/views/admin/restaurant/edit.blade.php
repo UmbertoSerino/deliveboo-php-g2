@@ -3,7 +3,7 @@
 @section('main-content')
   <div class="container">
     @include('partials.errors')
-      <form action="{{ route('admin.restaurants.update', $restaurant) }}" method="post">
+      <form action="{{ route('admin.restaurants.update', $restaurant) }}" method="post" enctype="multipart/form-data">
           @csrf
           @method('PUT')
           <div class="form-row">
@@ -31,8 +31,13 @@
               </div>
               <div class="form-group col-md-6 mb-2">
                 <div class="input-group">
-                  <label for="image_url" class="input-group-text">Inserire un'immagine del ristorante in formato .jpg o .png</label>
-                  <input class="form-control obligate" type="file" name="image_url" id="image_url" value="{{ old('image_url', $restaurant->image_url)}}">
+                  <!-- <label for="image_url" class="input-group-text">Inserire un'immagine del ristorante in formato .jpg o .png</label>
+                  <input class="form-control obligate" type="file" name="image_url" id="image_url" value="{{ old('image_url', $restaurant->image_url)}}"> -->
+                    <div class="form-group">
+                        <label for="image_url">Inserire un'immagine del ristorante</label>
+                        <input type="file" class="form-control obligate" id="image_url" name="image_url" value="{{ old('image_url', $restaurant->image_url)}}">
+                        <span class="required-indicator">* campi obbligatori</span>
+                    </div>
                 </div>
               </div>
               <div class="mb-3 input-group">
@@ -47,8 +52,12 @@
                 <label class="me-2" for="categories-{{ $category->id }}">{{ $category->name }}</label>
                 @endforeach
               </div>
-            <button type="submit" class="btn btn-primary mt-3">Modifica</button>
-        </form>
+              <div>
+                <a href="{{ route('admin.restaurants.edit', $restaurant->id) }}" class="btn btn-primary mb-3">
+                  <button type="submit" class="btn btn-primary mt-3">Conferma Modifica</button>
+                </a>
+              </div>
+      </form>
   </div>
   {{--  Script that show preview image url --}}
   <script>

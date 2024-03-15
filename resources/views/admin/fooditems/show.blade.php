@@ -18,7 +18,7 @@
                             </p>
 
                             <div class="card-image">
-                                <img class="w-50" src="{{  $foodItem->image_url }}" alt="{{ $foodItem->name }} ">
+                                <img src="{{ asset('storage/' . $foodItem->image_url) }}" class="img-fluid rounded-start" alt="{{ $foodItem->name }} Image">
                             </div>
                             <div class="card-body">
                                 <h2>

@@ -8,6 +8,7 @@ use App\Models\Restaurant;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
 class RestaurantController extends Controller
@@ -55,9 +56,12 @@ class RestaurantController extends Controller
             'phone_number.digits_between' => 'Il numero di telefono deve essere composto da 9 o 10 cifre.',
             'email.required' => 'Il campo email è obbligatorio.',
             'email.email' => 'Il formato dell\'email non è valido.',
-            'image_url.required' => 'Il campo URL dell\'immagine è obbligatorio.',
+            'image_url.required' => 'Inserire un\'immagine in formato .PNG o .JPG',
             'categories.required' => 'È richiesta almeno una categoria.',
         ]);
+
+        $image_path = Storage::put('uploads/restaurants', $data['image_url']);
+        $data['image_url'] = $image_path;
 
         //Query Select  
         $data['user_id'] = Auth::id();
@@ -115,6 +119,8 @@ class RestaurantController extends Controller
             'categories.required' => 'È richiesta almeno una categoria.',
         ]);
 
+        $image_url = Storage::put('uploads/restaurants', $data['image_url']);
+        $data['image_url'] = $image_url;
 
         $data['user_id'] = Auth::id();
 

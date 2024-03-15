@@ -21,7 +21,7 @@
         <div class="col-3">
           <div class="food-card" id="available">
             <div class="food-card_img">
-                <img src="{{ $foodItem->image_url }}" alt="" >
+                <img src="{{ asset('storage/' . $foodItem->image_url) }}" class="img-fluid rounded-start" alt="{{ $foodItem->name }} Image">
             </div>
             <div class="food-card_content">
                 <div class="food-card_title-section">

@@ -14,6 +14,7 @@ class RestaurantController extends Controller
     public function index()
     {
         $restaurants = Restaurant::with('categories', 'foodItem', 'user')->paginate(10);
+        
         return response()->json([
             'success' => true,
             'results' => $restaurants,

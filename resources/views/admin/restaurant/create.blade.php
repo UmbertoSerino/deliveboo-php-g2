@@ -3,7 +3,7 @@
 @section('main-content')
 <div class="container">
   {{-- Form --}}
-  <form method="POST" action="{{ route('admin.restaurants.store') }}" >
+  <form method="POST" action="{{ route('admin.restaurants.store') }}" enctype="multipart/form-data" >
     @csrf
     <h1>
       Inserisci i dati per creare il tuo ristorante
@@ -59,19 +59,22 @@
           
         </div>
         <div class="mb-3 input-group">
-          <label for="image_url" class="input-group-text">Inserire un'immagine del ristorante</label>
-          <input class="form-control obligate" type="file" name="image_url" id="image_url" value="{{ old('image_url', $restaurant->image_url)}}">
-          <span class="required-indicator">* campi obbligatori</span>
+                <div class="form-group">
+                    <label for="image">Inserire un'immagine del ristorante</label>
+                    <input type="file" class="form-control obligate" id="image_url" name="image_url" value="{{ old('image_url', $restaurant->image_url)}}">
+                    <span class="required-indicator">* campi obbligatori</span>
+                </div>
         </div>
+        <label for="categories" class="mb-2">Categorie:</label>
+        <div>
+        @foreach ($categories as $category)
+            <input type="checkbox" class="obligate" name="categories[]" id="categories-{{ $category->id }}" value="{{ $category->id }}">
+            <label class="me-2" for="categories-{{ $category->id }}">{{ $category->name }}</label>
+            @endforeach
+          </div>
+        <button type="submit" class="btn btn-primary mt-3">Crea</button>
       </div>
-      <label for="categories" class="mb-2">Categorie:</label>
-      <div>
-      @foreach ($categories as $category)
-          <input type="checkbox" class="obligate" name="categories[]" id="categories-{{ $category->id }}" value="{{ $category->id }}" >
-          <label class="me-2" for="categories-{{ $category->id }}">{{ $category->name }}</label>
-          @endforeach
-        </div>
-      <button type="submit" class="btn btn-primary mt-3">Crea</button>
+        
     </form>  
 </div>
 
