@@ -3,15 +3,33 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
+use Illuminate\Support\Facades\Gate;
 use App\Models\FoodItem;
 use App\Models\Restaurant;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class FoodItemController extends Controller
 {
+    private $validations = [
+        'name' => ['required', 'string', 'max:255'],
+        'restaurant_id' => ['required', 'exists:restaurants,id'],
+        'description' => ['required', 'string', 'min:10', 'max:255'],
+        'ingredients' => ['required', 'string', 'min:10', 'max:255'],
+        'price' => ['required', 'numeric', 'between:0.01,199.99'],
+        'available' => ['required'],
+        'image_url' => ['required', 'url'],
+    ];
+    private $messageError = [
+        'name.required' => 'Campo richiesto, inserisci il nome del piatto.',
+        'name.max' => 'Superato il numero massimo di 255 caratteri, si prega di ridurre il  numero.',
+        'description' => 'Inserisci una descrizione tra i 10 ed i 255 caratteri.',
+        'ingredients' => 'Inserisci ingredienti, almeno 10 caratteri, massimo 255 caratteri.',
+        'price.numeric' => 'inserisci un numero.',
+        'price.between' => 'inserisci un numero da 0.01 e 199.99.',
+        'available' => 'Inserire disponibilità',
+        'image_url' => 'inserisci un immagine di tipo url'
+    ];
     public function index()
     {
         $user = Auth::user()->id;
@@ -35,26 +53,7 @@ class FoodItemController extends Controller
     {
         $price = str_replace(',', '.', $request->price);
         $request->merge(['price' => $price]);
-        $foodItemData = $request->validate(
-            [
-                'name' => ['required', 'string', 'max:255'],
-                'restaurant_id' => ['required', 'exists:restaurants,id'],
-                'description' => ['required', 'string', 'min:10', 'max:255'],
-                'ingredients' => ['required', 'string', 'min:10', 'max:255'],
-                'price' => ['required', 'numeric', 'between:1.00,199.99'],
-                'available' => ['required'],
-                'image_url' => ['required', 'url'],
-            ],
-            [
-                'name.required' => 'Campo richiesto, inserisci il nome del piatto.',
-                'name.max' => 'Superato il numero massimo di 255 caratteri, si prega di ridurre il  numero.',
-                'description' => 'Inserisci una descrizione tra i 10 ed i 255 caratteri.',
-                'ingredients' => 'Inserisci ingredienti, almeno 10 caratteri, massimo 255 caratteri.',
-                'price' => 'inserisci un valore tra 1 e 199.',
-                'available.required' => 'Inserisci disponibilità',
-                'image_url' => 'inserisci un immagine di tipo url'
-            ]
-        );
+        $foodItemData = $request->validate($this->validations, $this->messageError);
         $foodItem = FoodItem::create($foodItemData);
 
         return redirect()->route('admin.fooditems.index', $foodItem);
@@ -70,35 +69,21 @@ class FoodItemController extends Controller
     {
         $foodItem = FoodItem::findOrFail($id);
         $restaurant = Auth::user()->restaurant;
-
+        if (!Gate::allows('edit-foodItem', $foodItem)) {
+            abort(403);
+        }
         return view('admin.fooditems.edit', compact('foodItem', 'restaurant'));
     }
 
 
     public function update(Request $request, FoodItem $fooditem)
     {
+        if (!Gate::allows('update-foodItem', $fooditem)) {
+            abort(403);
+        }
         $price = str_replace(',', '.', $request->price);
         $request->merge(['price' => $price]);
-        $data = $request->validate(
-            [
-                'name' => ['required', 'string', 'max:255'],
-                'restaurant_id' => ['required', 'exists:restaurants,id'],
-                'description' => ['required', 'string', 'min:10', 'max:255'],
-                'ingredients' => ['required', 'string', 'min:10', 'max:255'],
-                'price' => ['required', 'numeric', 'between:1.00,199.99'],
-                'available' => ['required'],
-                'image_url' => ['required', 'url'],
-            ],
-            [
-                'name.required' => 'Campo richiesto, inserisci il nome del piatto.',
-                'name.max' => 'Superato il numero massimo di 255 caratteri, si prega di ridurre il  numero.',
-                'description' => 'Inserisci una descrizione tra i 10 ed i 255 caratteri.',
-                'ingredients' => 'Inserisci ingredienti, almeno 10 caratteri, massimo 255 caratteri.',
-                'price' => 'inserisci un valore tra 1 e 199.',
-                'available' => 'Inserire disponibilità',
-                'image_url' => 'inserisci un immagine di tipo url'
-            ]
-        );
+        $data = $request->validate($this->validations, $this->messageError);
         $fooditem->update($data);
         $restaurant = Auth::user()->restaurant;
 

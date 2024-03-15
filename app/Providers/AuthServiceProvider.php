@@ -3,7 +3,11 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Policies\RestaurantPolicy;
+use App\Policies\FoodItemPolicy;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -21,6 +25,10 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::define('edit-restaurant', [RestaurantPolicy::class, 'edit']);
+        Gate::define('edit-foodItem', [FoodItemPolicy::class, 'edit']);
+
+        Gate::define('update-restaurant', [RestaurantPolicy::class, 'update']);
+        Gate::define('update-foodItem', [FoodItemPolicy::class, 'update']);
     }
 }
