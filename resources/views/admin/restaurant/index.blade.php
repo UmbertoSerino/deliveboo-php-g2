@@ -69,7 +69,7 @@
       @endif
       {{-- Link utility --}}
       <div class="text-center pt-5">
-        <a href="http://localhost:5174/">Vai a DeliveBoo Guest</a>
+        <a href="http://localhost:5174/restaurants">Vai a DeliveBoo Guest</a>
       </div>
   </div>
 </div>
