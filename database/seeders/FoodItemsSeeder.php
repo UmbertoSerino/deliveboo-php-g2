@@ -6,6 +6,8 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\FoodItem;
 use Illuminate\Database\Seeder;
 
+use function Ramsey\Uuid\v1;
+
 class FoodItemsSeeder extends Seeder
 {
     /**
@@ -160,6 +162,7 @@ class FoodItemsSeeder extends Seeder
                 'ingredients' => 'Mozzarella di bufala, pomodoro San Marzano, basilico, olio extravergine d\'oliva.',
                 'price' => 10.50,
                 'image_url' => 'https://www.gamberorosso.it/wp-content/uploads/yard-gnocchi-di-patate-al-ragu-di-cavallo-1024x757.jpg',
+                'available' => true
             ],
             [
                 'name' => 'Cinghiale alla brace',
@@ -168,6 +171,8 @@ class FoodItemsSeeder extends Seeder
                 'ingredients' => 'Pesto alla genovese, pomodori ciliegino, mozzarella, olio extravergine d\'oliva.',
                 'price' => 9.50,
                 'image_url' => 'https://www.donnamoderna.com/content/uploads/2023/05/cinghiale-alla-brace_800_resize.jpg',
+                'available' => true
+
             ],
             [
                 'name' => 'Zuppa Osaki',
@@ -176,6 +181,8 @@ class FoodItemsSeeder extends Seeder
                 'ingredients' => 'Mozzarella di bufala, pomodoro San Marzano, basilico, olio extravergine d\'oliva.',
                 'price' => 10.50,
                 'image_url' => 'https://www.konnichiwarestaurant.com/wp-content/uploads/2019/09/zuppa-di-miso-misoshiru.jpg',
+                'available' => false
+
             ],
             [
                 'name' => 'Sushi Blu',
@@ -184,6 +191,8 @@ class FoodItemsSeeder extends Seeder
                 'ingredients' => 'Pesto alla genovese, pomodori ciliegino, mozzarella, olio extravergine d\'oliva.',
                 'price' => 9.50,
                 'image_url' => 'https://img.theculturetrip.com/1440x/smart/wp-content/uploads/2020/02/p3wdfm-1.jpg',
+                'available' => true
+
             ],
             [
                 'name' => 'Cous Cous',
@@ -192,6 +201,8 @@ class FoodItemsSeeder extends Seeder
                 'ingredients' => 'Mozzarella di bufala, pomodoro San Marzano, basilico, olio extravergine d\'oliva.',
                 'price' => 10.50,
                 'image_url' => 'https://www.funandfood.it/wp-content/uploads/2019/04/CousCousVeg_2.jpg',
+                'available' => true
+
             ],
             [
                 'name' => 'Tajin MArrakech',
@@ -200,6 +211,8 @@ class FoodItemsSeeder extends Seeder
                 'ingredients' => 'Pesto alla genovese, pomodori ciliegino, mozzarella, olio extravergine d\'oliva.',
                 'price' => 9.50,
                 'image_url' => 'https://ohmydish.com/wp-content/uploads/2020/03/Chicken-tagine.jpg',
+                'available' => true
+
             ],
             [
                 'name' => 'Spaghetti alle Vongole',
@@ -208,6 +221,8 @@ class FoodItemsSeeder extends Seeder
                 'ingredients' => 'Spaghetti, vongole, aglio, prezzemolo, peperoncino, olio extravergine d\'oliva.',
                 'price' => 12.50,
                 'image_url' => 'https://staticcookist.akamaized.net/wp-content/uploads/sites/21/2022/05/primi-piatti-pesce-ricette.jpg',
+                'available' => false
+
             ],
             [
                 'name' => 'Fritto Misto di Mare',
@@ -216,6 +231,8 @@ class FoodItemsSeeder extends Seeder
                 'ingredients' => 'Calamari, gamberi, triglie, alice, olio di semi per friggere, sale.',
                 'price' => 15.00,
                 'image_url' => 'https://orderisda.org/wp-content/uploads/2021/02/iStock-874919294-1024x683.jpg',
+                'available' => true
+
             ],
             [
                 'name' => 'Grigliata di Pesce',
@@ -224,6 +241,8 @@ class FoodItemsSeeder extends Seeder
                 'ingredients' => 'Spigola, orata, gamberoni, calamari, olio extravergine d\'oliva, sale, pepe.',
                 'price' => 18.00,
                 'image_url' => 'http://www.trattorialasorgente.it/sites/default/files/grigliata_pesce_2_piatto.jpg',
+                'available' => true
+
             ],
             [
                 'name' => 'Carpaccio di Tonno',
@@ -232,6 +251,8 @@ class FoodItemsSeeder extends Seeder
                 'ingredients' => 'Tonno fresco, limone, olio extravergine d\'oliva, sale, pepe, rucola, pomodorini.',
                 'price' => 14.00,
                 'image_url' => 'https://www.ecucina.eu/site/wp-content/uploads/2016/08/IMG_5800.jpg',
+                'available' => true
+
             ],
             [
                 'name' => 'Risotto ai Frutti di Mare',
@@ -240,6 +261,8 @@ class FoodItemsSeeder extends Seeder
                 'ingredients' => 'Riso carnaroli, cozze, vongole, gamberi, pomodoro, cipolla, vino bianco, olio extravergine d\'oliva, prezzemolo.',
                 'price' => 16.00,
                 'image_url' => 'https://www.agrodolce.it/app/uploads/2014/07/IMG_3848-980x732.jpg',
+                'available' => true
+
             ],
             [
                 'name' => 'Salmone alla Griglia',
@@ -248,6 +271,8 @@ class FoodItemsSeeder extends Seeder
                 'ingredients' => 'Salmone fresco, limone, olio extravergine d\'oliva, sale, pepe.',
                 'price' => 17.00,
                 'image_url' => 'https://www.scuolatessieri.it/wp-content/uploads/2015/12/Secondi-Piatti-Pesce-a-Scuola-Tessieri.jpg',
+                'available' => true
+
             ],
             [
                 'name' => 'Insalata di Mare',
@@ -256,6 +281,8 @@ class FoodItemsSeeder extends Seeder
                 'ingredients' => 'Mazzancolle, gamberetti, polipo, calamari, cozze, olio extravergine d\'oliva, limone, prezzemolo, aglio.',
                 'price' => 13.50,
                 'image_url' => 'https://i.ytimg.com/vi/QlRn9MPH2Rc/maxresdefault.jpg',
+                'available' => false
+
             ],
             [
                 'name' => 'Calamari Fritti',
@@ -264,6 +291,8 @@ class FoodItemsSeeder extends Seeder
                 'ingredients' => 'Calamari, farina di mais, farina di grano, sale, pepe, olio di semi per friggere.',
                 'price' => 11.00,
                 'image_url' => 'https://static.buttalapasta.it/r/845x/as/calamari-fritti.jpg',
+                'available' => true
+
             ],
             [
                 'name' => 'Zuppa di Pesce',
@@ -272,6 +301,8 @@ class FoodItemsSeeder extends Seeder
                 'ingredients' => 'Cozze, vongole, gamberi, calamari, pomodoro, cipolla, prezzemolo, aglio, olio extravergine d\'oliva, crostini di pane.',
                 'price' => 15.50,
                 'image_url' => 'https://www.profumodibasilico.it/wp-content/uploads/2020/10/zuppa-di-pesce-3.jpg',
+                'available' => true
+
             ],
             [
                 'name' => 'Granchio alla Catalana',
@@ -280,6 +311,8 @@ class FoodItemsSeeder extends Seeder
                 'ingredients' => 'Granchio fresco, pomodori, cetrioli, cipolla rossa, peperoncino, aceto, olio extravergine d\'oliva, sale, pepe.',
                 'price' => 19.00,
                 'image_url' => 'https://www.gustoaroma.com/wp-content/uploads/2020/05/granchio-alla-catalana-683x1024.jpg',
+                'available' => true
+
             ],
         ];
 
