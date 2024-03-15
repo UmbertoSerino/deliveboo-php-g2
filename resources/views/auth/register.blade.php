@@ -7,9 +7,9 @@
             <div class="card">
                 <div class="card-header">{{ __('Registrazione') }}</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" id="registrationForm">
                         @csrf
-                    @include('partials.errors')
+                        @include('partials.errors')
                         {{-- name --}}
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nome') }}</label>
@@ -19,7 +19,7 @@
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                                 <div class="container-span">
-                                    <span class="required-indicator">* campi obbligatori</span>
+                                    <span class="required-indicator">*</span>
                                 </div>
                             </div>
                         </div>                        
@@ -34,7 +34,7 @@
                                     </span>
                                 @enderror
                                 <div class="container-span">
-                                    <span class="required-indicator">* campi obbligatori</span>
+                                    <span class="required-indicator">*</span>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                                     </span>
                                 @enderror
                                 <div class="container-span">
-                                    <span class="required-indicator">* campi obbligatori</span>
+                                    <span class="required-indicator">*</span>
                                 </div>
                             </div>
                         </div>
@@ -59,12 +59,10 @@
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control obligate @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                                 @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        {{-- <strong>{{ $message }}</strong> --}}
-                                    </span>
+                                    <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                 @enderror
                                 <div class="container-span">
-                                    <span class="required-indicator">* campi obbligatori</span>
+                                    <span class="required-indicator">*</span>
                                 </div>
                             </div>
                         </div>
@@ -73,17 +71,16 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Conferma Password') }}</label>
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control obligate" name="password_confirmation" required autocomplete="new-password">
-                                <span class="invisible" id="required-indicator">Le password non coincidono</span>
+                                <span id="password-match-error" class="text-danger invisible">Le password non coincidono</span>
                                 <div class="container-span">
-                                    <span class="required-indicator">* campi obbligatori</span>
+                                    <span class="required-indicator">*</span>
                                 </div>
                             </div>
+                            
                         </div>
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary" id="submit">
-                                    {{ __('Registrati') }}
-                                </button>
+                                <button type="submit" class="btn btn-primary" id="submit">{{ __('Registrati') }}</button>
                             </div>
                         </div>
                     </form>
@@ -92,26 +89,24 @@
         </div>
     </div>
 </div>
+
 <script>
-    // --------- function ---------
-    document.getElementById('submit').addEventListener('click', () => {
-    const password = document.getElementById('password');
-    console.log(password);
-    const message = document.getElementById('required-indicator')
-    console.log(message)
+    // ---------------- FUNCTION
+    // ----------Validate Password and Confirm password
+    document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('password-confirm').value;
+        if (password !== confirmPassword) {
+            // Se le password non coincidono, impedisce l'invio del form
+            event.preventDefault();
+            document.getElementById('password-match-error').classList.remove('invisible');
+        }
+    });
+    const inputFields = document.querySelectorAll('.obligate');
+    const spanElements = document.querySelectorAll('.required-indicator');
 
-    const confirmPassword = document.getElementById('password-confirm');
-    console.log(confirmPassword);
-    if(password.value != confirmPassword.value){
-        message.classList.remove('invisible');
-    }
-});
-
-// Script per evidenziare i campi obbligatori
-const inputFields = document.querySelectorAll('.obligate');
-const spanElements = document.querySelectorAll('.required-indicator');
-inputFields.forEach((inputField, index) => {
-  inputField.addEventListener('input', () => {
+    inputFields.forEach((inputField, index) => {
+    inputField.addEventListener('input', () => {
     if (inputField.value.trim() !== '') {
       spanElements[index].classList.add('invisible');
     } else {
@@ -119,8 +114,6 @@ inputFields.forEach((inputField, index) => {
     }
   });
 });
-
-
 </script>
 @endsection
 <style>
