@@ -11,7 +11,7 @@
                 {{--Validation --}}
                 @include('partials.errors')
                 {{-- Form Body --}}
-                <form action="@yield('form-action')" method="POST">
+                <form action="@yield('form-action')" method="POST" enctype="multipart/form-data">
                     @csrf
                     @yield('form-method')
                     <div class="form-row">
@@ -51,9 +51,9 @@
                         </div>
                         {{-- Immagine --}}
                         <div class="form-row">
-                          <div class="form-group col-md-6">
-                            <label for="image_url">Immagine del Piatto: </label>
-                            <input type="image_url" class="form-control" id="image_url" name="image_url" value="{{ old('image_url', $foodItem->image_url) }}">
+                          <div class="form-group">
+                            <label for="image">Inserire un'immagine del ristorante</label>
+                            <input type="file" class="form-control" id="image_url" name="image_url" value="{{ old('image_url', $foodItem->image_url)}}">
                           </div>
                           {{--Preview image: --}}
                         <div class="mb-3 input-group">

@@ -8,6 +8,7 @@ use App\Models\FoodItem;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class FoodItemController extends Controller
 {
@@ -54,6 +55,8 @@ class FoodItemController extends Controller
         $price = str_replace(',', '.', $request->price);
         $request->merge(['price' => $price]);
         $foodItemData = $request->validate($this->validations, $this->messageError);
+        $image_path = Storage::disk('public')->put('uploads', $foodItemData['image_url']);
+        $data['image_url'] = $image_path;
         $foodItem = FoodItem::create($foodItemData);
 
         return redirect()->route('admin.fooditems.index', $foodItem);
@@ -84,6 +87,8 @@ class FoodItemController extends Controller
         $price = str_replace(',', '.', $request->price);
         $request->merge(['price' => $price]);
         $data = $request->validate($this->validations, $this->messageError);
+        $image_path = Storage::disk('public')->put('uploads', $data['image_url']);
+        $data['image_url'] = $image_path;
         $fooditem->update($data);
         $restaurant = Auth::user()->restaurant;
 

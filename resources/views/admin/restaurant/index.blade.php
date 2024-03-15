@@ -7,26 +7,28 @@
       <div class="col-12 text-center">
           <a href="{{ route('admin.restaurants.create') }}" class="btn btn-primary">Inserisci Ristorante</a>
       </div>
-      @else
+    @else
       {{-- inizio card --}}
       @foreach ($restaurants as $restaurant)
       <div class="col-12">
       <div class="card mb-3">
         <div class="row g-0">
           <div class="col-md-4">
-            <img src="{{ $restaurant->image_url }}" class="img-fluid rounded-start" alt="...">
+            <img src="{{ asset('storage/' . $restaurant->image_url) }}" class="img-fluid rounded-start" alt="{{ $restaurant->name }} Image">
           </div>
           <div class="col-md-8">
             <div class="card-body d-flex justify-content-between">
               <div>
-                <h5 class="card-title">Ristorante "{{ $restaurant->name }}"" di {{ $restaurant->user->name }} {{ $restaurant->user->last_name }} </h5>
+
+                <h5 class="card-title">Ristorante "{{ $restaurant->name }}" di {{ $restaurant->user->name }} {{ $restaurant->user->last_name }} </h5>
+  
                 <p class="card-text">Recapito ristorante: {{ $restaurant->email }}, {{ $restaurant->phone_number }}</p>
                 <p class="card-text">Indirizzo: {{ $restaurant->address }}</p>
                 <p class="card-text">Partita Iva: {{ $restaurant->vat }}</p>
                 <p class="card-text">Recapito titolare: {{ $restaurant->user->email }}</p>
                 <p class="mt-2">Categorie:</p>
-                @foreach ($restaurant->categories as $categoryy)
-                <span class="badge">{{ $categoryy->name }}</span>
+                @foreach ($restaurant->categories as $category)
+                <span class="badge">{{ $category->name }}</span>
                 @endforeach
               </div>
               {{-- Button Modified Restaurant --}}

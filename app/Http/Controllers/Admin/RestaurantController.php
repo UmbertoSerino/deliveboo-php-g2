@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use App\Models\Restaurant;
@@ -61,6 +62,9 @@ class RestaurantController extends Controller
         // request + validation
         $data = $request->validate($this->validations, $this->messageError);
 
+        $image_path = Storage::put('uploads/restaurants', $data['image_url']);
+        $data['image_url'] = $image_path;
+
         //Query Select  
         $data['user_id'] = Auth::id();
 
@@ -100,6 +104,9 @@ class RestaurantController extends Controller
         // request + validation
         $data = $request->validate($this->validations, $this->messageError);
         $data['user_id'] = Auth::id();
+
+        $image_url = Storage::put('uploads/restaurants', $data['image_url']);
+        $data['image_url'] = $image_url;
 
         $data['categories'] = isset($data['categories']) ? $data['categories'] : [];
 
