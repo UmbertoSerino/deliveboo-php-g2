@@ -59,51 +59,43 @@
           <label for="inputCity">Email:
             <div class="container-span">
               <span class="required-indicator">*</span>
-            </div>
+            </div> 
           </label>
           <input type="email" class="form-control obligate @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email',$restaurant->email) }}" >
-        @error('email')
-          <span class="text-danger">{{ $message }}</span>
-        @enderror
-      </div>
-        <div class="form-group col-md-6">
-          <label for="image_url">Logo:
-            <div class="container-span">
-              <span class="required-indicator">*</span>
-            </div>
-          </label>
-          <input type="image_url" class="form-control obligate @error('image_url') is-invalid @enderror" id="image_url" name="image_url" value="{{ old('image_url',$restaurant->image_url) }}" >
-          @error('image_url')
+          @error('email')
             <span class="text-danger">{{ $message }}</span>
-          @enderror
+          @enderror 
         </div>
+        <!-- <div class="form-group col-md-6">
+              <label for="image_url">Logo: </label>
+              <input type="image_url" class="form-control obligate" id="image_url" name="image_url" value="{{ old('image_url',$restaurant->image_url) }}" >
+              <span class="required-indicator">* campi obbligatori</span>
+            </div> -->
         <div class="mb-3 input-group">
-                <div class="form-group">
-                    <label for="image">Inserire un'immagine del ristorante</label>
-                    <input type="file" class="form-control obligate" id="image_url" name="image_url" value="{{ old('image_url', $restaurant->image_url)}}">
-                    <span class="required-indicator">* campi obbligatori</span>
-                </div>
+          <div class="form-group">
+            <label for="image">Inserire un'immagine del ristorante:
+              <div class="container-span">
+                <span class="required-indicator">*</span>
+              </div> 
+            </label>
+            <input type="file" class="form-control obligate @error('image_url') is-invalid @enderror" id="image_url" name="image_url" value="{{ old('image_url', $restaurant->image_url)}}">
+            @error('image_url')
+              <span class="text-danger">{{ $message }}</span>
+            @enderror 
+          </div>
         </div>
+
         <label for="categories" class="mb-2">Categorie:</label>
         <div>
         @foreach ($categories as $category)
-            <input type="checkbox" class="obligate" name="categories[]" id="categories-{{ $category->id }}" value="{{ $category->id }}">
-            <label class="me-2" for="categories-{{ $category->id }}">{{ $category->name }}</label>
+            <input type="checkbox" class="obligate" name="categories[]" id="categories-{{ $category->id }}" value="{{ $category->id }}" >
+            <label class="me-2" for="categories-{{ $category->id }}">{{ $category->name }}
+            </label>
             @endforeach
+            @error('categories')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
           </div>
-        <button type="submit" class="btn btn-primary mt-3">Crea</button>
-      </div>
-      <label for="categories" class="mb-2">Categorie:</label>
-      <div>
-      @foreach ($categories as $category)
-          <input type="checkbox" class="obligate" name="categories[]" id="categories-{{ $category->id }}" value="{{ $category->id }}" >
-          <label class="me-2" for="categories-{{ $category->id }}">{{ $category->name }}
-          </label>
-          @endforeach
-          @error('categories')
-          <span class="text-danger">{{ $message }}</span>
-          @enderror
-        </div>
       <button type="submit" class="btn btn-primary mt-3">Crea</button>
     </form>  
 </div>

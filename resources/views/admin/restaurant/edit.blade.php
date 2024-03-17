@@ -2,7 +2,7 @@
 
 @section('main-content')
   <div class="container">
-    <form action="{{ route('admin.restaurants.update', $restaurant) }}" method="post">
+    <form action="{{ route('admin.restaurants.update', $restaurant) }}" method="POST" enctype="multipart/form-data> 
       @csrf
         @method('PUT')
 {{-- Section Name --}}
