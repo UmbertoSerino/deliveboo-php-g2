@@ -8,8 +8,6 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-7">
-                {{--Validation --}}
-                @include('partials.errors')
                 {{-- Form Body --}}
                 <form action="@yield('form-action')" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -17,24 +15,52 @@
                     <div class="form-row">
                         {{-- Name --}}
                         <div class="form-group col-md-6">
-                          <label for="name">Nome Piatto: </label>
-                          <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $foodItem->name) }}">
+                          <label for="name">Nome Piatto:
+                            <div class="container-span">
+                              <span class="required-indicator">*</span>
+                            </div>
+                          </label>
+                          <input type="text" class="form-control obligate  @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $foodItem->name) }}">
+                          @error('name')
+                          <span class="text-danger">{{ $message }}</span>
+                          @enderror 
                         </div>
                         
                         {{-- ingredienti --}}
                         <div class="form-group col-md-6">
-                          <label for="ingredients">Ingredienti: </label>
-                          <input type="text" class="form-control" id="ingredients" minlength="9" name="ingredients" value="{{ old('ingredients', $foodItem->ingredients) }}">
+                          <label for="ingredients">Ingredienti:
+                            <div class="container-span">
+                              <span class="required-indicator">*</span>
+                            </div>  
+                          </label>
+                          <input type="text" class="form-control obligate  @error('ingredients') is-invalid @enderror" id="ingredients" minlength="9" name="ingredients" value="{{ old('ingredients', $foodItem->ingredients) }}">
+                          @error('ingredients')
+                          <span class="text-danger">{{ $message }}</span>
+                          @enderror 
                         </div>
                         {{-- Descrizione --}}
                         <div class="form-group">
-                          <label for="description">Descrizione:</label>
-                          <input type="text" class="form-control" id="description" name="description" value="{{ old('description', $foodItem->description) }}">
+                          <label for="description">Descrizione:
+                            <div class="container-span">
+                              <span class="required-indicator">*</span>
+                            </div>
+                          </label>
+                          <input type="text" class="form-control obligate  @error('description') is-invalid @enderror" id="description" name="description" value="{{ old('description', $foodItem->description) }}">
+                          @error('description')
+                          <span class="text-danger">{{ $message }}</span>
+                          @enderror 
                         </div>
                         {{-- Prezzo --}}
                         <div class="form-group">
-                          <label for="price">Prezzo: </label>
-                          <input type="text" class="form-control" id="price" name="price" value="{{ old('price', $foodItem->price) }}">
+                          <label for="price">Prezzo:
+                            <div class="container-span">
+                              <span class="required-indicator">*</span>
+                            </div>
+                          </label>
+                          <input type="text" class="form-control obligate  @error('price') is-invalid @enderror" id="price" name="price" value="{{ old('price', $foodItem->price) }}">
+                          @error('price')
+                          <span class="text-danger">{{ $message }}</span>
+                          @enderror 
                         </div>
                         {{-- Disponibilità --}}
                         <div class="form-check">
@@ -85,17 +111,46 @@
   const imageElement = document.getElementById('image-preview');
   imageElement.classList.remove('d-none');
 });
-// Script per evidenziare i campi obbligatori
+// --------------------   Script per evidenziare i campi obbligatori
+// verifica che parte al caricamento del dom
+document.addEventListener('DOMContentLoaded', function () {
   const inputFields = document.querySelectorAll('.obligate');
   const spanElements = document.querySelectorAll('.required-indicator');
+
+// Nascondi gli asterischi solo se l'input è vuoto
   inputFields.forEach((inputField, index) => {
+  if (inputField.value.trim() !== '') {
+  spanElements[index].classList.add('invisible');
+  }
+});
+
+// Aggiungi un listener di input per controllare quando l'utente immette dati
+inputFields.forEach((inputField, index) => {
   inputField.addEventListener('input', () => {
-    if (inputField.value.trim() !== '') {
-      spanElements[index].classList.add('invisible');
-    } else {
-      spanElements[index].classList.remove('invisible');
-    }
+  if (inputField.value.trim() !== '') {
+  spanElements[index].classList.add('invisible');
+  } else {
+  spanElements[index].classList.remove('invisible');
+      }
+    });
   });
 });
     </script>
 @endsection
+
+<style>
+    .required-indicator {
+      color: red;
+      font-weight: bold;
+      margin-right: 5px;
+      width: 10px;
+    }
+    .invisible{
+      display: none
+    }
+    div.container-span{
+        /* height: 20px; */
+        width: 20px;
+        display:inline-block;
+    }
+</style>
