@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
+// use Illuminate\Support\Facades\Gate;
 use App\Models\Restaurant;
 use App\Models\Category;
 
@@ -83,9 +83,9 @@ class RestaurantController extends Controller
 
     public function edit(Restaurant $restaurant)
     {
-        if (!Gate::allows('edit-restaurant', $restaurant)) {
-            abort(403);
-        }
+        // if (!Gate::allows('edit-restaurant', $restaurant)) {
+        //     abort(403);
+        // }
         //Query Select  
         $categories = Category::all();
         // Redirect View
@@ -94,9 +94,9 @@ class RestaurantController extends Controller
 
     public function update(Request $request, Restaurant $restaurant)
     {
-        if (!Gate::allows('update-restaurant', $restaurant)) {
-            abort(403);
-        }
+        // if (!Gate::allows('update-restaurant', $restaurant)) {
+        //     abort(403);
+        // }
         // request + validation
         $data = $request->validate($this->validations, $this->messageError);
         $data['user_id'] = Auth::id();

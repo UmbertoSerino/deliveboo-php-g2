@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Gate;
+// use Illuminate\Support\Facades\Gate;
 use App\Models\FoodItem;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
@@ -15,7 +15,7 @@ class FoodItemController extends Controller
         'name' => ['required', 'string', 'max:255'],
         'restaurant_id' => ['required', 'exists:restaurants,id'],
         'description' => ['required', 'string', 'min:10', 'max:255'],
-        'ingredients' => ['required', 'string', 'min:10', 'max:255'],
+        'ingredients' => ['required', 'string', 'min:4', 'max:255'],
         'price' => ['required', 'numeric', 'between:0.01,199.99'],
         'available' => ['required'],
         'image_url' => ['required', 'url'],
@@ -24,11 +24,12 @@ class FoodItemController extends Controller
         'name.required' => 'Campo richiesto, inserisci il nome del piatto.',
         'name.max' => 'Superato il numero massimo di 255 caratteri, si prega di ridurre il  numero.',
         'description' => 'Inserisci una descrizione tra i 10 ed i 255 caratteri.',
-        'ingredients' => 'Inserisci ingredienti, almeno 10 caratteri, massimo 255 caratteri.',
-        'price.numeric' => 'inserisci un numero.',
-        'price.between' => 'inserisci un numero da 0.01 e 199.99.',
+        'ingredients' => 'Inserisci ingredienti, tra i 4 caratteri ed i 255 caratteri.',
+        'price.required' => 'Inserire un prezzo, tra 0.01 e 199.99',
+        'price.numeric' => 'Inserisci un numero.',
+        'price.between' => 'Inserire valori positivi tra 0.01 e 199.99.',
         'available' => 'Inserire disponibilità',
-        'image_url' => 'inserisci un immagine di tipo url'
+        'image_url' => 'Inserisci un immagine di tipo url'
     ];
     public function index()
     {
@@ -51,16 +52,18 @@ class FoodItemController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request);
         $price = str_replace(',', '.', $request->price);
         $request->merge(['price' => $price]);
         $foodItemData = $request->validate($this->validations, $this->messageError);
         $foodItem = FoodItem::create($foodItemData);
 
-        return redirect()->route('admin.fooditems.index', $foodItem);
+        return redirect()->route('admin.fooditems.show', $foodItem);
     }
 
     public function show(string $id)
     {
+
         $foodItem = FoodItem::findOrFail($id);
         return view('admin.fooditems.show', compact('foodItem'));
     }
@@ -69,18 +72,18 @@ class FoodItemController extends Controller
     {
         $foodItem = FoodItem::findOrFail($id);
         $restaurant = Auth::user()->restaurant;
-        if (!Gate::allows('edit-foodItem', $foodItem)) {
-            abort(403);
-        }
+        // if (!Gate::allows('edit-foodItem', $foodItem)) {
+        //     abort(403);
+        // }
         return view('admin.fooditems.edit', compact('foodItem', 'restaurant'));
     }
 
 
     public function update(Request $request, FoodItem $fooditem)
     {
-        if (!Gate::allows('update-foodItem', $fooditem)) {
-            abort(403);
-        }
+        // if (!Gate::allows('update-foodItem', $fooditem)) {
+        //     abort(403);
+        // }
         $price = str_replace(',', '.', $request->price);
         $request->merge(['price' => $price]);
         $data = $request->validate($this->validations, $this->messageError);

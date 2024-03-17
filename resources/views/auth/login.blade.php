@@ -59,10 +59,14 @@
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Password dimenticata?') }}
                                     </a>
-                                @endif
+                                    @endif
+                                </div>
                             </div>
+                        </form>
+                        <div class="col-md-6 offset-md-4 pt-2">
+                            <a href="http://127.0.0.1:8000/register" class="d-block">Non hai un account? Registrati</a>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
