@@ -19,10 +19,13 @@
           <div class="food-card_img" id="available">
             <div class="row g-0">
               <div class="col-md-4">
-                @if(!empty($foodItem->image_url))
-                  <img src="{{ asset($foodItem->image_url) }}" class="img-fluid rounded-start" alt="{{ $foodItem->name }} Image">
+                @if (str_starts_with($foodItem->image_url, 'http'))
+                    <img class="img-fluid rounded-start" src="{{ $foodItem->image_url }}" alt="{{ $foodItem->name }} Image">
                 @else
-                  <img src="{{ asset('storage/' . $restaurant->image_file_path) }}" class="img-fluid rounded-start" alt="{{ $restaurant->name }} Image">
+                <div class="col-12 d-flex mb-3">
+                    <img class="img-fluid rounded-start" alt="{{ $foodItem->name }} Image"
+                        src="{{ asset('storage') . '/' . $foodItem->image_url }}">
+                </div>
                 @endif
               </div>
               <div class="food-card_content">
@@ -89,5 +92,4 @@
     @endif
   </div>
 </article>
-
 @endsection

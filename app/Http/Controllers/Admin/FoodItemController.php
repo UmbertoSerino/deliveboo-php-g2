@@ -19,7 +19,7 @@ class FoodItemController extends Controller
         'ingredients' => ['required', 'string', 'min:4', 'max:255'],
         'price' => ['required', 'numeric', 'between:0.01,199.99'],
         'available' => ['required'],
-        'image_url' => ['required'],
+        'image_url' => ['required', 'image', 'max:2048', 'mimes:jpeg,png,jpg,gif'],
     ];
     private $messageError = [
         'name.required' => 'Campo richiesto, inserisci il nome del piatto.',
@@ -29,6 +29,10 @@ class FoodItemController extends Controller
         'price.required' => 'Inserire un prezzo, tra 0.01 e 199.99',
         'price.numeric' => 'Inserisci un numero.',
         'price.between' => 'Inserire valori positivi tra 0.01 e 199.99.',
+        'image_url.required' => 'Il campo URL dell\'immagine è obbligatorio.',
+        'image_url.image' => 'inserisci un immagine',
+        'image_url.max' => 'Supera i limiti di 2048KB consentiti',
+        'image_url.mimes' => 'Il file caricato deve essere un formato JPEG, PNG, JPG o GIF.',
         'available' => 'Inserire disponibilità',
     ];
     public function index()

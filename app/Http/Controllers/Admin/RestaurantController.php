@@ -20,7 +20,7 @@ class RestaurantController extends Controller
         'address' => ['required', 'max:255'],
         'phone_number' => ['required', 'numeric'],
         'email' => ['required', 'email'],
-        'image_url' => ['required'],
+        'image_url' => ['required', 'image', 'max:2048', 'mimes:jpeg,png,jpg,gif'],
         'categories' => ['required'],
     ];
     private $messageError = [
@@ -38,6 +38,9 @@ class RestaurantController extends Controller
         'email.required' => 'Il campo email è obbligatorio.',
         'email.email' => 'Il formato dell\'email non è valido.',
         'image_url.required' => 'Il campo URL dell\'immagine è obbligatorio.',
+        'image_url.image' => 'inserisci un immagine',
+        'image_url.max' => 'Supera i limiti di 2048KB consentiti',
+        'image_url.mimes' => 'Il file caricato deve essere un formato JPEG, PNG, JPG o GIF.',
         'categories.required' => 'È richiesta almeno una categoria.',
     ];
     public function index()
