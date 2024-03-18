@@ -19,9 +19,15 @@
       </div>
       @foreach($foodItems as $foodItem )
         <div class="col-3">
-          <div class="food-card" id="available">
-            <div class="food-card_img">
-                <img src="{{ asset('storage/' . $foodItem->image_url) }}" class="img-fluid rounded-start" alt="{{ $foodItem->name }} Image">
+          <div class="food-card_img" id="available">
+
+            <div class="row g-0">
+              <div class="col-md-4">
+                @if(!empty($foodItem->image_url))
+                    <img src="{{ asset($foodItem->image_url) }}" class="img-fluid rounded-start" alt="{{ $foodItem->name }} Image">
+                @else
+                    <img src="{{ asset('storage/' . $restaurant->image_file_path) }}" class="img-fluid rounded-start" alt="{{ $restaurant->name }} Image">
+                @endif
             </div>
             <div class="food-card_content">
                 <div class="food-card_title-section">
