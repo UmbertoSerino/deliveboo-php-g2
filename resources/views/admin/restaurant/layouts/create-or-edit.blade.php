@@ -86,19 +86,22 @@
             @enderror 
           </div>
         </div>
-
-        <label for="categories" class="mb-2">Categorie:</label>
         <div>
-        @foreach ($categories as $category)
-        <input type="checkbox" class="obligate" name="categories[]" id="categories-{{ $category->id }}" value="{{ $category->id }}" {{ in_array($category->id, old('categories', $restaurant->categories->pluck('id')->toArray())) ? 'checked' : '' }}  >
-            <label class="me-2" for="categories-{{ $category->id }}">{{ $category->name }}
-            </label>
-            @endforeach
-            @error('categories')
-            <span class="text-danger">{{ $message }}</span>
-            @enderror
-          </div>
-      <button type="submit" class="btn btn-primary mt-3">Crea</button>
+          <label for="categories" class="mb-2">Categorie:</label>
+        </div>
+        <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+          @foreach ($categories as $category)
+          <input type="checkbox" class="btn-check obligate" name="categories[]" id="categories-{{ $category->id }}" value="{{ $category->id }}" {{ in_array($category->id, old('categories', $restaurant->categories->pluck('id')->toArray())) ? 'checked' : '' }}  >
+          <label class="btn btn-outline-primary me-2" for="categories-{{ $category->id }}">{{ $category->name }}
+          </label>
+          @endforeach
+          @error('categories')
+          <span class="text-danger">{{ $message }}</span>
+          @enderror
+        </div>
+        <div>
+          <button type="submit" class="btn btn-success mt-3">Crea Ristorante</button>
+        </div>
     </form>  
 </div>
 

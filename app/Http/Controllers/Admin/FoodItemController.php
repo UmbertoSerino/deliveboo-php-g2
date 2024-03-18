@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-// use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Gate;
 use App\Models\FoodItem;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
@@ -46,13 +46,11 @@ class FoodItemController extends Controller
     {
         $foodItem = new FoodItem();
         $restaurant = Auth::user()->restaurant;
-        // dd($foodItem);    
         return view('admin.fooditems.create', compact('foodItem', 'restaurant'));
     }
 
     public function store(Request $request)
     {
-        // dd($request);
         $price = str_replace(',', '.', $request->price);
         $request->merge(['price' => $price]);
         $foodItemData = $request->validate($this->validations, $this->messageError);
@@ -62,30 +60,36 @@ class FoodItemController extends Controller
 
         return redirect()->route('admin.fooditems.show', $foodItem);
     }
+    // if ($restaurant->user_id !=  Restaurant::where('id', Auth::id())->pluck('id')->first()) {
+    //     return to_route('admin.restaunrant.index')->with('Messaggio', 'Non ci sono piatti da visualizzare.');
+
 
     public function show(string $id)
     {
 
         $foodItem = FoodItem::findOrFail($id);
+        if (!Gate::allows('edit-foodItem', $foodItem)) {
+            abort(403);
+        }
         return view('admin.fooditems.show', compact('foodItem'));
     }
 
     public function edit(string $id)
     {
         $foodItem = FoodItem::findOrFail($id);
+        if (!Gate::allows('edit-foodItem', $foodItem)) {
+            abort(403);
+        }
         $restaurant = Auth::user()->restaurant;
-        // if (!Gate::allows('edit-foodItem', $foodItem)) {
-        //     abort(403);
-        // }
         return view('admin.fooditems.edit', compact('foodItem', 'restaurant'));
     }
 
 
     public function update(Request $request, FoodItem $fooditem)
     {
-        // if (!Gate::allows('update-foodItem', $fooditem)) {
-        //     abort(403);
-        // }
+        if (!Gate::allows('update-foodItem', $fooditem)) {
+            abort(403);
+        }
         $price = str_replace(',', '.', $request->price);
         $request->merge(['price' => $price]);
         $data = $request->validate($this->validations, $this->messageError);

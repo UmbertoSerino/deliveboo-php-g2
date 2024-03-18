@@ -14,8 +14,12 @@
       <div class="card mb-3">
         <div class="row g-0">
           <div class="col-md-4">
-            <img src="{{ asset('storage/' . $restaurant->image_url) }}" class="img-fluid rounded-start" alt="{{ $restaurant->name }} Image">
-          </div>
+            @if(!empty($restaurant->image_url))
+                <img src="{{ asset($restaurant->image_url) }}" class="img-fluid rounded-start" alt="{{ $restaurant->name }} Image">
+            @else
+                <img src="{{ asset('storage/' . $restaurant->image_file_path) }}" class="img-fluid rounded-start" alt="{{ $restaurant->name }} Image">
+            @endif
+        </div>
           <div class="col-md-8">
             <div class="card-body d-flex justify-content-between">
               <div>
