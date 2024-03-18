@@ -87,9 +87,7 @@ class FoodItemController extends Controller
 
     public function update(Request $request, FoodItem $fooditem)
     {
-        if (!Gate::allows('update-foodItem', $fooditem)) {
-            abort(403);
-        }
+
         $price = str_replace(',', '.', $request->price);
         $request->merge(['price' => $price]);
         $data = $request->validate($this->validations, $this->messageError);
