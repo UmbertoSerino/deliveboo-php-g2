@@ -15,12 +15,12 @@
                     <thead>
                         <tr>
                             <th scope="col">Client ID</th>
-                            <th scope="col">Costumer</th>
-                            <th scope="col">Costumer Adress</th>
-                            <th scope="col">status</th>
-                            <th scope="col">Total</th>
+                            <th scope="col">Cliente</th>
+                            <th scope="col">Indirizzo Clienet</th>
+                            <th scope="col">Stato di pagamento</th>
+                            <th scope="col">Totale</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Phone</th>
+                            <th scope="col">Telefono</th>
                             <th scope="col">Ordinato il:</th>
                             <th scope="col"></th>
                             <th scope="col">
@@ -38,7 +38,7 @@
                                 <th scope="row">
                                     {{ $order->id }}
                                 </th>
-                                <td>>
+                                <td>
                                     {{ $order->customer }}
                                 </td>
                                 <td>
