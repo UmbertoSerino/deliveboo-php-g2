@@ -80,7 +80,9 @@ class RestaurantController extends Controller
 
     public function show(Restaurant $restaurant)
     {
-
+        if ($restaurant->user_id !== Auth::id()) {
+            abort(403);
+        }
         // Redirect View
         return view('admin.restaurant.show', compact('restaurant'));
     }
@@ -90,6 +92,10 @@ class RestaurantController extends Controller
         // if (!Gate::allows('edit-restaurant', $restaurant)) {
         //     abort(403);
         // }
+        if ($restaurant->user_id !== Auth::id()) {
+            dd($restaurant->user_id);
+            return view('admin.restaurant.edit', $restaurant);
+        }
         //Query Select  
         $categories = Category::all();
         // Redirect View
@@ -101,6 +107,9 @@ class RestaurantController extends Controller
         // if (!Gate::allows('update-restaurant', $restaurant)) {
         //     abort(403);
         // }
+        if ($restaurant->user_id !== Auth::id()) {
+            abort(403);
+        }
         // request + validation
         $data = $request->validate($this->validations, $this->messageError);
         $data['user_id'] = Auth::id();
@@ -118,6 +127,9 @@ class RestaurantController extends Controller
     }
     public function destroy(Restaurant $restaurant)
     {
+        if ($restaurant->user_id !== Auth::id()) {
+            abort(403); // Accesso negato
+        }
         $restaurant->delete();
         return redirect()->route('admin.restaurants.index');
     }
