@@ -18,7 +18,7 @@ return new class extends Migration
             $table->boolean('status');
             $table->decimal('total', 6, 2);
             $table->string('user_mail');
-            $table->integer('user_phone_number');
+            $table->string('user_phone_number');
             $table->timestamps();
         });
     }

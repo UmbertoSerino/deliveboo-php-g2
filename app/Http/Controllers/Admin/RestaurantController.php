@@ -43,6 +43,7 @@ class RestaurantController extends Controller
         'image_url.mimes' => 'Il file caricato deve essere un formato JPEG, PNG, JPG o GIF.',
         'categories.required' => 'È richiesta almeno una categoria.',
     ];
+
     public function index()
     {
         $restaurants = Restaurant::where('user_id', Auth::id())->get();
