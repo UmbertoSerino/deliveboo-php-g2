@@ -90,7 +90,7 @@
         <label for="categories" class="mb-2">Categorie:</label>
         <div>
         @foreach ($categories as $category)
-            <input type="checkbox" class="obligate" name="categories[]" id="categories-{{ $category->id }}" value="{{ old('categories', $category->id ) }}" >
+        <input type="checkbox" class="obligate" name="categories[]" id="categories-{{ $category->id }}" value="{{ $category->id }}" {{ in_array($category->id, old('categories', $restaurant->categories->pluck('id')->toArray())) ? 'checked' : '' }}  >
             <label class="me-2" for="categories-{{ $category->id }}">{{ $category->name }}
             </label>
             @endforeach

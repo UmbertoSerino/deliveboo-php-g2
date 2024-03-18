@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
-// use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Gate;
 use App\Models\Restaurant;
 use App\Models\Category;
 
@@ -89,12 +89,11 @@ class RestaurantController extends Controller
 
     public function edit(Restaurant $restaurant)
     {
-        // if (!Gate::allows('edit-restaurant', $restaurant)) {
-        //     abort(403);
-        // }
+        if (!Gate::allows('edit-restaurant', $restaurant)) {
+            abort(403);
+        }
         if ($restaurant->user_id !== Auth::id()) {
-            dd($restaurant->user_id);
-            return view('admin.restaurant.edit', $restaurant);
+            return redirect()->route('admin.restaurants.index');
         }
         //Query Select  
         $categories = Category::all();
@@ -104,9 +103,9 @@ class RestaurantController extends Controller
 
     public function update(Request $request, Restaurant $restaurant)
     {
-        // if (!Gate::allows('update-restaurant', $restaurant)) {
-        //     abort(403);
-        // }
+        if (!Gate::allows('update-restaurant', $restaurant)) {
+            abort(403);
+        }
         if ($restaurant->user_id !== Auth::id()) {
             abort(403);
         }
