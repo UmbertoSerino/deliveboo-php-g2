@@ -21,7 +21,7 @@
                             <th scope="col">Total</th>
                             <th scope="col">Email</th>
                             <th scope="col">Phone</th>
-                            <th scope="col">Recorded Date time</th>
+                            <th scope="col">Ordinato il:</th>
                             <th scope="col"></th>
                             <th scope="col">
                                 <a href="{{ route('admin.orders.create',) }}">
@@ -51,7 +51,7 @@
                                     {{ $order->total }}
                                 </td>
                                 <td>
-                                    {{ $order->email }}
+                                    {{ $order->user_mail }}
                                 </td>
                                 <td>
                                     {{ $order->user_phone_number }}

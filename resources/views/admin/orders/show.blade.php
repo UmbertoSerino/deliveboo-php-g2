@@ -10,62 +10,36 @@
                 <div class="col-7 p-3">
                     <div class="card p-4 text-center">
                         <h1>
-                            {{ $project->name }}
+                           Cliente: {{ $order->customer }}
                         </h1>
-                        <ul>
-                            @forelse ($project->technologies as $technology)
-                                <li class="d-inline me-3">
-                                    <span class="badge px-2 px-1" style="background-color: {{ $technology->color }} ">
-                                        {{ $technology->name }}
-                                    </span>
-                                </li>
-            
-                            @empty
-                                <li class="d-inline me-3">
-                                    This post has no tags yet...
-                                </li>
-                            @endforelse
-                        </ul>
                         <p class="text-capitalize">
-                            Status: {{ $project->status }}
-                        </p>
-                        <p class="text-capitalize">
-                            Type: {{ $project->type->name }}
-                        </p>
-                        <p class="text-capitalize">
-                            Priority: {{ $project->priority }}
+                            Indirizzo: {{ $order->user_address }}
                         </p>
                         <p>
-                            start_date: {{ $project->start_date }}
+                            Ordinato il: {{ $order->created_at }}
+                        </p>
+                        <p class="text-capitalize">
+                            Stato: {{ $order->status}}
+                        </p>
+                        <p class="text-capitalize">
+                            Totale: {{ $order->total }} &euro;
                         </p>
                         <p>
-                            end_date: {{ $project->end_date }}
+                            Email Cliente: {{ $order->user_mail }}
                         </p>
                         <p>
-                            Budget: {{ $project->budget }} &euro;
+                            Numero di Telefono: {{ $order->user_phone_number }} 
                         </p>
-                        <div class="card-image">
-                            <img class="w-50" src="{{  $project->view }}" alt="{{ $project->name }} ">
-                        </div>
-                        <div class="card-body">
-                            <h2>
-                                Descrizione
-                            </h2>
-                            <p>
-                                {{ $project->description }}
-                            </p>
-                        </div>
-
                         <div class="actions mb-3 pt-3">
-                            <a href="{{ route('admin.projects.edit', $project->id) }}">
+                            <a href="{{ route('admin.orders.edit', $order->id) }}">
                                 <button class="btn btn-primary">
-                                    Modifica  project
+                                    Modifica  Ordine
                                 </button>
                             </a>
                         </div>
 
                         {{-- Delete --}}
-                        <form class="d-inline-block" action="{{ route('admin.projects.destroy', $project) }}" method="POST">
+                        <form class="d-inline-block" action="{{ route('admin.orders.destroy', $order) }}" method="POST">
                             @csrf
                             @method('DELETE')
 
