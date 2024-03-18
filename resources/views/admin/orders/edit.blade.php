@@ -1,9 +1,9 @@
-@extends('admin.projects.layouts.create-or-edit')
+@extends('admin.orders.layouts.create-or-edit')
 
 @section('page-title', 'Edit post')
 
 @section('form-action')
-    {{ route('admin.projects.update', $project) }}
+    {{ route('admin.orders.update', $order) }}
 @endsection
 
 @section('form-method')

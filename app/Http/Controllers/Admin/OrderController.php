@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    private $rules = [
+        'user_address' => ['required', 'string'], // Campo obbligatorio e deve essere una stringa
+        'customer' => ['required', 'string'], // Campo obbligatorio e deve essere una stringa
+        'status' => ['required', 'numeric'], // Campo obbligatorio e deve essere una stringa
+        'total' => ['required', 'numeric'], // Campo obbligatorio e deve essere un numero
+        'user_mail' => ['required', 'email'], // Campo obbligatorio e deve essere un indirizzo email valido
+        'user_phone_number' => ['required', 'string'], // Campo obbligatorio e deve essere un numero
+    ];
     /**
      * Display a listing of the resource.
      */
@@ -24,6 +32,9 @@ class OrderController extends Controller
     public function create()
     {
         //
+        $orders = Order::all();
+        $order = new Order();
+        return view('admin.orders.create', compact('order'));
     }
 
     /**
@@ -32,6 +43,10 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->validate($this->rules);
+        $order = Order::create($data);
+
+        return redirect()->route('admin.orders.show',  compact('order'));
     }
 
     /**
@@ -48,24 +63,31 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Order $order)
     {
         //
+
+        return view('admin.orders.edit', compact('order'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Order $order)
     {
         //
+        $data = $request->all();
+        $order->update($data);
+        return redirect()->route('admin.orders.show', compact('order'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Order $order)
     {
         //
+        $order->delete();
+        return redirect()->route('admin.orders.index');
     }
 }

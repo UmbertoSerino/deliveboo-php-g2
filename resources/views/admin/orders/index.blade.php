@@ -14,7 +14,7 @@
                 <table class="table table-striped table-hover table-dark">
                     <thead>
                         <tr>
-                            <th scope="col">client_id</th>
+                            <th scope="col">Client ID</th>
                             <th scope="col">Costumer</th>
                             <th scope="col">Costumer Adress</th>
                             <th scope="col">status</th>

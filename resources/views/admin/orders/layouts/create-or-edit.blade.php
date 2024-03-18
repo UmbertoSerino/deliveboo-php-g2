@@ -13,91 +13,38 @@
                 <form action="@yield('form-action')" method="POST">
                     @csrf
                     @yield('form-method')
-                        {{-- ID_client --}}
+                        {{-- Name Cliente: --}}
                         <div class="mb-3 input-group">
-                            <label for="client_id" class="input-group-text">ID Client</label>
-                            <input class="form-control" type="number" name="client_id" id="client_id" value="{{ old('client_id',$project->client_id) }}">
+                            <label for="customer" class="input-group-text">Nome Cliente:</label>
+                            <input class="form-control" type="text" name="customer" id="customer" value="{{ old('customer', $order->customer) }}">
                         </div>
-                        {{-- Name Project: --}}
-                        <div class="mb-3 input-group">
-                            <label for="name" class="input-group-text">Name Project:</label>
-                            <input class="form-control" type="text" name="name" id="name" value="{{ old('name', $project->name) }}">
-                        </div>
-                        {{-- Type: --}}
+                        {{-- Indirizzo: --}}
                         <div class="mb-3 input-group">  
-                            <label for="status" class="input-group-text">Type:</label>
-                            <select class="form-select" type="text" name="type_id" id="type_id" >
-                                @foreach ($types as $type)
-                                    <option value="{{ $type->id }}"
-                                        style="color: {{ $type->color }}" 
-                                        {{ $type->id == old('type_id', $project->type_id) ? 'selected' : '' }}>
-                                        {{ $type->name }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <label for="user_address" class="input-group-text">Indirizzo Cliente:</label>
+                            <input class="form-control" type="text" name="user_address" id="user_address" value="{{ old('user_address', $order->user_address) }}">
                         </div>
                         {{-- status: --}}
                         <div class="mb-3 input-group">
-                            <label for="status" class="input-group-text">Status:</label>
-                            <select class="form-select" aria-label="Default select example" name="status" id="status" value="{{ old('status') }}" >
-                                <option selected class="text-capitalize">{{ $project->status }}</option>
-                                <option value="off">Off</option>
-                                <option value="blocked">Blocked</option>
-                                <option value="hold">Hold</option>
-                                <option value="ready">Ready</option>
-                                <option value="done">Done</option>
-                            </select>
+                            <label for="status" class="input-group-text">Stato Consegna:</label>
+                            <input class="form-control" type="text" name="status" id="status" value="{{ old('status', $order->status) }}">
                         </div>
-                        {{-- Technologies --}}
+                        {{-- Totale Euro --}}
                         <div class="mb-3 input-group">
-                            <div>
-                                @foreach ($technologies as $technology)
-                                    <input class="form-check-input" type="checkbox" name="technologies[]" id="{{ $technology->id }}" value="{{ $technology->id }}"
-                                    {{-- ? se il tag su cui sto ciclando e' presente nei tag che ho inviato e ora voglio rivedere come errore, selezionalo, se invece non ho avuto alcun errore, cercalo all'interno della lista dei tag presenti nel mio project --}}
-                                    {{ in_array( $technology->id, old('technologies', $project->technologies->pluck('id')->toArray())) ? 'checked' : '' }}> 
-                                    <label for="technologies-{{ $technology->id }}"> {{ $technology->name }}</label>
-                                @endforeach
-                            </div>
+                            <label for="total" class="input-group-text">Totale da pagare:</label>
+                            <input class="form-control" type="number" name="total" id="total" value="{{ old('total', $order->total) }}">
                         </div>
-                        {{-- Start Date: --}}
+                        {{-- Email Cliente--}}
                         <div class="mb-3 input-group">
-                            <label for="start_date" class="input-group-text">Start Date:</label>
-                            <input class="form-control" type="date" name="start_date" id="start_date" value="{{ old('start_date',$project->start_date) }}">
+                            <label for="user_mail" class="input-group-text">Email Cliente:</label>
+                            <input class="form-control" type="text" name="user_mail" id="user_mail" value="{{ old('user_mail',$order->user_mail) }}">
                         </div>
-                        {{-- End Date: --}}
+                        {{-- Numero di telefono --}}
                         <div class="mb-3 input-group">
-                            <label for="end_date" class="input-group-text">End Date:</label>
-                            <input class="form-control" type="date" name="end_date" id="end_date" value="{{ old('end_date',$project->end_date) }}">
+                            <label for="user_phone_number" class="input-group-text">Tell Cliente:</label>
+                            <input class="form-control" type="phone" name="user_phone_number" id="user_phone_number" value="{{ old('user_phone_number',$order->user_phone_number) }}">
                         </div>
-                        {{-- Budget --}}
-                        <div class="mb-3 input-group">
-                            <label for="budget" class="input-group-text">Budget:</label>
-                            <input class="form-control" type="number" name="budget" id="budget" value="{{ old('budget',$project->budget) }}">
-                        </div>
-                        {{-- project image url: --}}
-                        <div class="mb-3 input-group">
-                            <label for="view" class="input-group-text">project image url:</label>
-                            <input class="form-control" type="text" name="view" id="view" value="{{ old('view',$project->view) }}">
-                        </div>{{--Preview image: --}}
-                        <div class="mb-3 input-group">
-                            <img src="" alt="Image preview" class="d-none img-fluid" id="image-preview">
-                        </div>
-                        {{--Priority: --}}
-                        <div class="mb-3 input-group">
-                            <label for="priority" class="input-group-text">Priority:</label>
-                            <select class="form-select" aria-label="Default select example" name="priority" id="priority" value="{{ old('priority') }}" >
-                                <option selected class="text-capitalize">{{ $project->priority }}</option>
-                                <option value="low">Low</option>
-                                <option value="medium">Medium</option>
-                                <option value="high">High</option>
-                            </select>
-                        </div>
-                        {{-- Description --}}
-                        <div class="mb-3 input-group">
-                            <label for="description" class="input-group-text">Project content:</label>
-                            <textarea class="form-control"  name="description" id="description" cols="30" rows="10">{{ old('description',$project->description)  }}</textarea>
-                        </div>
-                                {{-- Buttons --}}
+
+                        {{-- Buttons --}}
                         <div class="mb-3 input-group">
                             <button type="submit" class="btn btn-xl btn-primary">
                                 @yield('page-title')
