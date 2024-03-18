@@ -40,6 +40,7 @@ class RestaurantController extends Controller
         'image_url.required' => 'Il campo URL dell\'immagine è obbligatorio.',
         'categories.required' => 'È richiesta almeno una categoria.',
     ];
+
     public function index()
     {
         $restaurants = Restaurant::where('user_id', Auth::id())->get();

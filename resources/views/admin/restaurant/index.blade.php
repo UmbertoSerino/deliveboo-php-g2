@@ -66,7 +66,7 @@
             <div class="card-body">
               <h5 class="card-title">Ordini</h5>
               <p class="card-text">Tieni sott'occhio le ordinazioni nel tuo ristorante</p>
-              <a href="#" class="btn btn-primary">I miei ordini</a>
+                <a href="{{ route('admin.orders.index', $restaurant) }}" class="btn btn-warning">I miei ordini</a>
             </div>
           </div>
         </div>
