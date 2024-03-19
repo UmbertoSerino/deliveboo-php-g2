@@ -78,8 +78,12 @@
                         {{-- Immagine --}}
                         <div class="form-row">
                           <div class="form-group">
-                            <label for="image">Inserire un'immagine del ristorante</label>
-                            <input type="file" class="form-control" id="image_url" name="image_url" value="{{ old('image_url', $foodItem->image_url)}}">
+                            <label for="image_url">Inserire un'immagine del ristorante:
+                              <div class="container-span">
+                                <span class="required-indicator">*</span>
+                              </div>
+                            </label>
+                            <input type="file" class="form-control obligate @error('image_url') is-invalid @enderror" id="image_url" name="image_url" value="{{ old('image_url', $foodItem->image_url)}}">
                           </div>
                           {{--Preview image: --}}
                         <div class="mb-3 input-group">

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
-// use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Gate;
 use App\Models\Restaurant;
 use App\Models\Category;
 
@@ -20,7 +20,7 @@ class RestaurantController extends Controller
         'address' => ['required', 'max:255'],
         'phone_number' => ['required', 'numeric'],
         'email' => ['required', 'email'],
-        'image_url' => ['required'],
+        'image_url' => ['required', 'image', 'max:2048', 'mimes:jpeg,png,jpg,gif'],
         'categories' => ['required'],
     ];
     private $messageError = [
@@ -38,8 +38,12 @@ class RestaurantController extends Controller
         'email.required' => 'Il campo email è obbligatorio.',
         'email.email' => 'Il formato dell\'email non è valido.',
         'image_url.required' => 'Il campo URL dell\'immagine è obbligatorio.',
+        'image_url.image' => 'inserisci un immagine',
+        'image_url.max' => 'Supera i limiti di 2048KB consentiti',
+        'image_url.mimes' => 'Il file caricato deve essere un formato JPEG, PNG, JPG o GIF.',
         'categories.required' => 'È richiesta almeno una categoria.',
     ];
+
     public function index()
     {
         $restaurants = Restaurant::where('user_id', Auth::id())->get();
@@ -80,16 +84,21 @@ class RestaurantController extends Controller
 
     public function show(Restaurant $restaurant)
     {
-
+        if ($restaurant->user_id !== Auth::id()) {
+            abort(403);
+        }
         // Redirect View
         return view('admin.restaurant.show', compact('restaurant'));
     }
 
     public function edit(Restaurant $restaurant)
     {
-        // if (!Gate::allows('edit-restaurant', $restaurant)) {
-        //     abort(403);
-        // }
+        if (!Gate::allows('edit-restaurant', $restaurant)) {
+            abort(403);
+        }
+        if ($restaurant->user_id !== Auth::id()) {
+            return redirect()->route('admin.restaurants.index');
+        }
         //Query Select  
         $categories = Category::all();
         // Redirect View
@@ -98,9 +107,12 @@ class RestaurantController extends Controller
 
     public function update(Request $request, Restaurant $restaurant)
     {
-        // if (!Gate::allows('update-restaurant', $restaurant)) {
-        //     abort(403);
-        // }
+        if (!Gate::allows('update-restaurant', $restaurant)) {
+            abort(403);
+        }
+        if ($restaurant->user_id !== Auth::id()) {
+            abort(403);
+        }
         // request + validation
         $data = $request->validate($this->validations, $this->messageError);
         $data['user_id'] = Auth::id();
@@ -118,6 +130,9 @@ class RestaurantController extends Controller
     }
     public function destroy(Restaurant $restaurant)
     {
+        if ($restaurant->user_id !== Auth::id()) {
+            abort(403); // Accesso negato
+        }
         $restaurant->delete();
         return redirect()->route('admin.restaurants.index');
     }

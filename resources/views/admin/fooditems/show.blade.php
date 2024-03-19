@@ -16,9 +16,16 @@
                             <p>
                                 Prezzo: {{ $foodItem->price }}
                             </p>
-
-                            <div class="card-image">
-                                <img src="{{ asset('storage/' . $foodItem->image_url) }}" class="img-fluid rounded-start" alt="{{ $foodItem->name }} Image">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    @if (str_starts_with($foodItem->image_url, 'http'))
+                                    <img class="img-fluid rounded-start" src="{{ $foodItem->image_url }}" alt="{{ $foodItem->name }} Image">
+                                @else
+                                <div class="col-12 d-flex mb-3">
+                                    <img class="img-fluid rounded-start" alt="{{ $foodItem->name }} Image"
+                                        src="{{ asset('storage') . '/' . $foodItem->image_url }}">
+                                </div>
+                                @endif
                             </div>
                             <div class="card-body">
                                 <h2>

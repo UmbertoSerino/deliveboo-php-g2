@@ -1,13 +1,15 @@
-@extends('admin.restaurant.layouts.create-or-edit')
+@extends('layouts.admin')
+
+@section('head-title')
+    @yield('page-title')
+@endsection
 
 @section('main-content')
 <div class="container">
   {{-- Form --}}
-  <form method="POST" action="{{ route('admin.restaurants.store') }}" enctype="multipart/form-data" >
+  <form method="POST" action="@yield('form-action')" enctype="multipart/form-data" >
     @csrf
-    <h1>
-      Inserisci i dati per creare il tuo ristorante
-    </h1>
+    @yield('form-method')
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="name">Nome Ristorante:
@@ -84,23 +86,22 @@
             @enderror 
           </div>
         </div>
-
-        <label for="categories" class="mb-2">Categorie:</label>
         <div>
-        @foreach ($categories as $category)
-            <input type="checkbox" class="obligate" name="categories[]" id="categories-{{ $category->id }}" value="{{ $category->id }}" >
-            <label class="me-2" for="categories-{{ $category->id }}">{{ $category->name }}
-            </label>
-            @endforeach
-            @error('categories')
-            <span class="text-danger">{{ $message }}</span>
-            @enderror
-          </div>
-          
-      <button type="submit" class="btn btn-primary mt-3">Crea</button>
-      <div class="col-md-6 text-center">
-              <span class="required-indicator">* campi obbligatori</span>
-      </div>
+          <label for="categories" class="mb-2">Categorie:</label>
+        </div>
+        <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+          @foreach ($categories as $category)
+          <input type="checkbox" class="btn-check obligate" name="categories[]" id="categories-{{ $category->id }}" value="{{ $category->id }}" {{ in_array($category->id, old('categories', $restaurant->categories->pluck('id')->toArray())) ? 'checked' : '' }}  >
+          <label class="btn btn-outline-primary me-2" for="categories-{{ $category->id }}">{{ $category->name }}
+          </label>
+          @endforeach
+          @error('categories')
+          <span class="text-danger">{{ $message }}</span>
+          @enderror
+        </div>
+        <div>
+          <button type="submit" class="btn btn-success mt-3">Crea Ristorante</button>
+        </div>
     </form>  
 </div>
 
@@ -132,10 +133,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
 </script>
 
-@section('form-action')
-    {{ route('admin.restaurants.store') }}
 @endsection
 
-@section('form-method')
-    @method('POST')
-@endsection
+  
+<style>
+    .required-indicator {
+      color: red;
+      font-weight: bold;
+      margin-right: 5px;
+      width: 10px;
+    }
+    .invisible{
+      display: none
+    }
+    div.container-span{
+        /* height: 20px; */
+        width: 20px;
+        display:inline-block;
+    }
+</style>

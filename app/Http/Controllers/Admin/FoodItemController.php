@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-// use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Gate;
 use App\Models\FoodItem;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
@@ -19,7 +19,7 @@ class FoodItemController extends Controller
         'ingredients' => ['required', 'string', 'min:4', 'max:255'],
         'price' => ['required', 'numeric', 'between:0.01,199.99'],
         'available' => ['required'],
-        'image_url' => ['required'],
+        'image_url' => ['required', 'image', 'max:2048', 'mimes:jpeg,png,jpg,gif'],
     ];
     private $messageError = [
         'name.required' => 'Campo richiesto, inserisci il nome del piatto.',
@@ -29,6 +29,10 @@ class FoodItemController extends Controller
         'price.required' => 'Inserire un prezzo, tra 0.01 e 199.99',
         'price.numeric' => 'Inserisci un numero.',
         'price.between' => 'Inserire valori positivi tra 0.01 e 199.99.',
+        'image_url.required' => 'Il campo URL dell\'immagine è obbligatorio.',
+        'image_url.image' => 'inserisci un immagine',
+        'image_url.max' => 'Supera i limiti di 2048KB consentiti',
+        'image_url.mimes' => 'Il file caricato deve essere un formato JPEG, PNG, JPG o GIF.',
         'available' => 'Inserire disponibilità',
     ];
     public function index()
@@ -46,50 +50,52 @@ class FoodItemController extends Controller
     {
         $foodItem = new FoodItem();
         $restaurant = Auth::user()->restaurant;
-        // dd($foodItem);    
         return view('admin.fooditems.create', compact('foodItem', 'restaurant'));
     }
 
     public function store(Request $request)
     {
-        // dd($request);
         $price = str_replace(',', '.', $request->price);
         $request->merge(['price' => $price]);
         $foodItemData = $request->validate($this->validations, $this->messageError);
-        $image_path = Storage::disk('public')->put('uploads', $foodItemData['image_url']);
+        $image_path = Storage::disk('public')->put('uploads/food_Items', $foodItemData['image_url']);
         $data['image_url'] = $image_path;
         $foodItem = FoodItem::create($foodItemData);
 
         return redirect()->route('admin.fooditems.show', $foodItem);
     }
+    // if ($restaurant->user_id !=  Restaurant::where('id', Auth::id())->pluck('id')->first()) {
+    //     return to_route('admin.restaunrant.index')->with('Messaggio', 'Non ci sono piatti da visualizzare.');
+
 
     public function show(string $id)
     {
 
         $foodItem = FoodItem::findOrFail($id);
+        if (!Gate::allows('edit-foodItem', $foodItem)) {
+            abort(403);
+        }
         return view('admin.fooditems.show', compact('foodItem'));
     }
 
     public function edit(string $id)
     {
         $foodItem = FoodItem::findOrFail($id);
+        if (!Gate::allows('edit-foodItem', $foodItem)) {
+            abort(403);
+        }
         $restaurant = Auth::user()->restaurant;
-        // if (!Gate::allows('edit-foodItem', $foodItem)) {
-        //     abort(403);
-        // }
         return view('admin.fooditems.edit', compact('foodItem', 'restaurant'));
     }
 
 
     public function update(Request $request, FoodItem $fooditem)
     {
-        // if (!Gate::allows('update-foodItem', $fooditem)) {
-        //     abort(403);
-        // }
+
         $price = str_replace(',', '.', $request->price);
         $request->merge(['price' => $price]);
         $data = $request->validate($this->validations, $this->messageError);
-        $image_path = Storage::disk('public')->put('uploads', $data['image_url']);
+        $image_path = Storage::disk('public')->put('uploads/food_Items', $data['image_url']);
         $data['image_url'] = $image_path;
         $fooditem->update($data);
         $restaurant = Auth::user()->restaurant;
