@@ -81,7 +81,7 @@
                                     <span class="required-indicator">*</span>
                                 </div>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-6 mb-4">
                                 <input id="password-confirm" type="password" class="form-control obligate" name="password_confirmation"  autocomplete="new-password">
                                 <span id="password-match-error" class="text-danger invisible"><strong>Le password non coincidono</strong></span>
                             </div>

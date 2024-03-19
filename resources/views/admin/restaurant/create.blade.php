@@ -96,7 +96,11 @@
             <span class="text-danger">{{ $message }}</span>
             @enderror
           </div>
+          
       <button type="submit" class="btn btn-primary mt-3">Crea</button>
+      <div class="col-md-6 text-center">
+              <span class="required-indicator">* campi obbligatori</span>
+      </div>
     </form>  
 </div>
 
