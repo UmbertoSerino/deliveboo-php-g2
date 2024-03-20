@@ -67,9 +67,9 @@
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control obligate @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
                                 <div class="password-strength-meter">
-                                    <div class="strength-bar" id="bar-1"></div>
-                                    <div class="strength-bar" id="bar-2"></div>
-                                    <div class="strength-bar" id="bar-3"></div>
+                                    <div class="strength-bar text-center text-white" id="bar-1">Debole</div>
+                                    <div class="strength-bar text-center text-white" id="bar-2">Media</div>
+                                    <div class="strength-bar text-center text-white" id="bar-3">Forte</div>
                                 </div>
                                 <i class="fa-solid fa-eye"></i>
                                 @error('password')
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // Presenza di lettere maiuscole
-        if (/[A-Z]/.test(password)) {
+        if (/[a-z,A-Z]/.test(password)) {
             strength += 1;
         }
 
@@ -219,7 +219,7 @@ div.container-span{
 }
 .password-strength-meter {
         display: flex;
-        height: 10px;
+        height: 20px;
         margin-top: 5px;
     }
 
