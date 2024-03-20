@@ -6,17 +6,17 @@
             <div class="row">
                 <div class="row mb-3 justify-content-center">
                     <div class="col-7 p-3">
-                        <div class="card p-4 text-center">
+                        <div class="card p-4 text-center" id="my_wrapper">
                             <h1>
                                 {{ $foodItem->name }}
                             </h1>
-                            <p>
-                                Ingredienti: {{ $foodItem->ingredients }}
+                            <p class="fs-5">
+                               <strong> Ingredienti: </strong> {{ $foodItem->ingredients }}
                             </p>
-                            <p>
-                                Prezzo: {{ $foodItem->price }}
+                            <p class="fs-5">
+                                <strong> Prezzo: </strong>{{ $foodItem->price }} €
                             </p>
-                            <div class="row g-0">
+                            <div class="row g-0 d-flex justify-content-center">
                                 <div class="col-md-4">
                                     @if (str_starts_with($foodItem->image_url, 'http'))
                                     <img class="img-fluid rounded-start" src="{{ $foodItem->image_url }}" alt="{{ $foodItem->name }} Image">
@@ -28,16 +28,16 @@
                                 @endif
                             </div>
                             <div class="card-body">
-                                <h2>
-                                    Descrizione:
+                                <h2 class="fs-4">
+                                    <strong>Descrizione: </strong>
                                 </h2>
                                 <p>
                                     {{ $foodItem->description }}
                                 </p>
                             </div>
                             <div class="card-body">
-                                <h2>
-                                    Disponibile:
+                                <h2 class="fs-4">
+                                    <strong>Disponibile: </strong>
                                 </h2>
                                 <p>
                                 @if ($foodItem->available == 1)
@@ -85,3 +85,25 @@
         </div>
     </section>
 @endsection
+
+<style>
+    body{
+      background-image: url('https://bistro1843.com/wp-content/uploads/2020/02/new-hero-banner-2.jpg');
+      background-repeat: no-repeat; /* Impedisce la ripetizione dello sfondo */
+      background-size: cover; /* Ridimensiona l'immagine per coprire l'intera area */
+      background-position: center; /* Centra l'immagine */
+    }
+    #my_wrapper {
+    min-width: 300px;
+    border: 5px solid rgb(206, 206, 206);
+    background-color: rgb(228, 228, 228);
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
+    /* transition: all 0.3s ease;  */
+    }
+
+    #my_wrapper:hover {
+    /* transform: scale(1.05);  */
+    box-shadow: 40px 40px 80px rgba(0, 0, 0, 0.3);   
+    }
+  </style>

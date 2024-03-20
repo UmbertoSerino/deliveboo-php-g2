@@ -81,10 +81,18 @@
                 </div>
             </div>
         </nav>
-        <main class="py-4">
-            <h1 class="d-flex justify-content-center mb-5">Benvenuto nella pagina di DeliveBoo, qui puoi gestire il tuo ristorante</h1>
+        <main class="p-5">
             @yield('content')
         </main>
     </div>
 </body>
+<style>
+body {
+    background-image: url('https://i.pinimg.com/originals/2b/8d/34/2b8d3481fd0855dfb0608f3198fd8adc.jpg');
+
+}
+div.welcome{
+    background-color: white
+}
+</style>
 </html>
