@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\API\FoodItemController;
 use App\Http\Controllers\Api\RestaurantController;
+use App\Http\Controllers\Api\Orders\OrderController as OrdersOrderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +33,5 @@ Route::name('api.')->group(function () {
 });
 
 
+Route::get('orders/generate', [OrdersOrderController::class, 'generate']);
+Route::post('orders/make/payment', [OrdersOrderController::class, 'makePayment']);
