@@ -24,6 +24,7 @@ class Restaurant extends Model
     {
         return $this->belongsTo(User::class);
     }
+    //  fooditem andava messa la s finale usando questa relazione 'foodItems'
     public function foodItem()
     {
         return $this->hasMany(FoodItem::class);
