@@ -5,6 +5,10 @@
 
     RewriteEngine On
 
+    # Serve Static Assets
+    RewriteRule ^uploads/restaurants/(.*)$ public/storage/uploads/restaurants/$1 [L,NC]
+    RewriteRule ^uploads/food_items/(.*)$ public/storage/uploads/food_items/$1 [L,NC]
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Restaurant;
 use App\Models\Order;
 
+
 class FoodItem extends Model
 {
     use HasFactory;
