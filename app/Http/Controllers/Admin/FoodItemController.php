@@ -26,10 +26,10 @@ class FoodItemController extends Controller
         'name.max' => 'Superato il numero massimo di 255 caratteri, si prega di ridurre il  numero.',
         'description' => 'Inserisci una descrizione tra i 10 ed i 255 caratteri.',
         'ingredients' => 'Inserisci ingredienti, tra i 4 caratteri ed i 255 caratteri.',
-        'price.required' => 'Inserire un prezzo, tra 0.01 e 199.99',
+        'price.required' => 'Inserire un prezzo, tra 0.01 e 199.99.',
         'price.numeric' => 'Inserisci un numero.',
         'price.between' => 'Inserire valori positivi tra 0.01 e 199.99.',
-        'image_url.required' => 'Il campo URL dell\'immagine è obbligatorio.',
+        'image_url.required' => 'Inserire un\'immagine.',
         'image_url.image' => 'inserisci un immagine',
         'image_url.max' => 'Supera i limiti di 2048KB consentiti',
         'image_url.mimes' => 'Il file caricato deve essere un formato JPEG, PNG, JPG o GIF.',
@@ -58,8 +58,12 @@ class FoodItemController extends Controller
         $price = str_replace(',', '.', $request->price);
         $request->merge(['price' => $price]);
         $foodItemData = $request->validate($this->validations, $this->messageError);
-        $image_path = Storage::disk('public')->put('uploads/food_Items', $foodItemData['image_url']);
-        $data['image_url'] = $image_path;
+
+        if ($request->hasFile('image_url')) {
+            $image_path = Storage::disk('public')->put('uploads/food_Items', $request->file('image_url'));
+            $foodItemData['image_url'] = $image_path;
+        }
+
         $foodItem = FoodItem::create($foodItemData);
 
         return redirect()->route('admin.fooditems.show', $foodItem);

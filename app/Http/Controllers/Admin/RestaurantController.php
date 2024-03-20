@@ -15,7 +15,7 @@ class RestaurantController extends Controller
 {
 
     private $validations = [
-        'name' => ['required', 'min:2', 'max:20'],
+        'name' => ['required', 'min:2', 'max:100'],
         'vat' => ['required', 'numeric', 'digits:11'],
         'address' => ['required', 'max:255'],
         'phone_number' => ['required', 'numeric'],
@@ -26,7 +26,7 @@ class RestaurantController extends Controller
     private $messageError = [
         'name.required' => 'Il campo nome è obbligatorio.',
         'name.min' => 'Il campo nome deve essere di almeno 5 caratteri.',
-        'name.max' => 'Il campo nome non può superare i 20 caratteri.',
+        'name.max' => 'Il campo nome non può superare i 100 caratteri.',
         'vat.required' => 'Il campo partita IVA è obbligatorio.',
         'vat.numeric' => 'Il campo partita IVA deve essere numerico.',
         'vat.digits' => 'La partita IVA deve essere composta da 11 cifre.',
@@ -37,7 +37,7 @@ class RestaurantController extends Controller
         'phone_number.digits_between' => 'Il numero di telefono deve essere composto da 9 o 10 cifre.',
         'email.required' => 'Il campo email è obbligatorio.',
         'email.email' => 'Il formato dell\'email non è valido.',
-        'image_url.required' => 'Il campo URL dell\'immagine è obbligatorio.',
+        'image_url.required' => 'Il campo Immagine dell\'immagine è obbligatorio.',
         'image_url.image' => 'inserisci un immagine',
         'image_url.max' => 'Supera i limiti di 2048KB consentiti',
         'image_url.mimes' => 'Il file caricato deve essere un formato JPEG, PNG, JPG o GIF.',

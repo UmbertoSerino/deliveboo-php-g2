@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class OrderController extends Controller
 {
@@ -22,7 +24,12 @@ class OrderController extends Controller
     public function index()
     {
         //
-        $orders = Order::all();
+        $restaurantId = Auth::user()->id; // ID del ristorante desiderato (puoi passarlo come parametro o recuperarlo da una variabile, ad esempio)
+        // dd($restaurantId);
+        $orders = Order::whereHas('foodItems.restaurant', function ($query) use ($restaurantId) {
+            $query->where('id', $restaurantId);
+        })->get();
+
         return view('admin.orders.index', compact('orders'));
     }
 
@@ -55,7 +62,7 @@ class OrderController extends Controller
     public function show(string $id)
     {
         //
-        $order = Order::findOrFail($id);
+        $order = Order::with('foodItems')->findOrFail($id);
 
         return view('admin.orders.show', compact('order'));
     }

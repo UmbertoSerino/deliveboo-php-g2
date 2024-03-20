@@ -14,7 +14,7 @@
                 <table class="table table-striped table-hover table-dark">
                     <thead>
                         <tr>
-                            <th scope="col">Client ID</th>
+                            <th scope="col">Order ID</th>
                             <th scope="col">Cliente</th>
                             <th scope="col">Indirizzo Clienet</th>
                             <th scope="col">Stato di pagamento</th>
@@ -39,7 +39,7 @@
                                     {{ $order->id }}
                                 </th>
                                 <td>
-                                    {{ $order->customer }}
+                                    {{ $order->customer }} 
                                 </td>
                                 <td>
                                     {{ $order->user_address }}
@@ -57,7 +57,7 @@
                                     {{ $order->user_phone_number }}
                                 </td>
                                 <td>
-                                    {{ $order->created_at }}
+                                    {{ date_format($order->created_at, "H:i:s d/m/y") }}
                                 </td>
                                 <td>
                                     <em>
@@ -123,3 +123,6 @@
         </div>
     </div>
 @endsection
+<style>
+
+</style>
