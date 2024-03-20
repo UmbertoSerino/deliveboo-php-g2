@@ -26,7 +26,7 @@
                                 @foreach ($order->foodItems as $foodItem)
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                         {{ $foodItem->name }} - {{ $foodItem->price }}
-                                        <span class="badge text-bg-primary rounded-pill">4</span>
+                                        <span class="badge text-bg-primary rounded-pill">1</span>
                                     </li>
                                 @endforeach
                             </ul>
