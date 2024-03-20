@@ -66,6 +66,11 @@
                             </label>
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control obligate @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
+                                <div class="password-strength-meter">
+                                    <div class="strength-bar" id="bar-1"></div>
+                                    <div class="strength-bar" id="bar-2"></div>
+                                    <div class="strength-bar" id="bar-3"></div>
+                                </div>
                                 <i class="fa-solid fa-eye"></i>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -74,6 +79,7 @@
                                 @enderror
                             </div>
                         </div>
+                        
                         {{-- confirm_password --}}
                         <div class="row mb-3">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Conferma Password') }}
@@ -103,7 +109,6 @@
 
 <script>
     // ---------------- FUNCTION ------------------
-    // ----------   CONTROLL PASSWORD
 document.getElementById('registrationForm').addEventListener('submit', function(event) {
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('password-confirm').value;
@@ -116,26 +121,84 @@ document.getElementById('registrationForm').addEventListener('submit', function(
 // --------------------   CAMPI OBBLIGATORI 
 // verifica che parte al caricamento del dom
 document.addEventListener('DOMContentLoaded', function () {
-  const inputFields = document.querySelectorAll('.obligate');
-  const spanElements = document.querySelectorAll('.required-indicator');
+    const inputFields = document.querySelectorAll('.obligate');
+    const spanElements = document.querySelectorAll('.required-indicator');
+    const passwordMeter = document.querySelector('.password-strength-meter');
 
-// Nascondi gli asterischi solo se l'input è vuoto
-  inputFields.forEach((inputField, index) => {
-  if (inputField.value.trim() !== '') {
-  spanElements[index].classList.add('invisible');
-  }
-});
-
-// Aggiungi un listener di input per controllare quando l'utente immette dati
-inputFields.forEach((inputField, index) => {
-  inputField.addEventListener('input', () => {
-  if (inputField.value.trim() !== '') {
-  spanElements[index].classList.add('invisible');
-  } else {
-  spanElements[index].classList.remove('invisible');
-      }
+    // Nascondi gli asterischi e le barre di visualizzazione della password se i campi sono vuoti
+    inputFields.forEach((inputField, index) => {
+        if (inputField.value.trim() !== '') {
+            spanElements[index].classList.add('invisible');
+        } else {
+            spanElements[index].classList.remove('invisible');
+            if (inputField.id === 'password') {
+                passwordMeter.style.display = 'none';
+            }
+        }
     });
-  });
+
+    // Funzione per calcolare la complessità della password
+    function checkPasswordStrength(password) {
+        let strength = 0;
+
+        // Lunghezza della password
+        // if (password.length >= 8) {
+        //     strength += 1;
+        // }
+
+        // Presenza di numeri
+        if (/\d/.test(password)) {
+            strength += 1;
+        }
+
+        // Presenza di caratteri speciali
+        if (/[$-/:-?{-~!"^_`\[\]]/.test(password)) {
+            strength += 1;
+        }
+
+        // Presenza di lettere maiuscole
+        if (/[A-Z]/.test(password)) {
+            strength += 1;
+        }
+
+        return strength;
+    }
+
+    // Aggiorna la visualizzazione della forza della password quando l'utente immette dati
+    document.getElementById('password').addEventListener('input', function () {
+        const password = this.value;
+        const strength = checkPasswordStrength(password);
+        const strengthBars = document.querySelectorAll('.strength-bar');
+
+        // Aggiorna la visualizzazione delle barre di forza della password
+        strengthBars.forEach((bar, index) => {
+            if (index < strength) {
+                bar.style.opacity = 1;
+            } else {
+                bar.style.opacity = 0;
+            }
+        });
+
+        // Mostra le barre di forza della password
+        passwordMeter.style.display = 'flex';
+    });
+
+    // Aggiungi un listener di input per controllare quando l'utente immette dati
+    inputFields.forEach((inputField, index) => {
+        inputField.addEventListener('input', () => {
+            if (inputField.value.trim() !== '') {
+                spanElements[index].classList.add('invisible');
+                if (inputField.id === 'password') {
+                    passwordMeter.style.display = 'flex';
+                }
+            } else {
+                spanElements[index].classList.remove('invisible');
+                if (inputField.id === 'password') {
+                    passwordMeter.style.display = 'none';
+                }
+            }
+        });
+    });
 });
 </script>
 @endsection
@@ -154,4 +217,30 @@ div.container-span{
   width: 20px;
   display:inline-block;
 }
+.password-strength-meter {
+        display: flex;
+        height: 10px;
+        margin-top: 5px;
+    }
+
+    .strength-bar {
+        margin-top: 2px;
+        flex-grow: 1;
+        height: 100%;
+        margin-right: 2px;
+        border-radius: 5rem
+    }
+
+    #bar-1 {
+        background-color: red;
+    }
+
+    #bar-2 {
+        background-color: orange;
+    }
+
+    #bar-3 {
+        background-color: green;
+    }
+
 </style>
