@@ -15,7 +15,7 @@ class RestaurantController extends Controller
 {
 
     private $validations = [
-        'name' => ['required', 'min:2', 'max:20'],
+        'name' => ['required', 'min:2', 'max:100'],
         'vat' => ['required', 'numeric', 'digits:11'],
         'address' => ['required', 'max:255'],
         'phone_number' => ['required', 'numeric'],
@@ -26,7 +26,7 @@ class RestaurantController extends Controller
     private $messageError = [
         'name.required' => 'Il campo nome è obbligatorio.',
         'name.min' => 'Il campo nome deve essere di almeno 5 caratteri.',
-        'name.max' => 'Il campo nome non può superare i 20 caratteri.',
+        'name.max' => 'Il campo nome non può superare i 100 caratteri.',
         'vat.required' => 'Il campo partita IVA è obbligatorio.',
         'vat.numeric' => 'Il campo partita IVA deve essere numerico.',
         'vat.digits' => 'La partita IVA deve essere composta da 11 cifre.',

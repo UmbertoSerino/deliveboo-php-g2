@@ -34,7 +34,7 @@ class OrderSeeder extends Seeder
             [
                 'user_address' => 'Via Roma 20, 00100, Roma',
                 'customer' => 'Marco Bianchi',
-                'status' => 3,
+                'status' => 1,
                 'total' => 45.80,
                 'user_mail' => 'mbianchi@hotmail.com',
                 'user_phone_number' => 3661234567,
@@ -58,7 +58,7 @@ class OrderSeeder extends Seeder
             [
                 'user_address' => 'Viale dei Fiori 8, 20145, Milano',
                 'customer' => 'Sara Neri',
-                'status' => 3,
+                'status' => 1,
                 'total' => 55.90,
                 'user_mail' => 'sara.neri@example.com',
                 'user_phone_number' => 3209876543,
@@ -82,7 +82,7 @@ class OrderSeeder extends Seeder
             [
                 'user_address' => 'Piazza San Marco 6, 30124, Venezia',
                 'customer' => 'Giovanni Verdi',
-                'status' => 3,
+                'status' => 1,
                 'total' => 65.30,
                 'user_mail' => 'g.verdi@example.com',
                 'user_phone_number' => 3665432109,
@@ -106,7 +106,7 @@ class OrderSeeder extends Seeder
             [
                 'user_address' => 'Piazza della Repubblica 3, 50123, Firenze',
                 'customer' => 'Alessia Bianchi',
-                'status' => 3,
+                'status' => 1,
                 'total' => 70.10,
                 'user_mail' => 'alessia.bianchi@example.com',
                 'user_phone_number' => 3209876543,
@@ -122,7 +122,7 @@ class OrderSeeder extends Seeder
             [
                 'user_address' => 'Piazza Navona 5, 00186, Roma',
                 'customer' => 'Elisa Rossi',
-                'status' => 2,
+                'status' => 1,
                 'total' => 135.60,
                 'user_mail' => 'elisa.rossi@hotmail.com',
                 'user_phone_number' => 3490123456,
@@ -130,7 +130,7 @@ class OrderSeeder extends Seeder
             [
                 'user_address' => 'Via della Libertà 30, 90100, Palermo',
                 'customer' => 'Alessandro Bianchi',
-                'status' => 3,
+                'status' => 1,
                 'total' => 60.20,
                 'user_mail' => 'alessandro.bianchi@example.com',
                 'user_phone_number' => 3887654321,
