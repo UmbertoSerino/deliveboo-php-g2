@@ -23,13 +23,11 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
         $restaurantId = Auth::user()->id; // ID del ristorante desiderato (puoi passarlo come parametro o recuperarlo da una variabile, ad esempio)
         // dd($restaurantId);
         $orders = Order::whereHas('foodItems.restaurant', function ($query) use ($restaurantId) {
             $query->where('id', $restaurantId);
         })->get();
-
         return view('admin.orders.index', compact('orders'));
     }
 

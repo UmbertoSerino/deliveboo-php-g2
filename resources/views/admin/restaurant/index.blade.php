@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('main-content')
 <section class="container d-flex justify-content-center align-items-center pt-5">
-  <div id="restaurant-index" class="container">
+  <div id="restaurant-index" class="container my_wrapper">
     <div class="row">
       @if ($restaurants->isEmpty())
         <div class="col-12 text-center">
@@ -88,5 +88,8 @@
 <style>
   body{
     background-image: url('https://cms.finnair.com/resource/blob/1329464/d417ef1c0553da0dfb8c65eb213d13f9/long-main-data.jpg?impolicy=crop&width=4000&height=2250&x=0&y=334')
+  }
+  .my_wrapper{
+    min-width:350px;
   }
 </style>

@@ -290,7 +290,7 @@ class FoodItemsSeeder extends Seeder
                 'description' => 'Calamari freschi fritti.',
                 'ingredients' => 'Calamari, farina di mais, farina di grano, sale, pepe, olio di semi per friggere.',
                 'price' => 11.00,
-                'image_url' => 'https://static.buttalapasta.it/r/845x/as/calamari-fritti.jpg',
+                'image_url' => 'https://www.fattoincasadabenedetta.it/wp-content/uploads/2019/07/calamari-fritti-2.jpg',
                 'available' => true
 
             ],
@@ -300,7 +300,7 @@ class FoodItemsSeeder extends Seeder
                 'description' => 'Zuppa di pesce con pomodoro e frutti di mare.',
                 'ingredients' => 'Cozze, vongole, gamberi, calamari, pomodoro, cipolla, prezzemolo, aglio, olio extravergine d\'oliva, crostini di pane.',
                 'price' => 15.50,
-                'image_url' => 'https://www.profumodibasilico.it/wp-content/uploads/2020/10/zuppa-di-pesce-3.jpg',
+                'image_url' => 'https://blog.giallozafferano.it/valeriaciccotti/wp-content/uploads/2020/12/ZUPPA-DI-PESCE-12.jpg',
                 'available' => true
 
             ],
@@ -310,10 +310,77 @@ class FoodItemsSeeder extends Seeder
                 'description' => 'Granchio fresco servito con salsa Catalana.',
                 'ingredients' => 'Granchio fresco, pomodori, cetrioli, cipolla rossa, peperoncino, aceto, olio extravergine d\'oliva, sale, pepe.',
                 'price' => 19.00,
-                'image_url' => 'https://www.gustoaroma.com/wp-content/uploads/2020/05/granchio-alla-catalana-683x1024.jpg',
+                'image_url' => 'https://www.lamadia.com/wp-content/uploads/2015/11/granchietti21.jpg',
                 'available' => true
 
             ],
+            [
+                'name' => 'Pappardelle al Cinghiale',
+                'restaurant_id' => '8',
+                'description' => 'Pappardelle fatte in casa con ragù di cinghiale.',
+                'ingredients' => 'Pappardelle fatte in casa, cinghiale, pomodoro, carote, sedano, cipolla, vino rosso, olio extravergine d\'oliva, sale, pepe.',
+                'price' => 15.50,
+                'image_url' => 'https://www.casapappagallo.it/storage/21303/pappardelle-con-il-cinghiale-%28sito%29.jpg',
+                'available' => true
+            ],
+            [
+                'name' => 'Tagliata di Manzo',
+                'restaurant_id' => '3',
+                'description' => 'Fettine di manzo grigliate servite con rucola e scaglie di Parmigiano.',
+                'ingredients' => 'Fettine di manzo, rucola, Parmigiano Reggiano, olio extravergine d\'oliva, sale, pepe.',
+                'price' => 22.00,
+                'image_url' => 'https://www.google.com/search?sca_esv=23dbae34678f821e&rlz=1C1CHBF_itIT1059IT1059&sxsrf=ACQVn08y4JEF_XtnbB0XiOr_ABQHYkeF5A:1710980690018&q=Tagliata+di+Manzo&tbm=isch&source=lnms&prmd=ivnbz&sa=X&sqi=2&ved=2ahUKEwiZx_vhi4SFAxU1g_0HHa8kBdoQ0pQJegQIEhAB&biw=2133&bih=1012&dpr=0.9#imgrc=Zu1adTXvr9inrM',
+                'available' => true
+            ],
+            [
+                'name' => 'Spaghetti alla Carbonara',
+                'restaurant_id' => '2',
+                'description' => 'Spaghetti conditi con uova, guanciale, pecorino romano e pepe nero.',
+                'ingredients' => 'Spaghetti, uova, guanciale, pecorino romano, pepe nero.',
+                'price' => 12.00,
+                'image_url' => 'https://www.giallozafferano.it/images/219-21928/Spaghetti-alla-Carbonara_650x433_wm.jpg',
+                'available' => true
+            ],
+            [
+                'name' => 'Sushi Misto',
+                'restaurant_id' => '6',
+                'description' => 'Assortimento di sushi fresco: nigiri, sashimi e maki.',
+                'ingredients' => 'Riso, pesce crudo (salmone, tonno, branzino), alghe nori, avocado, cetriolo, salsa di soia, wasabi, zenzero marinato.',
+                'price' => 25.00,
+                'image_url' => 'https://www.sushimaisoncrema2.it/wp-content/uploads/2020/04/065-Sushi-Maison-Crema-2.jpg',
+                'available' => true
+            ],
+            [
+                'name' => 'Panino con Prosciutto Crudo e Mozzarella',
+                'restaurant_id' => rand(10, 20),
+                'description' => 'Un delizioso panino con fette di prosciutto crudo, mozzarella fresca, pomodori secchi e rucola.',
+                'ingredients' => 'Prosciutto crudo, mozzarella, pomodori secchi, rucola',
+                'price' => 6.00,
+                'image_url' => 'https://i2.wp.com/www.piccolericette.net/piccolericette/wp-content/uploads/2015/11/1332_panino.jpg?fit=1216%2C616&ssl=1',
+                'available' => true,
+            ],
+            [
+                'name' => 'Panino Vegetariano',
+                'restaurant_id' => rand(10, 20),
+                'description' => 'Un panino sano e gustoso con falafel, hummus, pomodori, cetrioli, lattuga e salsa tahini.',
+                'ingredients' => 'Falafel, hummus, pomodori, cetrioli, lattuga, salsa tahini',
+                'price' => 5.50,
+                'image_url' => 'https://www.ilgolosomangiarsano.com/wp-content/uploads/2015/05/Panino-mediterraneo.jpg',
+                'available' => true,
+            ],
+            [
+                'name' => 'Panino con Salmone Affumicato',
+                'restaurant_id' => rand(10, 20),
+                'description' => 'Pane integrale con salmone affumicato, formaggio spalmabile, avocado e insalata.',
+                'ingredients' => 'Pane integrale, salmone affumicato, formaggio spalmabile, avocado, insalata',
+                'price' => 7.00,
+                'image_url' => 'https://www.myamericankitchen.it/wp-content/uploads/2019/04/panino-salmone-affumicato-e-avocado-1.jpg',
+                'available' => true,
+            ],
+
+
+
+
         ];
 
         foreach ($foodItems as $foodItem) {

@@ -4,8 +4,8 @@
     <section class="products">
         <div class="container">
             <div class="row">
-                <div class="row mb-3 justify-content-center">
-                    <div class="col-7 p-3">
+                <div class="mb-3 justify-content-center">
+                    <div class="col-7 col-sm-3 p-3">
                         <div class="card p-4 text-center" id="my_wrapper">
                             <h1>
                                 {{ $foodItem->name }}
@@ -94,7 +94,7 @@
       background-position: center; /* Centra l'immagine */
     }
     #my_wrapper {
-    min-width: 300px;
+    min-width: 250px;
     border: 5px solid rgb(206, 206, 206);
     background-color: rgb(228, 228, 228);
     border-radius: 10px;
@@ -106,4 +106,25 @@
     /* transform: scale(1.05);  */
     box-shadow: 40px 40px 80px rgba(0, 0, 0, 0.3);   
     }
+
+    @media screen and (max-width: 880px) {
+    .cater3-movingBG {
+        background-size: 250%;
+        background-position: center;
+    }
+}
+    @media screen and (max-width: 550px) {
+        #my_wrapper {
+        min-width: 250px;
+        border: 5px solid rgb(206, 206, 206);
+        background-color: rgb(228, 228, 228);
+        border-radius: 10px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
+
+        a{
+            
+            width:65px
+        }
+    }
+}
   </style>

@@ -19,7 +19,7 @@ class FoodItemController extends Controller
         'ingredients' => ['required', 'string', 'min:4', 'max:255'],
         'price' => ['required', 'numeric', 'between:0.01,199.99'],
         'available' => ['required'],
-        'image_url' => ['required', 'image', 'max:2048', 'mimes:jpeg,png,jpg,gif'],
+        'image_url' => ['required', 'image', 'max:2048',],
     ];
     private $messageError = [
         'name.required' => 'Campo richiesto, inserisci il nome del piatto.',
@@ -58,8 +58,10 @@ class FoodItemController extends Controller
         $price = str_replace(',', '.', $request->price);
         $request->merge(['price' => $price]);
         $foodItemData = $request->validate($this->validations, $this->messageError);
-        $image_path = Storage::disk('public')->put('uploads/food_Items', $foodItemData['image_url']);
-        $data['image_url'] = $image_path;
+        if ($request->hasFile('image_url')) {
+            $image_path = Storage::disk('public')->put('uploads/food_Items', $request->file('image_url'));
+            $foodItemData['image_url'] = $image_path;
+        }
         $foodItem = FoodItem::create($foodItemData);
         // dd($foodItemData);
 

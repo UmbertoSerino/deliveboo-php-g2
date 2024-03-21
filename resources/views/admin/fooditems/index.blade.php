@@ -17,7 +17,7 @@
       </div>
       @foreach($foodItems as $foodItem)
         <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="card food-card mb-3">
+          <div class="card food-card mb-3 my_card d-flex flex-column">
             <div class="food-card_img">
               @if (str_starts_with($foodItem->image_url, 'http'))
               <img class="card-img-top img-fluid rounded-start zoom" src="{{ $foodItem->image_url }}" alt="{{ $foodItem->name }} Image">
@@ -25,19 +25,21 @@
               <img class="card-img-top img-fluid rounded-start zoom" src="{{ asset('storage') . '/' . $foodItem->image_url }}" alt="{{ $foodItem->name }} Image">
               @endif
             </div>
-            <div class="card-body">
-              <h5 class="card-title">{{ $foodItem->name }}</h5>
-              <p class="card-text">{{ $foodItem->description }}</p>
-              <p class="card-text">{{ $foodItem->ingredients }}</p>
-              <div class="d-flex justify-content-between">
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div>
+                <h5 class="card-title">{{ $foodItem->name }}</h5>
+                <p class="card-text">{{ $foodItem->description }}</p>
+                <p class="card-text">{{ $foodItem->ingredients }}</p>
                 <span class="fa fa-fire">{{ $foodItem->available ? 'Disponibile: Si' : 'Disponibile: No' }}</span>
               </div>
-              <hr>
-              <p class="card-text">Prezzo: {{ $foodItem->price }} €</p>
-              <div class="d-flex justify-content-center">
-                <a href="{{ route('admin.fooditems.show', $foodItem) }}" class="btn btn-success">Mostra</a>
-                <a href="{{ route('admin.fooditems.edit', $foodItem) }}" class="btn btn-warning mx-1">Modifica</a>
-                <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $foodItem->id }}">Elimina</button>
+              <div class="mt-auto">
+                <hr>
+                <p class="card-text">Prezzo: {{ $foodItem->price }} €</p>
+                <div class="d-flex justify-content-center">
+                  <a href="{{ route('admin.fooditems.show', $foodItem) }}" class="btn btn-success">Mostra</a>
+                  <a href="{{ route('admin.fooditems.edit', $foodItem) }}" class="btn btn-warning mx-1">Modifica</a>
+                  <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $foodItem->id }}">Elimina</button>
+                </div>
               </div>
             </div>
           </div>
@@ -69,9 +71,13 @@
   </div>
 </article>
 
+
 @endsection
 <style>
       body{
         background-image: url('https://wallpapers.com/images/featured/food-table-background-1j6ik0elenqlwh4k.jpg')
+    }
+    .my_card{
+      min-height: 600px;
     }
 </style>
