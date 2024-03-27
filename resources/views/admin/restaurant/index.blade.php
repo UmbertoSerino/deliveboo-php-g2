@@ -78,7 +78,7 @@
         @endif
         {{-- Link utility --}}
         <div class="text-center pt-5">
-          <a class="bg-white p-2 rounded-4" href="http://localhost:5174/restaurants">Vai a DeliveBoo Guest</a>
+          <a class="bg-white p-2 rounded-4" href="http://localhost:5174">Vai a DeliveBoo Guest</a>
         </div>
     </div>
   </div>

@@ -58,12 +58,12 @@ class FoodItemController extends Controller
         $price = str_replace(',', '.', $request->price);
         $request->merge(['price' => $price]);
         $foodItemData = $request->validate($this->validations, $this->messageError);
+
         if ($request->hasFile('image_url')) {
             $image_path = Storage::disk('public')->put('uploads/food_Items', $request->file('image_url'));
             $foodItemData['image_url'] = $image_path;
         }
         $foodItem = FoodItem::create($foodItemData);
-        // dd($foodItemData);
 
         return redirect()->route('admin.fooditems.show', $foodItem);
     }

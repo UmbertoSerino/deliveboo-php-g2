@@ -91,6 +91,11 @@
                               <span class="text-danger">{{ $message }}</span>
                             @enderror  --}}
 
+                            {{-- <input type="file" class="form-control @error('image_url') is-invalid @enderror" name="image_url" id="image_url" value="{{ str_starts_with(old('image_url', $foodItem->image_url), 'http') ? old('image_url', $foodItem->image_url) : '' }}"> --}}
+                            <input type="file" class="form-control obligate @error('image_url') is-invalid @enderror" id="image_url" name="image_url" value="{{ old('image_url', $foodItem->image_url)}}">
+                            @error('image_url')
+                              <span class="text-danger">{{ $message }}</span>
+                            @enderror 
                           </div>
                           {{--Preview image: --}}
                         {{-- <div class="mb-3 input-group">
