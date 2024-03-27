@@ -18,7 +18,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md bg-color shadow-sm">
+        <nav class="navbar navbar-expand-md bg-color">
             <div class="container">
                 <img class="logo-img rounded-circle" src="/Logo_Deliveboo.jpg" alt="immagine logo">
                 <a class="navbar-brand text-white" href="{{ url('/') }}">
@@ -86,18 +86,16 @@
         </main>
     </div>
 </body>
-<style>
-body {
-    background-image: url('https://i.pinimg.com/originals/2b/8d/34/2b8d3481fd0855dfb0608f3198fd8adc.jpg');
-
-}
-div.welcome{
-    background-color: white
-}
-</style>
 </html>
 
 <style>
+    body {
+    background-image: url('https://i.pinimg.com/originals/2b/8d/34/2b8d3481fd0855dfb0608f3198fd8adc.jpg');
+
+    }
+    div.welcome{
+    background-color: white
+    }
     .bg-color{
         background-color: #57D0FF;
     }
