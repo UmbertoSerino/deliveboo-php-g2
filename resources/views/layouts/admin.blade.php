@@ -56,7 +56,7 @@
                                     @if (Auth::user()->restaurant == null)
                                     @else
                                     <div>
-                                        <a href="{{ route('admin.restaurants.index') }}" class="list-group-item list-group-item-action list-group-item-primary p-2">Ristoranteee</a>
+                                        <a href="{{ route('admin.restaurants.index') }}" class="list-group-item list-group-item-action list-group-item-primary p-2">Ristorante</a>
                                     </div>
                                     <div>
                                         <a href="{{ route('admin.fooditems.index') }}" class="list-group-item list-group-item-action list-group-item-primary p-2">Menù</a>
