@@ -17,7 +17,7 @@
                                 </div>
                             </label>
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control obligate @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control my_padding obligate @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -33,7 +33,7 @@
                                 </div>
                             </label>
                             <div class="col-md-6">
-                                <input id="last_name" type="text" class="form-control obligate @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}"  autocomplete="last_name" autofocus>
+                                <input id="last_name" type="text" class="form-control my_padding obligate @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}"  autocomplete="last_name" autofocus>
                                 @error('last_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -49,7 +49,7 @@
                                 </div>
                             </label>
                             <div class="col-md-6">
-                                <input id="email" type="text" class="form-control obligate @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
+                                <input id="email" type="text" class="form-control my_padding obligate @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -65,7 +65,7 @@
                                 </div>
                             </label>
                             <div class="col-md-6 input-password">
-                                <input id="password" type="password" class="form-control obligate pe-5 @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
+                                <input id="password" type="password" class="form-control my_padding obligate password @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
                                 <div class="icon">
                                     <i class="fa-solid fa-eye invisible"></i>
                                     <i class="fa-solid fa-eye-slash"></i>
@@ -90,7 +90,7 @@
                                 </div>
                             </label>
                             <div class="col-md-6 mb-4">
-                                <input id="password-confirm" type="password" class="form-control obligate" name="password_confirmation"  autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control my_padding obligate" name="password_confirmation"  autocomplete="new-password">
                                 <span id="password-match-error" class="text-danger invisible"><strong>Le password non coincidono</strong></span>
                             </div>
                             <div class="col-md-6 text-center">
@@ -269,9 +269,12 @@ div.container-span{
     }
     i{
         position: absolute;
-        right: 15px;
+        right: 40px;
         top:19px;
         transform: translate(-50%, -50%)
+    }
+    input.form-control.my_padding{
+        padding-right: 5rem
     }
 
 </style>
