@@ -20,7 +20,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md bg-color shadow-sm">
+        <nav class="navbar navbar-expand-md bg-color">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'DeliveBoo Admin') }}
@@ -91,3 +91,21 @@
     </div>
 </body>
 </html>
+<style>
+    body {
+    background-image: url('https://i.pinimg.com/originals/2b/8d/34/2b8d3481fd0855dfb0608f3198fd8adc.jpg');
+
+}
+div.welcome{
+    background-color: white
+}
+    .bg-color{
+        background-color: #57D0FF;
+    }
+
+    .logo-img{
+        width: 33px;
+        height: 33px;
+        margin-right: .5rem;
+    }
+</style>

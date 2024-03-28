@@ -64,22 +64,24 @@
                                     <span class="required-indicator">*</span>
                                 </div>
                             </label>
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control obligate @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
+                            <div class="col-md-6 input-password">
+                                <input id="password" type="password" class="form-control obligate pe-5 @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
+                                <div class="icon">
+                                    <i class="fa-solid fa-eye invisible"></i>
+                                    <i class="fa-solid fa-eye-slash"></i>
+                                </div>
                                 <div class="password-strength-meter">
                                     <div class="strength-bar text-center text-white" id="bar-1">Debole</div>
                                     <div class="strength-bar text-center text-white" id="bar-2">Media</div>
                                     <div class="strength-bar text-center text-white" id="bar-3">Forte</div>
                                 </div>
-                                <i class="fa-solid fa-eye"></i>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-                        </div>
-                        
+                        </div>        
                         {{-- confirm_password --}}
                         <div class="row mb-3">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Conferma Password') }}
@@ -200,6 +202,26 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+// ----- Visualizza password
+const viewPassword = document.querySelector('.fa-eye-slash');
+const shadowPassword = document.querySelector('.fa-eye');
+let changeType = document.getElementById('password')
+console.log(viewPassword, "\n", shadowPassword, "\n", changeType);
+
+viewPassword.addEventListener('click', function(){
+    changeType.type = "text";
+    viewPassword.classList.add('invisible');
+    shadowPassword.classList.remove('invisible');
+
+})
+// Nascondi password
+shadowPassword.addEventListener('click', function(){
+    changeType.type = "password";
+    shadowPassword.classList.add('invisible');
+    viewPassword.classList.remove('invisible');
+})
+
 </script>
 @endsection
 <style>
@@ -241,6 +263,15 @@ div.container-span{
 
     #bar-3 {
         background-color: green;
+    }
+    div.input-password{
+        position: relative;
+    }
+    i{
+        position: absolute;
+        right: 15px;
+        top:19px;
+        transform: translate(-50%, -50%)
     }
 
 </style>

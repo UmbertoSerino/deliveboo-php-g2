@@ -13,12 +13,14 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+    {{-- FontAwesome --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md bg-color shadow-sm">
+        <nav class="navbar navbar-expand-md bg-color">
             <div class="container">
                 <img class="logo-img rounded-circle" src="/Logo_Deliveboo.jpg" alt="immagine logo">
                 <a class="navbar-brand text-white" href="{{ url('/') }}">
@@ -86,18 +88,16 @@
         </main>
     </div>
 </body>
+</html>
+
 <style>
-body {
+    body {
     background-image: url('https://i.pinimg.com/originals/2b/8d/34/2b8d3481fd0855dfb0608f3198fd8adc.jpg');
 
 }
 div.welcome{
     background-color: white
 }
-</style>
-</html>
-
-<style>
     .bg-color{
         background-color: #57D0FF;
     }
