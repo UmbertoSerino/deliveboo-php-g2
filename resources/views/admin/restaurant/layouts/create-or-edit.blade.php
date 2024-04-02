@@ -13,6 +13,7 @@
         <form method="POST" action="@yield('form-action')" enctype="multipart/form-data" >
         @csrf
         @yield('form-method')
+        {{-- Nome ristorante --}}
           <div class="form-row my_card">
             <div class="form-group col-md-9 m-2">
               <label for="name">Nome Ristorante:
@@ -20,30 +21,32 @@
                   <span class="required-indicator">*</span>
                 </div>  
               </label>
-              <input type="text" class="form-control obligate inline @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name',$restaurant->name) }}" >
+              <input type="text" class="form-control obligate inline @error('name') is-invalid @enderror" id="name" name="name" minlength="2" maxlength="100" required value="{{ old('name',$restaurant->name) }}" >
               @error('name')
               <span class="text-danger">{{ $message }}</span>
               @enderror 
             </div>
+            {{-- Partita IVA/vat --}}
             <div class="form-group col-md-9 m-2">
               <label for="piva">Partita Iva: 
                 <div class="container-span">
                   <span class="required-indicator">*</span>
                 </div>
               </label>
-              <input type="text" class="form-control obligate @error('vat') is-invalid @enderror" id="vat" name="vat" value="{{ old('vat',$restaurant->vat) }}" >
+              <input type="text" class="form-control obligate @error('vat') is-invalid @enderror" id="vat" name="vat" maxlength="11" required value="{{ old('vat',$restaurant->vat) }}" >
               @error('vat')
                 <span class="text-danger">{{ $message }}</span>
               @enderror
             </div>
           </div>
+          {{-- Indirizzo --}}
           <div class="form-group col-md-9 m-2">
             <label for="address">Indirizzo:
               <div class="container-span">
                 <span class="required-indicator">*</span>
               </div>
             </label>
-            <input type="text" class="form-control obligate @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address',$restaurant->address) }}" >
+            <input type="text" class="form-control obligate @error('address') is-invalid @enderror" id="address" name="address" required value="{{ old('address',$restaurant->address) }}" >
             @error('address')
             <span class="text-danger">{{ $message }}</span>
             @enderror
@@ -54,11 +57,13 @@
                 <span class="required-indicator">*</span>
               </div>
             </label>
-            <input type="tel" class="form-control obligate @error('phone_number') is-invalid @enderror" id="phone_number" name="phone_number" value="{{ old('phone_number',$restaurant->phone_number) }}" >
+            {{-- Numero di telefono --}}
+            <input type="tel" class="form-control obligate @error('phone_number') is-invalid @enderror" id="phone_number" name="phone_number" required value="{{ old('phone_number',$restaurant->phone_number) }}" >
             @error('phone_number')
               <span class="text-danger">{{ $message }}</span>
              @enderror
           </div>
+          {{-- Email --}}
           <div class="form-row">
             <div class="form-group col-md-9 m-2">
               <label for="inputCity">Email:
@@ -66,7 +71,7 @@
                   <span class="required-indicator">*</span>
                 </div> 
               </label>
-              <input type="email" class="form-control obligate @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email',$restaurant->email) }}" >
+              <input type="email" class="form-control obligate @error('email') is-invalid @enderror" id="email" name="email" required value="{{ old('email',$restaurant->email) }}" >
               @error('email')
                 <span class="text-danger">{{ $message }}</span>
               @enderror 
@@ -76,6 +81,7 @@
               {{-- <input type="image_url" class="form-control obligate" id="image_url" name="image_url" value="{{old('image_url',$restaurant->image_url) }}" > --}}
               <span class="required-indicator">* campi obbligatori</span>
             </div> -->
+            {{-- Carica immagine  --}}
             <div class="input-group col-md-9 m-2">
               <div class="form-group">
                 <label for="image">Inserire un'immagine del ristorante:
@@ -83,7 +89,7 @@
                     <span class="required-indicator">*</span>
                   </div> 
                 </label>
-                <input type="file" class="form-control obligate @error('image_url') is-invalid @enderror" id="image_url" name="image_url" value="{{ old('image_url', $restaurant->image_url)}}">
+                <input type="file" class="form-control obligate @error('image_url') is-invalid @enderror" id="image_url" name="image_url" required value="{{ old('image_url', $restaurant->image_url)}}">
                 @error('image_url')
                   <span class="text-danger">{{ $message }}</span>
                 @enderror 
@@ -91,6 +97,7 @@
             </div>
             <div>
             </div>
+            {{-- Categorie --}}
             <div class="container">
               <label for="categories">Categorie:</label>
               <ul class="ks-cboxtags">

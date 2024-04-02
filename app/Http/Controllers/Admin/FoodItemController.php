@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Gate;
+// use Illuminate\Support\Facades\Gate;
 use App\Models\FoodItem;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
@@ -50,6 +50,9 @@ class FoodItemController extends Controller
     {
         $foodItem = new FoodItem();
         $restaurant = Auth::user()->restaurant;
+        if ($foodItem->restaurant !== null) {
+            return redirect()->route('admin.fooditems.index');
+        }
         return view('admin.fooditems.create', compact('foodItem', 'restaurant'));
     }
 
@@ -75,8 +78,8 @@ class FoodItemController extends Controller
     {
 
         $foodItem = FoodItem::findOrFail($id);
-        if (!Gate::allows('edit-foodItem', $foodItem)) {
-            abort(403);
+        if ($foodItem->restaurant_id !== Auth::user()->restaurant->id) {
+            return redirect()->route('admin.fooditems.index');
         }
         return view('admin.fooditems.show', compact('foodItem'));
     }
@@ -84,8 +87,8 @@ class FoodItemController extends Controller
     public function edit(string $id)
     {
         $foodItem = FoodItem::findOrFail($id);
-        if (!Gate::allows('edit-foodItem', $foodItem)) {
-            abort(403);
+        if ($foodItem->restaurant_id !== Auth::user()->restaurant->id) {
+            return redirect()->route('admin.fooditems.index');
         }
         $restaurant = Auth::user()->restaurant;
         return view('admin.fooditems.edit', compact('foodItem', 'restaurant'));
