@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\API\FoodItemController;
 use App\Http\Controllers\Api\RestaurantController;
+use App\Http\Controllers\Api\LeadController;
 use App\Http\Controllers\Api\Orders\OrderController as OrdersOrderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,7 @@ Route::name('api.')->group(function () {
     Route::get('/foodItems', [FoodItemController::class, 'index'])->name('apo.foodItem.index');
     Route::get('/foodItems/search', [FoodItemController::class, 'search'])->name('foodItem.search');
     Route::get('/foodItems/{foodItem}', [FoodItemController::class, 'show'])->name('foodItem.show');
+    Route::post('/contact-us', [LeadController::class, 'store'])->name('leads.store');
 });
 
 
