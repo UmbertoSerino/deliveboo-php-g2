@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card my_window">
                 <div class="card-header">{{ __('Registrazione') }}</div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}" id="registrationForm">
@@ -71,9 +71,9 @@
                                     <i class="fa-solid fa-eye-slash"></i>
                                 </div>
                                 <div class="password-strength-meter">
-                                    <div class="strength-bar text-center text-white" id="bar-1">Debole</div>
-                                    <div class="strength-bar text-center text-white" id="bar-2">Media</div>
-                                    <div class="strength-bar text-center text-white" id="bar-3">Forte</div>
+                                    <div class="strength-bar text-center text-white opacity" id="bar-1">Debole</div>
+                                    <div class="strength-bar text-center text-white opacity" id="bar-2">Media</div>
+                                    <div class="strength-bar text-center text-white opacity" id="bar-3">Forte</div>
                                 </div>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -127,27 +127,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const spanElements = document.querySelectorAll('.required-indicator');
     const passwordMeter = document.querySelector('.password-strength-meter');
 
-    // Nascondi gli asterischi e le barre di visualizzazione della password se i campi sono vuoti
-    inputFields.forEach((inputField, index) => {
-        if (inputField.value.trim() !== '') {
-            spanElements[index].classList.add('invisible');
-        } else {
-            spanElements[index].classList.remove('invisible');
-            if (inputField.id === 'password') {
-                passwordMeter.style.display = 'none';
-            }
-        }
-    });
-
     // Funzione per calcolare la complessità della password
     function checkPasswordStrength(password) {
         let strength = 0;
-
-        // Lunghezza della password
-        // if (password.length >= 8) {
-        //     strength += 1;
-        // }
-
         // Presenza di numeri
         if (/\d/.test(password)) {
             strength += 1;
@@ -177,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (index < strength) {
                 bar.style.opacity = 1;
             } else {
-                bar.style.opacity = 0;
+                bar.style.opacity = 0.5;
             }
         });
 
@@ -196,25 +178,25 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 spanElements[index].classList.remove('invisible');
                 if (inputField.id === 'password') {
-                    passwordMeter.style.display = 'none';
+                    passwordMeter.style.display = 'opacity';
                 }
             }
         });
     });
 });
 
-// ----- Visualizza password
+// -------------- Visualizza password
 const viewPassword = document.querySelector('.fa-eye-slash');
 const shadowPassword = document.querySelector('.fa-eye');
 let changeType = document.getElementById('password')
 console.log(viewPassword, "\n", shadowPassword, "\n", changeType);
-
+// Mostra password
 viewPassword.addEventListener('click', function(){
     changeType.type = "text";
     viewPassword.classList.add('invisible');
     shadowPassword.classList.remove('invisible');
-
 })
+
 // Nascondi password
 shadowPassword.addEventListener('click', function(){
     changeType.type = "password";
@@ -234,47 +216,48 @@ shadowPassword.addEventListener('click', function(){
 .invisible{
   display: none
 }
+.opacity{
+    opacity:0.3;
+}
 div.container-span{
   /* height: 20px; */
   width: 20px;
   display:inline-block;
 }
 .password-strength-meter {
-        display: flex;
-        height: 20px;
-        margin-top: 5px;
-    }
+    display: flex;
+    height: 20px;
+    margin-top: 5px;
+}
 
-    .strength-bar {
-        margin-top: 2px;
-        flex-grow: 1;
-        height: 100%;
-        margin-right: 2px;
-        border-radius: 5rem
-    }
+.strength-bar {
+    margin-top: 2px;
+    flex-grow: 1;
+    height: 100%;
+    margin-right: 2px;
+    border-radius: 5rem
+}
+#bar-1 {
+    background-color: red;
+}
 
-    #bar-1 {
-        background-color: red;
-    }
-
-    #bar-2 {
-        background-color: orange;
-    }
-
-    #bar-3 {
-        background-color: green;
-    }
-    div.input-password{
-        position: relative;
-    }
-    i{
-        position: absolute;
-        right: 40px;
-        top:19px;
-        transform: translate(-50%, -50%)
-    }
-    input.form-control.my_padding{
-        padding-right: 5rem
-    }
-
+#bar-2 {
+    background-color: orange;
+}
+#bar-3 {
+    background-color: green;
+}
+div.input-password{
+    position: relative;
+}
+i{
+    position: absolute;
+    right: 40px;
+    top:19px;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+input.form-control.my_padding{
+    padding-right: 5rem
+}
 </style>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\API\FoodItemController;
+use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\RestaurantController;
 use App\Http\Controllers\Api\Orders\OrderController as OrdersOrderController;
 use Illuminate\Http\Request;
@@ -27,11 +28,14 @@ Route::name('api.')->group(function () {
     Route::get('/restaurants/{restaurant}', [RestaurantController::class, 'show'])->name('restaurant.show');
     Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
     Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('category.show');
+    // FOOD_ITEMS
     Route::get('/foodItems', [FoodItemController::class, 'index'])->name('apo.foodItem.index');
     Route::get('/foodItems/search', [FoodItemController::class, 'search'])->name('foodItem.search');
     Route::get('/foodItems/{foodItem}', [FoodItemController::class, 'show'])->name('foodItem.show');
+    // ORDER
+    Route::post('/orders', [OrderController::class, 'generate'])->name('order.generate');
 });
+// Route::get('api/orders', [OrdersOrderController::class, 'index'])->name('api.order.index');
 
 
-Route::get('orders/generate', [OrdersOrderController::class, 'generate']);
-Route::post('orders/make/payment', [OrdersOrderController::class, 'makePayment']);
+// Route::get('orders/make/payment', [OrdersOrderController::class, 'makePayment']);

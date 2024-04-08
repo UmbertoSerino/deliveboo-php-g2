@@ -3,57 +3,31 @@
 namespace App\Http\Controllers\Api\Orders;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Braintree\Gateway;
 
 
 class OrderController extends Controller
 {
-    public function generateToken(Request $request)
+
+    public function generate(Request $request)
     {
-        $gateway = new Gateway([
-            'environment' => env('BRAINTREE_ENVIRONMENT'),
-            'merchantId' => env('BRAINTREE_MERCHANT_ID'),
-            'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
-            'privateKey' => env('BRAINTREE_PRIVATE_KEY'),
-        ]);
+        $order = new Order();
+        $order->user_address = $request->input('user_address');
+        $order->customer = $request->input('customer');
+        $order->status = $request->input('status');
+        $order->total = $request->input('total');
+        $order->user_mail = $request->input('user_mail');
+        $order->user_phone_number = $request->input('user_phone_number');
+        $order->restaurant_id = $request->input('restaurant_id');
+        $order->save();
 
-        $clientToken = $gateway->clientToken()->generate();
-
-        return response()->json(['clientToken' => $clientToken]);
-    }
-
-    public function makePayment(Request $request)
-    {
-        $nonce = $request->input('nonce');
-        $braintreeToken = env('BRAINTREE_PUBLIC_KEY'); // Utilizzare la chiave pubblica per sicurezza
-
-        $gateway = new Gateway([
-            'environment' => env('BRAINTREE_ENVIRONMENT'),
-            'merchantId' => env('BRAINTREE_MERCHANT_ID'),
-            'publicKey' => $braintreeToken, // Utilizzare la chiave pubblica qui
-            'privateKey' => env('BRAINTREE_PRIVATE_KEY'),
-        ]);
-
-        $result = $gateway->transaction()->sale([
-            'amount' => $request->input('amount'), // Importo del pagamento
-            'paymentMethodNonce' => $nonce,
-            'options' => [
-                'submitForVerification' => true // Invia per verifica (potrebbe richiedere ulteriori azioni)
-            ],
-        ]);
-
-        // Gestisci la risposta di Braintree
-        if ($result->success) {
-            $transaction = $result->transaction;
-            // Elaborare l'ordine e registrare il pagamento riuscito
-            return response()->json(['success' => true, 'transaction' => $transaction]);
-        } else {
-            $message = "";
-            foreach ($result->errors->all() as $error) {
-                $message .= $error->message . "\n";
-            }
-            return response()->json(['success' => false, 'message' => $message]);
+        // Aggiungi i food items all'ordine
+        foreach ($request->input('food_items') as $item) {
+            $order->foodItems()->attach($item['food_id'], ['quantity' => $item['quantity']]);
         }
+        return response()->json(['message' => 'Ordine generato con successo', 'order_id' => $order->id], 200);
     }
+
 }

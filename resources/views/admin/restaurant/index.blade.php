@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('main-content')
 <section class="container d-flex justify-content-center align-items-center pt-5">
-  <div id="restaurant-index" class="container my_wrapper">
+  <div id="restaurant-index" class="container my_window">
     <div class="row">
       @if ($restaurants->isEmpty())
         <div class="col-12 text-center">
@@ -28,8 +28,9 @@
             <div class="col-md-8">
               <div class="card-body d-flex justify-content-between">
                 <div>
-                  <h5 class="card-title">Ristorante "{{ $restaurant->name }}" di {{ $restaurant->user->name }} {{ $restaurant->user->last_name }} </h5>
-                  <p class="card-text">Recapito ristorante: {{ $restaurant->email }}, {{ $restaurant->phone_number }}</p>
+                  <h2 class="card-title">Ristorante: <strong> "{{ $restaurant->name }}"</strong> di <strong>{{ $restaurant->user->name }} {{ $restaurant->user->last_name }} </h5>
+                  <p class="card-text">Recapito mail ristorante: {{ $restaurant->email }}, Recapito telefonico: {{ $restaurant->phone_number }}</p>
+                  <p class="card-text">Recapito telefonico: +39 {{ $restaurant->phone_number }}</p>
                   <p class="card-text">Indirizzo: {{ $restaurant->address }}</p>
                   <p class="card-text">Partita Iva: {{ $restaurant->vat }}</p>
                   <p class="card-text">Recapito titolare: {{ $restaurant->user->email }}</p>
@@ -40,7 +41,7 @@
                 </div>
                 {{-- Button Modified Restaurant --}}
                 <div>
-                  <a href="{{ route('admin.restaurants.edit', $restaurant->id) }}" class="btn btn-primary mb-3">Modifica</a>
+                  <a href="{{ route('admin.restaurants.edit', $restaurant->id) }}" class="btn btn-primary my_button">Modifica</a>
                 </div>
               </div>
             </div>
@@ -54,11 +55,11 @@
           <div class="col-sm-6 mb-3 mb-sm-0">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Menù</h5>
+                <h1 class="card-title">Menù</h1>
                 <p class="card-text">Aggiungi e aggiorna le tue pietanze</p>
                 <div class="col-12 d-flex">
-                    <a href="{{ route('admin.fooditems.create', $restaurant) }}" class="btn btn-primary me-1">Aggiungi piatto</a>
-                    <a href="{{ route('admin.fooditems.index', $restaurant) }}" class="btn btn-warning">I miei Piatti</a>
+                    <a href="{{ route('admin.fooditems.create', $restaurant) }}" class="btn btn-primary me-1 my_button" id="my_button_create">Aggiungi piatto</a>
+                    <a href="{{ route('admin.fooditems.index', $restaurant) }}" class="btn btn-warning my_button">I miei Piatti</a>
                 </div>
               </div>
             </div>
@@ -67,9 +68,9 @@
           <div class="col-sm-6">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Ordini</h5>
+                <h1 class="card-title">Ordini</h1>
                 <p class="card-text">Tieni sott'occhio le ordinazioni nel tuo ristorante</p>
-                  <a href="{{ route('admin.orders.index', $restaurant) }}" class="btn btn-warning">I miei ordini</a>
+                  <a href="{{ route('admin.orders.index', $restaurant) }}" class="btn btn-warning my_button">I miei ordini</a>
               </div>
             </div>
           </div>
@@ -77,7 +78,7 @@
       </article>
         @endif
         {{-- Link utility --}}
-        <div class="text-center pt-5">
+        <div class="text-center p-5">
           <a class="bg-white p-2 rounded-4" href="http://localhost:5174">Vai a DeliveBoo Guest</a>
         </div>
     </div>
@@ -89,7 +90,9 @@
   body{
     background-image: url('https://cms.finnair.com/resource/blob/1329464/d417ef1c0553da0dfb8c65eb213d13f9/long-main-data.jpg?impolicy=crop&width=4000&height=2250&x=0&y=334')
   }
-  .my_wrapper{
-    min-width:350px;
+
+  p.card-text{
+    font-size: 1rem;
+    font-family:"Times New Roman", Times, serif;
   }
 </style>

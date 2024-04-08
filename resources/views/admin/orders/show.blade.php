@@ -45,6 +45,11 @@
                                         Modifica Ordine
                                     </button>
                                 </a>
+                                <a href="{{ route('admin.orders.index', $order->id) }}">
+                                    <button class="btn btn-success">
+                                        Torna agli ordini
+                                    </button>
+                                </a>
                             </div>
                                 {{-- Modal --}}
                             <!-- Button trigger modal -->

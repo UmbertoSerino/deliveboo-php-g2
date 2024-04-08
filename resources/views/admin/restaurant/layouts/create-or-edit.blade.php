@@ -14,7 +14,7 @@
         @csrf
         @yield('form-method')
         {{-- Nome ristorante --}}
-          <div class="form-row my_card">
+          <div class="form-row">
             <div class="form-group col-md-9 m-2">
               <label for="name">Nome Ristorante:
                 <div class="container-span">
@@ -105,7 +105,7 @@
                 <li>
                   <input type="checkbox" id="categories-{{ $category->id }}" value="{{ $category->id }}" class="obligate"
                   name="categories[]" {{ in_array($category->id, old('categories', $restaurant->categories->pluck('id')->toArray())) ? 'checked' : '' }}>
-                  <label for="categories-{{ $category->id }}">{{ $category->name }}</label>
+                  <label class="my_check" for="categories-{{ $category->id }}">{{ $category->name }}</label>
                 </li>
                 @endforeach
                 @error('categories')
@@ -325,7 +325,7 @@ body {
     background-image: url(http://salsaritas.johngroupinteractive.com/wp-content/uploads/2017/06/enchilada-bg.jpg);
     background-size: 125%;
     background-repeat: repeat-x;
-    animation: animatedBackground 15s linear alternate infinite;
+    animation: animatedBackground 30s linear alternate infinite;
 }
 
 @keyframes animatedBackground {

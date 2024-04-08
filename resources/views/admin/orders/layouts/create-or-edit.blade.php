@@ -5,7 +5,8 @@
 @endsection
 
 @section('main-content')
-    <div class="container">
+<section class="d-flex justify-content-center align-items-center pt-5">
+    <div class="container my_window p-5" id="restaurant-index">
         <div class="row justify-content-center">
             <div class="col-7">
                 @include('partials.errors')
@@ -40,7 +41,7 @@
                         </div>
                         {{-- Numero di telefono --}}
                         <div class="mb-3 input-group">
-                            <label for="user_phone_number" class="input-group-text">Tell Cliente:</label>
+                            <label for="user_phone_number" class="input-group-text">Telefono Cliente:</label>
                             <input class="form-control" type="phone" name="user_phone_number" id="user_phone_number" value="{{ old('user_phone_number',$order->user_phone_number) }}">
                         </div>
 
@@ -49,14 +50,15 @@
                             <button type="submit" class="btn btn-xl btn-primary">
                                 @yield('page-title')
                             </button>
-                            <button type="reset" class="btn btn-xl btn-warning">
-                                Reset all fields
-                            </button>
+                            {{-- <button type="reset" class="btn btn-xl btn-warning">
+                                Reset
+                            </button> --}}
                         </div>
                 </form>
             </div>
         </div>
     </div>
+</section>
     {{-- Script for preview image url --}}
     <script>
         document.getElementById('view').addEventListener('change', function(event){

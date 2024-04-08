@@ -1,6 +1,6 @@
 @extends('admin.orders.layouts.create-or-edit')
 
-@section('page-title', 'Edit post')
+@section('page-title', 'Modifica')
 
 @section('form-action')
     {{ route('admin.orders.update', $order) }}

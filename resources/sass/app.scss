@@ -10,12 +10,109 @@
 
 #restaurant-index {
     .badge {
-        border-radius: 3px;
+        border-radius: 30px;
         color: white;
-        font-weight: 700;
+        font-weight: 800;
+        font-size: .82rem;
+        padding: 1rem;
         background-color: #F47A00;
     }
 }
+
+//   -----------------------------------------------
+
+.my_window {
+    min-width: 300px;
+    border: 5px solid $bg-window-border;
+    background-color: $bg-window;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.my_card {
+    padding: 2rem;
+
+}
+
+input,
+button,
+textarea,
+.my_button,
+.my_window,
+.my_check {
+    box-shadow: 0 10px 20px -8px rgba(0, 0, 0, .7);
+
+    &:hover {
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+
+    }
+
+}
+
+.my_button {
+    border-radius: 4px;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    width: 130px;
+    text-align: center;
+    text-decoration: none;
+    padding: 0.61rem;
+}
+
+.my_button_create {
+    background-color: #5ca1e1;
+    color: white;
+
+    &:hover {
+        background-color: #5ca1e1;
+        color: white;
+        scale: 1.1;
+    }
+
+    &:active {
+        background-color: #5ca1e1;
+        color: white;
+        scale: 1;
+
+    }
+}
+
+.no_available {
+    filter: grayscale(100%);
+}
+
+.title-section {
+    background-color: rgb(228, 228, 228);
+    border: 5px solid rgb(206, 206, 206);
+    color: black;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+}
+
+.my_card {
+    min-height: 600px;
+}
+
+#my_wrapper {
+    min-width: 250px;
+    border: 5px solid rgb(206, 206, 206);
+    background-color: rgb(228, 228, 228);
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    /* transition: all 0.3s ease;  */
+}
+
+#my_wrapper:hover {
+    /* transform: scale(1.05);  */
+    box-shadow: 40px 40px 80px rgba(0, 0, 0, 0.3);
+}
+
+//   -----------------------------------------------
 
 #food-item-index {
     .food-card {

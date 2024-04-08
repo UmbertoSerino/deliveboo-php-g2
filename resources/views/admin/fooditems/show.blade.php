@@ -1,83 +1,73 @@
 @extends('layouts.admin')
 
 @section('main-content')
-    <section class="products">
-        <div class="container">
-            <div class="row">
-                <div class="mb-3 justify-content-center">
-                    <div class="col-7 col-sm-3 p-3">
-                        <div class="card p-4 text-center" id="my_wrapper">
-                            <h1>
-                                {{ $foodItem->name }}
-                            </h1>
-                            <p class="fs-5">
-                               <strong> Ingredienti: </strong> {{ $foodItem->ingredients }}
-                            </p>
-                            <p class="fs-5">
-                                <strong> Prezzo: </strong>{{ $foodItem->price }} €
-                            </p>
-                            <div class="row g-0 d-flex justify-content-center">
-                                <div class="col-md-4">
-                                    @if (str_starts_with($foodItem->image_url, 'http'))
-                                    <img class="img-fluid rounded-start" src="{{ $foodItem->image_url }}" alt="{{ $foodItem->name }} Image">
-                                @else
-                                <div class="col-12 d-flex mb-3">
-                                    <img class="img-fluid rounded-start" alt="{{ $foodItem->name }} Image"
-                                        src="{{ asset('storage') . '/' . $foodItem->image_url }}">
+    <section class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-6 col-md-8 col-sm-10 p-3">
+                <div class="card food-card mb-3 my_card d-flex flex-column @if ($foodItem->available == 0) no_available @endif" id="my_wrapper">
+                    <h1 class="text-center mb-4">
+                        {{ $foodItem->name }}
+                    </h1>
+                    <div class="row g-0 d-flex justify-content-center">
+                        <div class="col-md-6">
+                            @if (str_starts_with($foodItem->image_url, 'http'))
+                            <img class="img-fluid rounded-start" src="{{ $foodItem->image_url }}" alt="{{ $foodItem->name }} Image">
+                            @else
+                            <img class="img-fluid rounded-start" alt="{{ $foodItem->name }} Image"
+                            src="{{ asset('storage') . '/' . $foodItem->image_url }}">
+                        </div>
+                        @endif
+                        <p class="fs-5">
+                            <strong> Ingredienti: </strong> {{ $foodItem->ingredients }}
+                        </p>
+                        <p class="fs-5">
+                            <strong> Prezzo: </strong>{{ $foodItem->price }} €
+                        </p>
+                        <p class="fs-5">
+                            <strong>Descrizione: </strong> {{ $foodItem->description }}
+                        </p>
+                        <p class="fs-5">
+                            <strong>Disponibile: </strong>
+                            @if ($foodItem->available == 1)
+                                <i class="fa-solid fa-circle-check"></i>
+                            @else
+                                <i class="fa-solid fa-circle-xmark"></i>
+                            @endif
+                        </p>
+                    </div>
+                    </div>
+                    <div class="card-body">
+                    <div class="card-body">
+                    </div>
+                    <div class="col-12 justify-content-center d-flex">
+                        <a class="btn btn-danger my_button" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $foodItem->id }}">Elimina</a>
+                        {{-- Delete modal --}}
+                        <div class="modal fade" id="exampleModal-{{ $foodItem->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Elimina</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                @endif
-                            </div>
-                            <div class="card-body">
-                                <h2 class="fs-4">
-                                    <strong>Descrizione: </strong>
-                                </h2>
-                                <p>
-                                    {{ $foodItem->description }}
-                                </p>
-                            </div>
-                            <div class="card-body">
-                                <h2 class="fs-4">
-                                    <strong>Disponibile: </strong>
-                                </h2>
-                                <p>
-                                @if ($foodItem->available == 1)
-                                    Si
-                                @else
-                                    No
-                                @endif
-                                </p>
-                            </div>
-                            <div class="col-12 justify-content-center d-flex">
-                                <a class="btn btn-danger" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $foodItem->id }}">Elimina</a>
-                                {{-- Delete modal --}}
-                                <div class="modal fade" id="exampleModal-{{ $foodItem->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Elimina</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                        Sicuro di voler eliminare?
-                                        </div>
-                                        <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
-                                        <form action="{{ route('admin.fooditems.destroy', $foodItem) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Elimina</button>
-                                        </form>
-                                        </div>
-                                    </div>
-                                    </div>
+                                <div class="modal-body">
+                                Sicuro di voler eliminare?
                                 </div>
-                                <div class="ms-3">
-                                    <a href="{{ route('admin.fooditems.index', $foodItem) }}" class="btn btn-success">Elenco Piatti</a>
-                                </div>
-                                <div class="ms-3">
-                                    <a href="{{ route('admin.fooditems.edit', $foodItem) }}" class="btn btn-warning">Modifica piatto</a>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                                <form action="{{ route('admin.fooditems.destroy', $foodItem) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Elimina</button>
+                                </form>
                                 </div>
                             </div>
+                            </div>
+                        </div>
+                        <div class="ms-3">
+                            <a href="{{ route('admin.fooditems.index', $foodItem) }}" class="btn btn-success my_button">Elenco Piatti</a>
+                        </div>
+                        <div class="ms-3">
+                            <a href="{{ route('admin.fooditems.edit', $foodItem) }}" class="btn btn-warning my_button">Modifica piatto</a>
                         </div>
                     </div>
                 </div>
@@ -122,8 +112,9 @@
         box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
 
         a{
-            
-            width:65px
+            display:flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 }

@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card" id="my_window">
                 <div class="card-header">{{ __('Login') }}</div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -43,7 +43,7 @@
                         <div class="row mb-3">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    <input class="form-check-input my_shadow" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
                                         {{ __('Ricorda credenziali') }}
@@ -54,7 +54,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary my_shadow" id="my_button_create">
                                     {{ __('Accedi') }}
                                 </button>
                                 
@@ -99,13 +99,14 @@ shadowPassword.addEventListener('click', function(){
 @endsection
 
 <style>
-    div.input-password{
-        position: relative;
-    }
-    i{
-        position: absolute;
-        right: 15px;
-        top:19px;
-        transform: translate(-50%, -50%)
-    }
+div.input-password{
+    position: relative;
+}
+i{
+    position: absolute;
+    right: 15px;
+    top:19px;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
 </style>

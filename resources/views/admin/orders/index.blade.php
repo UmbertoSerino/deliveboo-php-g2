@@ -6,17 +6,19 @@
     <div class="container">
         <div class="row">
             <div class="col-12 p-2 mb-3 text-center">
-                <h2>
-                    Ciao {{ Auth::user()->name}}! Questa e' lista degli ordini del tuo ristorante
-                </h2>
+                <div class="title-section p-4 text-center mb-5">
+                    <h2>
+                        Ciao {{ Auth::user()->name}}! Questa e' lista degli ordini del tuo ristorante
+                    </h2>
+                </div>
             </div>
             <div class="col-12">
                 <table class="table table-striped table-hover table-dark">
                     <thead>
                         <tr>
-                            <th scope="col">Order ID</th>
+                            <th scope="col">ID</th>
                             <th scope="col">Cliente</th>
-                            <th scope="col">Indirizzo Clienet</th>
+                            <th scope="col">Indirizzo Cliente</th>
                             <th scope="col">Stato di pagamento</th>
                             <th scope="col">Totale</th>
                             <th scope="col">Email</th>
@@ -26,7 +28,7 @@
                             <th scope="col">
                                 <a href="{{ route('admin.orders.create',) }}">
                                     <button class="btn btn-secondary btn-lg">
-                                        Add New order
+                                        Aggiungi un ordine
                                     </button>
                                 </a>
                             </th>
@@ -45,7 +47,11 @@
                                     {{ $order->user_address }}
                                 </td>
                                 <td>
-                                    {{ $order->status }}
+                                    @if ($order->status == 1 )
+                                    <p>Pagato</p>
+                                    @else
+                                    <p>Non Pagato</p>
+                                    @endif
                                 </td>
                                 <td>
                                     {{ $order->total }}
@@ -57,7 +63,7 @@
                                     {{ $order->user_phone_number }}
                                 </td>
                                 <td>
-                                    {{ date_format($order->created_at, "H:i:s d/m/y") }}
+                                    {{ date_format($order->created_at, "d/m/y H:i:s") }}
                                 </td>
                                 <td>
                                     <em>
@@ -68,18 +74,18 @@
                                 <td>
                                     <a href="{{ route('admin.orders.show', $order) }}">
                                         <button class="btn btn-sm btn-primary">
-                                            View
+                                            Visualizza
                                         </button>
                                     </a>
                                     <a href="{{ route('admin.orders.edit', $order) }}">
                                         <button class="btn btn-sm btn-success">
-                                            Edit
+                                            Modifica
                                         </button>
                                     </a>
                                         {{-- Modal --}}
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $order->id }}">
-                                        Delete
+                                        Elimina
                                     </button>
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModal-{{ $order->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -99,7 +105,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger" type="submit">
-                                                    Delete
+                                                    Elimina
                                                 </button>
                                             </form>
                                             </div>
@@ -113,7 +119,7 @@
                         @empty
                             <tr>
                                 <td colspan="4">
-                                    There are no orders available
+                                    Non ci sono ordini disponibili al momento
                                 </td>
                             </tr>
                         @endforelse
